@@ -1,6 +1,7 @@
 import IndianReportClass from "../class/report.class"
-import { FeatureReportModel, ScenarioReportModel, TestStepReportModel } from '../interface/report.model';
+import { TestStepReportModel } from '../interface/report.model';
 import { FeatureMapModel, ScenarioMapModel } from "../interface/report_map.model";
+import Big from "big.js"
 
 class IndianReportLogic {
     public static AddTestStep(content: any) {
@@ -11,6 +12,20 @@ class IndianReportLogic {
         const scenario = this.scenarioContent(feature, scenarioId)
         const testStep = this.testStepContent(scenario, stepId)
         testStep.content.push(content)
+        scenario.testStepMap[stepId] = testStep
+        feature.scenarioMap[scenarioId] = scenario
+        IndianReportClass.addFeature(uri, feature)
+    }
+
+    public static AddTestStepResult(duration: number, status: string) {
+        const scenarioId = IndianReportClass.testStepHook.pickle.id
+        const stepId = IndianReportClass.testStepHook.pickleStep.id
+        const uri = IndianReportClass.testStepHook.pickle.uri
+        const feature = this.featureContent(uri)
+        const scenario = this.scenarioContent(feature, scenarioId)
+        const testStep = this.testStepContent(scenario, stepId)
+        testStep.duration = Big(duration).div(1000000).toNumber()
+        testStep.testStatus = status
         scenario.testStepMap[stepId] = testStep
         feature.scenarioMap[scenarioId] = scenario
         IndianReportClass.addFeature(uri, feature)

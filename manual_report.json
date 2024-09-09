@@ -10,10 +10,12 @@
         "testSteps": [
           {
             "id": 1,
-            "name": "TEST STEP",
+            "name": "TEST PASS",
             "content": [
               2
-            ]
+            ],
+            "duration": 0.683499,
+            "testStatus": "PASSED"
           }
         ]
       }
@@ -33,7 +35,9 @@
             "name": "TEST STEP",
             "content": [
               3
-            ]
+            ],
+            "duration": 0.6784,
+            "testStatus": "FAILED"
           }
         ]
       },
@@ -46,7 +50,9 @@
             "name": "TEST STEP",
             "content": [
               4
-            ]
+            ],
+            "duration": 0.216599,
+            "testStatus": "FAILED"
           }
         ]
       },
@@ -59,7 +65,9 @@
             "name": "TEST STEP",
             "content": [
               5
-            ]
+            ],
+            "duration": 0.1256,
+            "testStatus": "FAILED"
           }
         ]
       }

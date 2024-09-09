@@ -14,21 +14,20 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 444700
+              "duration": 397000
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
             "line": 5,
-            "name": "TEST STEP",
+            "name": "TEST PASS",
             "match": {
               "location": "testcases\\testScripts\\test.ts:4"
             },
             "result": {
-              "status": "failed",
-              "duration": 1815797,
-              "error_message": "AssertionError: test: expected 1 to equal 2\n    + expected - actual\n\n    -1\n    +2\n\n    at TestSteps.testLog2 (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\testcases\\testScripts\\test.ts:14:26)\n    at World.bindingFunc (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\node_modules\\cucumber-tsflow\\src\\binding-decorator.ts:265:7)"
+              "status": "passed",
+              "duration": 1473498
             }
           },
           {
@@ -36,7 +35,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 368299
+              "duration": 68000
             }
           }
         ],
@@ -66,7 +65,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 62200
+              "duration": 51099
             }
           },
           {
@@ -79,8 +78,8 @@
             },
             "result": {
               "status": "failed",
-              "duration": 493198,
-              "error_message": "AssertionError: test: expected 1 to equal 2\n    + expected - actual\n\n    -1\n    +2\n\n    at TestSteps.testLog2 (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\testcases\\testScripts\\test.ts:14:26)\n    at World.bindingFunc (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\node_modules\\cucumber-tsflow\\src\\binding-decorator.ts:265:7)"
+              "duration": 797799,
+              "error_message": "AssertionError: test: expected 1 to equal 2\n    + expected - actual\n\n    -1\n    +2\n\n    at TestSteps.testLog2 (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\testcases\\testScripts\\test.ts:13:26)\n    at World.bindingFunc (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\node_modules\\cucumber-tsflow\\src\\binding-decorator.ts:265:7)"
             }
           },
           {
@@ -88,7 +87,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 149599
+              "duration": 132899
             }
           }
         ],
@@ -107,7 +106,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 279299
+              "duration": 151199
             }
           },
           {
@@ -120,8 +119,8 @@
             },
             "result": {
               "status": "failed",
-              "duration": 473500,
-              "error_message": "AssertionError: test: expected 1 to equal 2\n    + expected - actual\n\n    -1\n    +2\n\n    at TestSteps.testLog2 (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\testcases\\testScripts\\test.ts:14:26)\n    at World.bindingFunc (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\node_modules\\cucumber-tsflow\\src\\binding-decorator.ts:265:7)"
+              "duration": 492598,
+              "error_message": "AssertionError: test: expected 1 to equal 2\n    + expected - actual\n\n    -1\n    +2\n\n    at TestSteps.testLog2 (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\testcases\\testScripts\\test.ts:13:26)\n    at World.bindingFunc (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\node_modules\\cucumber-tsflow\\src\\binding-decorator.ts:265:7)"
             }
           },
           {
@@ -129,7 +128,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 39500
+              "duration": 86200
             }
           }
         ],
@@ -148,7 +147,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 84400
+              "duration": 178799
             }
           },
           {
@@ -161,8 +160,8 @@
             },
             "result": {
               "status": "failed",
-              "duration": 282199,
-              "error_message": "AssertionError: test: expected 1 to equal 2\n    + expected - actual\n\n    -1\n    +2\n\n    at TestSteps.testLog2 (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\testcases\\testScripts\\test.ts:14:26)\n    at World.bindingFunc (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\node_modules\\cucumber-tsflow\\src\\binding-decorator.ts:265:7)"
+              "duration": 299198,
+              "error_message": "AssertionError: test: expected 1 to equal 2\n    + expected - actual\n\n    -1\n    +2\n\n    at TestSteps.testLog2 (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\testcases\\testScripts\\test.ts:13:26)\n    at World.bindingFunc (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\node_modules\\cucumber-tsflow\\src\\binding-decorator.ts:265:7)"
             }
           },
           {
@@ -170,7 +169,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 16000
+              "duration": 15699
             }
           }
         ],

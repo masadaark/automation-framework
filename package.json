@@ -13,11 +13,13 @@
     "@types/cucumber": "7.0.0",
     "@types/lodash": "4.17.7",
     "@types/node": "22.5.4",
+    "@types/big.js": "6.2.2",
     "chai": "4.2.0",
     "cucumber-pretty": "6.0.1",
     "cucumber-tsflow": "4.4.4",
     "lodash": "4.17.21",
     "ts-node": "10.9.2",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "big.js": "6.2.1"
   }
 }

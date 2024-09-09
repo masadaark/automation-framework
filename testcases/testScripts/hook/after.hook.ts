@@ -2,15 +2,13 @@ import { ITestStepHookParameter } from "@cucumber/cucumber";
 import { afterAll, afterStep, binding } from "cucumber-tsflow";
 import { writeFile } from "fs";
 import IndianReportClass from "../class/report.class";
+import IndianReportLogic from "../logic/report.logic";
 
 @binding()
 export class AfterHook {
     @afterStep()
-    public afterStepHook(test: ITestStepHookParameter): void {
-
-        writeFile("afterStepHook.json", JSON.stringify(test, null, 2), function (err) {
-            if (err) return console.error(`เขียนทับ hook ไม่สำเร็จ err:`, err);
-        });
+    public afterStepHook(afterStepHook: ITestStepHookParameter): void {
+        IndianReportLogic.AddTestStepResult(afterStepHook.result.duration.nanos, afterStepHook.result.status)
     }
     @afterAll()
     public afterAllHook(): void {

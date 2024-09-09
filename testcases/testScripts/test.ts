@@ -1,6 +1,5 @@
 import { expect } from "chai";
-import { before, binding, given } from "cucumber-tsflow";
-import { writeFile } from "fs";
+import { binding, given } from "cucumber-tsflow";
 import IndianReportLogic from "./logic/report.logic";
 
 let count = 1
@@ -12,5 +11,11 @@ export class TestSteps {
     count += 1
     IndianReportLogic.AddTestStep(count)
     expect(1, "test").to.equal(2);
+  }
+  @given("TEST PASS")
+  public testLog(): void {
+    count += 1
+    IndianReportLogic.AddTestStep(count)
+    expect(1, "test").to.equal(1);
   }
 }
