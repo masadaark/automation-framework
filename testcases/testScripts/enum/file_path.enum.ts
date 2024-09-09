@@ -1,3 +1,3 @@
-export declare enum EnumFilePath {
+export enum EnumFilePath {
     APP_SETTING = "app-setting.json"
 }
