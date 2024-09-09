@@ -12,7 +12,8 @@ export class AfterHook {
     }
     @afterAll()
     public afterAllHook(): void {
-        console.log("******Writing Report******")
+        console.warn("\n")
+        console.warn("******Writing Report******")
         writeFile("manual_report.json", JSON.stringify(IndianReportClass.toReport(), null, 2), function (err) {
             if (err) return console.error(`เขียนทับ hook ไม่สำเร็จ err:`, err);
         });

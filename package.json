@@ -4,7 +4,7 @@
   "description": "BDD ts",
   "main": "./build/index.js",
   "scripts": {
-    "test:cucumber": "cucumber-js -p default"
+    "test:cucumber": "node runner-ci"
   },
   "license": "ISC",
   "devDependencies": {

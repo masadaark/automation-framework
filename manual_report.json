@@ -14,11 +14,11 @@
             "content": [
               2
             ],
-            "duration": 0.6496,
+            "duration": 0.585599,
             "testStatus": "PASSED"
           }
         ],
-        "duration": 0.6496,
+        "duration": 0.585599,
         "testStatus": "PASSED"
       },
       {
@@ -31,11 +31,11 @@
             "content": [
               3
             ],
-            "duration": 0.197499,
+            "duration": 0.0871,
             "testStatus": "PASSED"
           }
         ],
-        "duration": 0.197499,
+        "duration": 0.0871,
         "testStatus": "PASSED"
       }
     ]
