@@ -9,10 +9,10 @@
   "license": "ISC",
   "devDependencies": {
     "@cucumber/cucumber": "9.6.0",
-    "@types/chai": "^4.2.14",
+    "@types/chai": "4.3.19",
     "@types/cucumber": "7.0.0",
     "@types/node": "22.5.4",
-    "chai": "^4.2.0",
+    "chai": "4.2.0",
     "cucumber-pretty": "6.0.1",
     "cucumber-tsflow": "4.4.4",
     "ts-node": "10.9.2",
