@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "uri": "testcases\\test_copy.feature",
+    "name": "FEATURE2",
+    "scenarios": [
+      {
+        "id": 1,
+        "name": "SCENARIO",
+        "testSteps": [
+          {
+            "id": 1,
+            "name": "TEST STEP",
+            "content": [
+              2
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "uri": "testcases\\test.feature",
+    "name": "FEATURE",
+    "scenarios": [
+      {
+        "id": 1,
+        "name": "SCENARIO",
+        "testSteps": [
+          {
+            "id": 1,
+            "name": "TEST STEP",
+            "content": [
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "SCENARIO2",
+        "testSteps": [
+          {
+            "id": 1,
+            "name": "TEST STEP",
+            "content": [
+              4
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "SCENARIO2",
+        "testSteps": [
+          {
+            "id": 1,
+            "name": "TEST STEP",
+            "content": [
+              5
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

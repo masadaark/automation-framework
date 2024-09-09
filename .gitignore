@@ -4,3 +4,4 @@ build
 afterStepHook.json
 beforeStepHook.json
 test_result.json
+beforeHook.json
