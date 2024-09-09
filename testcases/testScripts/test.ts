@@ -11,7 +11,7 @@ export class TestSteps {
       if (err) return console.error(`เขียนทับ hook ไม่สำเร็จ err:`, err);
     });
   }
-  @given("TEST LOG")
+  @given("TEST STEP")
   public testLog2(): void {
     expect(1, "test").to.equal(2);
   }

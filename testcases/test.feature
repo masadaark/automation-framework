@@ -1,5 +1,5 @@
 Feature: TEST
 
 
-    Scenario: TEST
-        Given TEST LOG
+    Scenario: SCENARIO
+        Given TEST STEP

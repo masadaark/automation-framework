@@ -4,17 +4,17 @@
     "elements": [
       {
         "description": "",
-        "id": "test;test",
+        "id": "test;scenario",
         "keyword": "Scenario",
         "line": 4,
-        "name": "TEST",
+        "name": "SCENARIO",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 444099
+              "duration": 451799
             }
           },
           {
@@ -22,20 +22,20 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 275499
+              "duration": 452300
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
             "line": 5,
-            "name": "TEST LOG",
+            "name": "TEST STEP",
             "match": {
               "location": "testcases\\testScripts\\test.ts:4"
             },
             "result": {
               "status": "failed",
-              "duration": 1050400,
+              "duration": 2188099,
               "error_message": "AssertionError: test: expected 1 to equal 2\n    + expected - actual\n\n    -1\n    +2\n\n    at TestSteps.testLog2 (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\testcases\\testScripts\\test.ts:16:26)\n    at World.bindingFunc (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\node_modules\\cucumber-tsflow\\src\\binding-decorator.ts:265:7)"
             }
           },
@@ -44,7 +44,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 86699
+              "duration": 134599
             }
           }
         ],
