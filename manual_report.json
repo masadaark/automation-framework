@@ -14,70 +14,29 @@
             "content": [
               2
             ],
-            "duration": 0.758,
+            "duration": 0.6496,
             "testStatus": "PASSED"
           }
         ],
-        "duration": 0.758,
+        "duration": 0.6496,
         "testStatus": "PASSED"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "uri": "testcases\\test.feature",
-    "name": "FEATURE",
-    "scenarios": [
+      },
       {
-        "id": 1,
+        "id": 2,
         "name": "SCENARIO",
         "testSteps": [
           {
             "id": 1,
-            "name": "TEST STEP",
+            "name": "TEST PASS",
             "content": [
               3
             ],
-            "duration": 0.6121,
-            "testStatus": "FAILED"
+            "duration": 0.197499,
+            "testStatus": "PASSED"
           }
         ],
-        "duration": 0.6121,
-        "testStatus": "FAILED"
-      },
-      {
-        "id": 2,
-        "name": "SCENARIO2",
-        "testSteps": [
-          {
-            "id": 1,
-            "name": "TEST STEP",
-            "content": [
-              4
-            ],
-            "duration": 0.154799,
-            "testStatus": "FAILED"
-          }
-        ],
-        "duration": 0.154799,
-        "testStatus": "FAILED"
-      },
-      {
-        "id": 3,
-        "name": "SCENARIO2",
-        "testSteps": [
-          {
-            "id": 1,
-            "name": "TEST STEP",
-            "content": [
-              5
-            ],
-            "duration": 0.1205,
-            "testStatus": "FAILED"
-          }
-        ],
-        "duration": 0.1205,
-        "testStatus": "FAILED"
+        "duration": 0.197499,
+        "testStatus": "PASSED"
       }
     ]
   }

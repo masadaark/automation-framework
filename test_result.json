@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 494500
+              "duration": 455300
             }
           },
           {
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1590800
+              "duration": 1436598
             }
           },
           {
@@ -35,29 +35,23 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 67200
+              "duration": 73800
             }
           }
         ],
-        "tags": [],
+        "tags": [
+          {
+            "name": "@feature2",
+            "line": 1
+          }
+        ],
         "type": "scenario"
-      }
-    ],
-    "id": "feature2",
-    "line": 1,
-    "keyword": "Feature",
-    "name": "FEATURE2",
-    "tags": [],
-    "uri": "testcases\\test_copy.feature"
-  },
-  {
-    "description": "",
-    "elements": [
+      },
       {
         "description": "",
-        "id": "feature;scenario",
+        "id": "feature2;scenario",
         "keyword": "Scenario",
-        "line": 4,
+        "line": 7,
         "name": "SCENARIO",
         "steps": [
           {
@@ -65,21 +59,20 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 56699
+              "duration": 51300
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 5,
-            "name": "TEST STEP",
+            "line": 8,
+            "name": "TEST PASS",
             "match": {
               "location": "testcases\\testScripts\\test.ts:4"
             },
             "result": {
-              "status": "failed",
-              "duration": 712799,
-              "error_message": "AssertionError: test: expected 1 to equal 2\n    + expected - actual\n\n    -1\n    +2\n\n    at TestSteps.testLog2 (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\testcases\\testScripts\\test.ts:13:26)\n    at World.bindingFunc (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\node_modules\\cucumber-tsflow\\src\\binding-decorator.ts:265:7)"
+              "status": "passed",
+              "duration": 383798
             }
           },
           {
@@ -87,101 +80,29 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 26100
+              "duration": 28800
             }
           }
         ],
-        "tags": [],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "feature;scenario2",
-        "keyword": "Scenario",
-        "line": 6,
-        "name": "SCENARIO2",
-        "steps": [
+        "tags": [
           {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 170900
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 7,
-            "name": "TEST STEP",
-            "match": {
-              "location": "testcases\\testScripts\\test.ts:4"
-            },
-            "result": {
-              "status": "failed",
-              "duration": 408898,
-              "error_message": "AssertionError: test: expected 1 to equal 2\n    + expected - actual\n\n    -1\n    +2\n\n    at TestSteps.testLog2 (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\testcases\\testScripts\\test.ts:13:26)\n    at World.bindingFunc (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\node_modules\\cucumber-tsflow\\src\\binding-decorator.ts:265:7)"
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 31499
-            }
+            "name": "@feature2",
+            "line": 1
           }
         ],
-        "tags": [],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "feature;scenario2",
-        "keyword": "Scenario",
-        "line": 8,
-        "name": "SCENARIO2",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 119599
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 9,
-            "name": "TEST STEP",
-            "match": {
-              "location": "testcases\\testScripts\\test.ts:4"
-            },
-            "result": {
-              "status": "failed",
-              "duration": 309699,
-              "error_message": "AssertionError: test: expected 1 to equal 2\n    + expected - actual\n\n    -1\n    +2\n\n    at TestSteps.testLog2 (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\testcases\\testScripts\\test.ts:13:26)\n    at World.bindingFunc (C:\\Users\\masada.hir\\Desktop\\indian_guy\\new-indian-guy\\automation-framework\\node_modules\\cucumber-tsflow\\src\\binding-decorator.ts:265:7)"
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 15900
-            }
-          }
-        ],
-        "tags": [],
         "type": "scenario"
       }
     ],
-    "id": "feature",
-    "line": 1,
+    "id": "feature2",
+    "line": 2,
     "keyword": "Feature",
-    "name": "FEATURE",
-    "tags": [],
-    "uri": "testcases\\test.feature"
+    "name": "FEATURE2",
+    "tags": [
+      {
+        "name": "@feature2",
+        "line": 1
+      }
+    ],
+    "uri": "testcases\\test_copy.feature"
   }
 ]
