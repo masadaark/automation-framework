@@ -1,0 +1,66 @@
+{
+  "gherkinDocument": {
+    "feature": {
+      "tags": [],
+      "location": {
+        "line": 1,
+        "column": 1
+      },
+      "language": "en",
+      "keyword": "Feature",
+      "name": "TEST",
+      "description": "",
+      "children": [
+        {
+          "scenario": {
+            "id": "e5d108ed-930a-425d-a4f8-70a915902ddc",
+            "tags": [],
+            "location": {
+              "line": 4,
+              "column": 5
+            },
+            "keyword": "Scenario",
+            "name": "TEST",
+            "description": "",
+            "steps": [
+              {
+                "id": "20c24fb0-4588-46df-91d3-169ec40dbdce",
+                "location": {
+                  "line": 5,
+                  "column": 9
+                },
+                "keyword": "Given ",
+                "keywordType": "Context",
+                "text": "TEST LOG"
+              }
+            ],
+            "examples": []
+          }
+        }
+      ]
+    },
+    "comments": [],
+    "uri": "testcases\\test.feature"
+  },
+  "pickle": {
+    "id": "6e5c7d1a-b5a4-43c6-b5e6-a5262646b0a0",
+    "uri": "testcases\\test.feature",
+    "astNodeIds": [
+      "e5d108ed-930a-425d-a4f8-70a915902ddc"
+    ],
+    "tags": [],
+    "name": "TEST",
+    "language": "en",
+    "steps": [
+      {
+        "id": "2f53e7f4-a736-40d5-9d51-168b7a80fcae",
+        "text": "TEST LOG",
+        "type": "Context",
+        "astNodeIds": [
+          "20c24fb0-4588-46df-91d3-169ec40dbdce"
+        ]
+      }
+    ]
+  },
+  "testCaseStartedId": "34c4e521-b1db-4dd0-9219-da0acc7e68a7"
+}

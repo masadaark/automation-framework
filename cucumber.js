@@ -3,7 +3,6 @@ let common = [
     '--require-module ts-node/register',
     '--require ./testcases/testScripts/**/*.ts',
     // '--format progress-bar',
-    '--publish-quiet',
     // `--format-options '{"snippetInterface": "synchronous"}'`,
     `--format json:./test_result.json`,
   ].join(' ');
