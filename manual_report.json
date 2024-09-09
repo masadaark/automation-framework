@@ -14,10 +14,12 @@
             "content": [
               2
             ],
-            "duration": 0.683499,
+            "duration": 0.758,
             "testStatus": "PASSED"
           }
-        ]
+        ],
+        "duration": 0.758,
+        "testStatus": "PASSED"
       }
     ]
   },
@@ -36,10 +38,12 @@
             "content": [
               3
             ],
-            "duration": 0.6784,
+            "duration": 0.6121,
             "testStatus": "FAILED"
           }
-        ]
+        ],
+        "duration": 0.6121,
+        "testStatus": "FAILED"
       },
       {
         "id": 2,
@@ -51,10 +55,12 @@
             "content": [
               4
             ],
-            "duration": 0.216599,
+            "duration": 0.154799,
             "testStatus": "FAILED"
           }
-        ]
+        ],
+        "duration": 0.154799,
+        "testStatus": "FAILED"
       },
       {
         "id": 3,
@@ -66,10 +72,12 @@
             "content": [
               5
             ],
-            "duration": 0.1256,
+            "duration": 0.1205,
             "testStatus": "FAILED"
           }
-        ]
+        ],
+        "duration": 0.1205,
+        "testStatus": "FAILED"
       }
     ]
   }

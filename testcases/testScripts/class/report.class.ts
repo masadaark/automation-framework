@@ -2,6 +2,7 @@ import { ITestStepHookParameter } from "@cucumber/cucumber";
 import { FeatureReportModel } from '../interface/report.model';
 import { FeatureMapModel } from "../interface/report_map.model";
 import * as _ from 'lodash';
+import Big from "big.js";
 class IndianReportClass {
 
     private static _testStepHook: ITestStepHookParameter
@@ -40,19 +41,18 @@ class IndianReportClass {
             id: featureMap.id,
             uri: featureMap.uri,
             name: featureMap.name,
-            scenarios: _.sortBy(
-                Object.values(featureMap.scenarioMap),
-                'id'
-            ).map(scenario => ({
-                id: scenario.id,
-                name: scenario.name,
-                testSteps: _.sortBy(
-                    Object.values(scenario.testStepMap),
-                    'id'
-                ),
-                duration: scenario.duration,
-                testStatus: scenario.testStatus
-            }))
+            scenarios: _.sortBy(Object.values(featureMap.scenarioMap), 'id').map(scenario => {
+                const testSteps = _.sortBy(Object.values(scenario.testStepMap), 'id')
+                const duration = testSteps.reduce((acc, curr) => acc.add(curr.duration ?? 0), Big(0)).toNumber()
+                const testStatus = testSteps.some(step => step.testStatus === "FAILED") ? "FAILED" : "PASSED";
+                return {
+                    id: scenario.id,
+                    name: scenario.name,
+                    testSteps,
+                    duration,
+                    testStatus
+                }
+            })
         };
     }
 }
