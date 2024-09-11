@@ -12,11 +12,11 @@
             "id": 1,
             "name": "StepDef.\"{string}\" fileName.\"{string}\" Http Request",
             "content": [],
-            "duration": 0.837299,
+            "duration": 0.7817,
             "testStatus": "PASSED"
           }
         ],
-        "duration": 0.837299,
+        "duration": 0.7817,
         "testStatus": "PASSED"
       }
     ]
