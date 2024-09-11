@@ -1,7 +1,6 @@
 import IndianReportClass from "../class/report.class"
 import { TestStepReportModel } from '../interface/report.model';
 import { FeatureMapModel, ScenarioMapModel } from "../interface/report_map.model";
-import Big from "big.js"
 
 class IndianReportLogic {
     public static AddTestStep(content: any) {
@@ -24,7 +23,7 @@ class IndianReportLogic {
         const feature = this.featureContent(uri)
         const scenario = this.scenarioContent(feature, scenarioId)
         const testStep = this.testStepContent(scenario, stepId)
-        testStep.duration = Big(duration).div(1000000).toNumber()
+        testStep.duration = duration
         testStep.testStatus = status
         scenario.testStepMap[stepId] = testStep
         feature.scenarioMap[scenarioId] = scenario

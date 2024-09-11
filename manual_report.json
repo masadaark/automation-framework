@@ -10,13 +10,52 @@
         "testSteps": [
           {
             "id": 1,
-            "name": "StepDef.\"{string}\" fileName.\"{string}\" Http Request",
+            "name": "Feature \"test\" tcNo.1",
             "content": [],
-            "duration": 1.025899,
+            "duration": 1.0053,
+            "testStatus": "PASSED"
+          },
+          {
+            "id": 2,
+            "name": "\"test.json\" Http Request",
+            "content": [
+              {
+                "request": {
+                  "url": "http://localhost:9391/api/tms/login",
+                  "method": "POST",
+                  "headers": {
+                    "content-type": "application/json"
+                  },
+                  "body": "{\"email\":\"masada.hir@turbo.co.th\",\"accountId\":\"110776431002552937907\"}"
+                },
+                "response": {
+                  "body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA",
+                  "status": 200
+                }
+              }
+            ],
+            "duration": 110.0584,
+            "testStatus": "PASSED"
+          },
+          {
+            "id": 3,
+            "name": "Expecting Http response subset",
+            "content": [
+              {
+                "actualResult": {
+                  "status": 200,
+                  "body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA"
+                },
+                "expectedResult": {
+                  "body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA"
+                }
+              }
+            ],
+            "duration": 1.735599,
             "testStatus": "PASSED"
           }
         ],
-        "duration": 1.025899,
+        "duration": 112.799299,
         "testStatus": "PASSED"
       }
     ]

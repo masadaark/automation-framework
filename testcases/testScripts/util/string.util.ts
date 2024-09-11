@@ -48,6 +48,12 @@ class Str {
         }
         return result.join("");
     }
+    static RemoveFirstLastChar(s: string): string {
+        if (s.length <= 2) {
+            return '';
+        }
+        return s.substring(1, s.length - 1);
+    }
 }
 
 export default Str
