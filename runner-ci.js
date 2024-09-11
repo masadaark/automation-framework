@@ -8,11 +8,11 @@ const cucumberProcess = spawn('cucumber-js', ['-p', 'default', '--tags', tagComm
 });
 
 cucumberProcess.on('error', (error) => {
-    console.error(`Error: ${error.message}`);
+    console.error(`error: ${error.message}`);
 });
 
 cucumberProcess.on('exit', (code) => {
     if (code !== 0) {
-        console.error(`Process exited with code ${code}`);
+        console.error(`exit code: ${code}`);
     }
 });

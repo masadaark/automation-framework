@@ -18,7 +18,7 @@ export class TestSteps {
     count += 1
     IndianReportLogic.AddTestStep(count)
     const resp = await HttpClass.REQUEST("healthcheck","GET")
-    console.log(resp)
+    console.log(await resp?.json())
     expect(1, "test").to.equal(1);
   }
 }

@@ -4,25 +4,24 @@
   "description": "BDD ts",
   "main": "./build/index.js",
   "scripts": {
-    "test:cucumber": "node runner-ci"
+    "test:cucumber": "node runner-ci",
+    "report": "npx babel-node report/generator/index.jsx"
   },
   "license": "ISC",
   "devDependencies": {
     "@cucumber/cucumber": "9.6.0",
+    "@types/big.js": "6.2.2",
     "@types/chai": "4.3.19",
     "@types/cucumber": "7.0.0",
     "@types/lodash": "4.17.7",
     "@types/node": "22.5.4",
-    "@types/big.js": "6.2.2",
-    "@types/supertest": "6.0.2",
-    "chai": "4.2.0",
-    "cucumber-pretty": "6.0.1",
-    "cucumber-tsflow": "4.4.4",
-    "lodash": "4.17.21",
-    "ts-node": "10.9.2",
-    "typescript": "5.5.4",
     "big.js": "6.2.1",
-    "supertest":"7.0.0",
-    "node-fetch":"3.3.2"
+    "chai": "4.2.0",
+    "cucumber-tsflow": "4.4.4",
+    "handlebars": "4.7.8",
+    "lodash": "4.17.21",
+    "node-fetch": "3.3.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.5.4"
   }
 }
