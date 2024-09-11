@@ -5,7 +5,8 @@
   "main": "./build/index.js",
   "scripts": {
     "test:cucumber": "node runner-ci",
-    "report": "npx babel-node report/generator/index.jsx"
+    "report": "npx babel-node report/generator/index.jsx",
+    "format": "prettier --write \"**/*.ts\""
   },
   "license": "ISC",
   "devDependencies": {
@@ -15,13 +16,18 @@
     "@types/cucumber": "7.0.0",
     "@types/lodash": "4.17.7",
     "@types/node": "22.5.4",
+    "@typescript-eslint/eslint-plugin": "8.5.0",
     "big.js": "6.2.1",
     "chai": "4.2.0",
     "cucumber-tsflow": "4.4.4",
     "dayjs": "1.11.13",
+    "eslint": "9.10.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "5.2.1",
     "handlebars": "4.7.8",
     "lodash": "4.17.21",
     "node-fetch": "3.3.2",
+    "prettier": "3.3.3",
     "ts-node": "10.9.2",
     "typescript": "5.5.4"
   }

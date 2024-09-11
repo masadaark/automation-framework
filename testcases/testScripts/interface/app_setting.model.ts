@@ -1,3 +1,3 @@
 export interface AppSettingModel {
-    baseUrl: string
+  baseUrl: string;
 }
