@@ -14,7 +14,7 @@
             "content": [
               2
             ],
-            "duration": 142.613199,
+            "duration": 167.688199,
             "testStatus": "PASSED"
           },
           {
@@ -23,11 +23,11 @@
             "content": [
               3
             ],
-            "duration": 71.028999,
+            "duration": 69.4898,
             "testStatus": "PASSED"
           }
         ],
-        "duration": 213.642198,
+        "duration": 237.177999,
         "testStatus": "PASSED"
       },
       {
@@ -40,11 +40,11 @@
             "content": [
               4
             ],
-            "duration": 40.5246,
+            "duration": 37.971,
             "testStatus": "PASSED"
           }
         ],
-        "duration": 40.5246,
+        "duration": 37.971,
         "testStatus": "PASSED"
       }
     ]

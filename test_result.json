@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 413399
+              "duration": 285799
             }
           },
           {
@@ -27,7 +27,20 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1341098
+              "duration": 169381999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "TEST PASS",
+            "match": {
+              "location": "testcases\\testScripts\\test.ts:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 70120399
             }
           },
           {
@@ -35,7 +48,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 87999
+              "duration": 384299
             }
           }
         ],
@@ -51,7 +64,7 @@
         "description": "",
         "id": "feature2;scenario",
         "keyword": "Scenario",
-        "line": 7,
+        "line": 8,
         "name": "SCENARIO",
         "steps": [
           {
@@ -59,20 +72,20 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 79400
+              "duration": 96300
             }
           },
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 8,
+            "line": 9,
             "name": "TEST PASS",
             "match": {
               "location": "testcases\\testScripts\\test.ts:4"
             },
             "result": {
               "status": "passed",
-              "duration": 532400
+              "duration": 38745198
             }
           },
           {
@@ -80,7 +93,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 56700
+              "duration": 25599
             }
           }
         ],

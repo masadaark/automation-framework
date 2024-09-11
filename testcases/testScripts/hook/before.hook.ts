@@ -6,6 +6,7 @@ import { EnumFilePath } from "../enum/file_path.enum";
 import Cfg from '../class/config.class';
 import { AppSettingModel } from "../interface/app_setting.model";
 let scenarioId: string = ""
+let testStepId: string = ""
 @binding()
 export class BeforeHook {
     @beforeAll()
@@ -26,9 +27,12 @@ export class BeforeHook {
         if (scenarioId !== testStepHook.pickle.id) {
             console.warn(`\n`)
             scenarioId = testStepHook.pickle.id
-            console.warn(`-SCENARIO NAME: ${testStepHook.pickle.name}`)
+            console.warn(`-SCENARIO: ${testStepHook.pickle.name}`)
         }
-        console.warn(`--TEST STEP NAME: ${testStepHook.pickleStep.text}`)
+        if(testStepId !== testStepHook.pickleStep.id){
+            testStepId = testStepHook.pickleStep.id
+            console.warn(`--TEST STEP: ${testStepHook.pickleStep.text}`)
+        }
         IndianReportClass.testStepHook = testStepHook
     }
 }
