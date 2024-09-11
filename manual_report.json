@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "uri": "testcases\\test_copy.feature",
-    "name": "FEATURE2",
+    "uri": "testcases\\test.feature",
+    "name": "FEATURE",
     "scenarios": [
       {
         "id": 1,
@@ -10,41 +10,13 @@
         "testSteps": [
           {
             "id": 1,
-            "name": "TEST PASS",
-            "content": [
-              2
-            ],
-            "duration": 167.688199,
-            "testStatus": "PASSED"
-          },
-          {
-            "id": 2,
-            "name": "TEST PASS",
-            "content": [
-              3
-            ],
-            "duration": 69.4898,
+            "name": "StepDef.\"{string}\" fileName.\"{string}\" Http Request",
+            "content": [],
+            "duration": 0.837299,
             "testStatus": "PASSED"
           }
         ],
-        "duration": 237.177999,
-        "testStatus": "PASSED"
-      },
-      {
-        "id": 2,
-        "name": "SCENARIO",
-        "testSteps": [
-          {
-            "id": 1,
-            "name": "TEST PASS",
-            "content": [
-              4
-            ],
-            "duration": 37.971,
-            "testStatus": "PASSED"
-          }
-        ],
-        "duration": 37.971,
+        "duration": 0.837299,
         "testStatus": "PASSED"
       }
     ]

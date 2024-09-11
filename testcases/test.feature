@@ -1,9 +1,6 @@
+@regression-test
 Feature: FEATURE
 
 
     Scenario: SCENARIO
-        Given TEST STEP
-    Scenario: SCENARIO2
-        Given TEST STEP
-    Scenario: SCENARIO2
-        Given TEST STEP
+        Given StepDef."{string}" fileName."{string}" Http Request
