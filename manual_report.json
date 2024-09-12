@@ -1,63 +1,109 @@
-[
-  {
-    "id": 1,
-    "uri": "testcases\\test.feature",
-    "name": "FEATURE",
-    "scenarios": [
-      {
-        "id": 1,
-        "name": "SCENARIO",
-        "testSteps": [
-          {
-            "id": 1,
-            "name": "Feature \"test\" tcNo.1",
-            "content": [],
-            "duration": 1.0053,
-            "testStatus": "PASSED"
-          },
-          {
-            "id": 2,
-            "name": "\"test.json\" Http Request",
-            "content": [
-              {
-                "request": {
-                  "url": "http://localhost:9391/api/tms/login",
-                  "method": "POST",
-                  "headers": {
-                    "content-type": "application/json"
+{
+  "features": [
+    {
+      "id": 1,
+      "uri": "testcases\\test.feature",
+      "name": "FEATURE",
+      "scenarios": [
+        {
+          "id": 1,
+          "name": "SCENARIO",
+          "testSteps": [
+            {
+              "id": 1,
+              "name": "Feature \"test\" tcNo.1",
+              "contents": [],
+              "duration": 0.415199,
+              "testStatus": "PASSED"
+            },
+            {
+              "id": 2,
+              "name": "\"test.json\" Http Request",
+              "contents": [
+                {
+                  "cause": {
+                    "errno": -4078,
+                    "code": "ECONNREFUSED",
+                    "syscall": "connect",
+                    "address": "::1",
+                    "port": 9391
+                  }
+                },
+                {
+                  "request": {
+                    "url": "http://localhost:9391/api/tms/login",
+                    "method": "POST",
+                    "headers": {
+                      "content-type": "application/json"
+                    },
+                    "body": "{\"email\":\"masada.hir@turbo.co.th\",\"accountId\":\"110776431002552937907\"}"
                   },
-                  "body": "{\"email\":\"masada.hir@turbo.co.th\",\"accountId\":\"110776431002552937907\"}"
-                },
-                "response": {
-                  "body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA",
-                  "status": 200
+                  "response": {}
                 }
-              }
-            ],
-            "duration": 110.0584,
-            "testStatus": "PASSED"
-          },
-          {
-            "id": 3,
-            "name": "Expecting Http response subset",
-            "content": [
-              {
-                "actualResult": {
-                  "status": 200,
-                  "body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA"
+              ],
+              "duration": 69.383299,
+              "testStatus": "PASSED"
+            },
+            {
+              "id": 3,
+              "name": "Expecting Http response subset",
+              "contents": [
+                {
+                  "actualResult": {},
+                  "expectedResult": {
+                    "status": 200,
+                    "body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA"
+                  }
                 },
-                "expectedResult": {
-                  "body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA"
-                }
-              }
-            ],
-            "duration": 1.735599,
-            "testStatus": "PASSED"
+                "expected undefined to equal 200"
+              ],
+              "duration": 1.1472,
+              "testStatus": "FAILED"
+            }
+          ],
+          "overview": {
+            "duration": 70.945698,
+            "testStatus": "FAILED",
+            "failed": 1,
+            "passed": 2,
+            "ran": 3
           }
-        ],
-        "duration": 112.799299,
-        "testStatus": "PASSED"
+        },
+        {
+          "id": 2,
+          "name": "SCENARIO",
+          "testSteps": [
+            {
+              "id": 1,
+              "name": "Feature \"test\" tcNo.1",
+              "contents": [],
+              "duration": 0.330899,
+              "testStatus": "PASSED"
+            }
+          ],
+          "overview": {
+            "duration": 0.330899,
+            "testStatus": "PASSED",
+            "failed": 0,
+            "passed": 1,
+            "ran": 1
+          }
+        }
+      ],
+      "overview": {
+        "duration": 71.276597,
+        "testStatus": "FAILED",
+        "failed": 1,
+        "passed": 1,
+        "ran": 2
       }
-    ]
+    }
+  ],
+  "overview": {
+    "duration": 71.276597,
+    "testStatus": "FAILED",
+    "failed": 1,
+    "passed": 0,
+    "ran": 1
   }
-]
+}

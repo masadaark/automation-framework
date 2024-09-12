@@ -35,6 +35,7 @@ class HttpProtocol {
       response = await fetch(url, fetchOption);
     } catch (error) {
       console.error('http request errors:', error);
+      IndianReportLogic.AddTestStep(error);
       return undefined;
     } finally {
       let responseBody = Obj.Parse(await response?.text());

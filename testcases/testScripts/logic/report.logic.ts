@@ -10,7 +10,7 @@ class IndianReportLogic {
     const feature = this.featureContent(uri);
     const scenario = this.scenarioContent(feature, scenarioId);
     const testStep = this.testStepContent(scenario, stepId);
-    testStep.content.push(content);
+    testStep.contents.push(content);
     scenario.testStepMap[stepId] = testStep;
     feature.scenarioMap[scenarioId] = scenario;
     IndianReportClass.addFeature(uri, feature);
@@ -55,7 +55,7 @@ class IndianReportLogic {
     return {
       id: Object.keys(scenario.testStepMap).length + 1,
       name: IndianReportClass.testStepHook.pickleStep.text,
-      content: [],
+      contents: [],
     };
   }
 }

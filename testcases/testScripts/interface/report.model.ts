@@ -3,20 +3,29 @@ export interface FeatureReportModel {
   uri: string;
   name: string;
   scenarios: ScenarioReportModel[];
+  overview?: ReportOverview
 }
 
 export interface ScenarioReportModel {
   id: number;
   name: string;
   testSteps: TestStepReportModel[];
-  duration?: number;
-  testStatus?: string;
+  overview?: ReportOverview
 }
 
 export interface TestStepReportModel {
   id: number;
   name: string;
-  content: any[];
+  contents: any[];
   duration?: number;
   testStatus?: string;
+}
+
+
+export interface ReportOverview {
+  duration?: number;
+  testStatus?: string;
+  failed: number;
+  passed: number;
+  ran: number;
 }

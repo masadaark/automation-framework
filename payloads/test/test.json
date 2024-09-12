@@ -12,8 +12,9 @@
                     "accountId": "110776431002552937907"
                 }
             },
-            "response":{
-                "body":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA"
+            "response": {
+                "status": 200,
+                "body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA"
             }
         }
     ]

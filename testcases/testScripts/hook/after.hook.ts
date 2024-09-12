@@ -16,7 +16,6 @@ export class AfterHook {
     const errorMessage = afterStepHook.result.exception?.message;
     if (errorMessage) IndianReportLogic.AddTestStep(errorMessage);
     IndianReportLogic.AddTestStepResult(timStamp, testStatus);
-    const a = 1;
   }
   @afterAll()
   public afterAllHook(): void {
