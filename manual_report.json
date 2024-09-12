@@ -13,7 +13,7 @@
               "id": 1,
               "name": "Feature \"test\" tcNo.1",
               "contents": [],
-              "duration": 0.415199,
+              "duration": 0.4821,
               "testStatus": "PASSED"
             },
             {
@@ -41,7 +41,7 @@
                   "response": {}
                 }
               ],
-              "duration": 69.383299,
+              "duration": 61.8404,
               "testStatus": "PASSED"
             },
             {
@@ -57,12 +57,12 @@
                 },
                 "expected undefined to equal 200"
               ],
-              "duration": 1.1472,
+              "duration": 1.122499,
               "testStatus": "FAILED"
             }
           ],
           "overview": {
-            "duration": 70.945698,
+            "duration": 63.444999,
             "testStatus": "FAILED",
             "failed": 1,
             "passed": 2,
@@ -77,12 +77,12 @@
               "id": 1,
               "name": "Feature \"test\" tcNo.1",
               "contents": [],
-              "duration": 0.330899,
+              "duration": 0.130199,
               "testStatus": "PASSED"
             }
           ],
           "overview": {
-            "duration": 0.330899,
+            "duration": 0.130199,
             "testStatus": "PASSED",
             "failed": 0,
             "passed": 1,
@@ -91,19 +91,34 @@
         }
       ],
       "overview": {
-        "duration": 71.276597,
+        "duration": 63.575198,
         "testStatus": "FAILED",
         "failed": 1,
         "passed": 1,
         "ran": 2
+      },
+      "testStepOverview": {
+        "failed": 1,
+        "passed": 3,
+        "ran": 4
       }
     }
   ],
   "overview": {
-    "duration": 71.276597,
+    "duration": 63.575198,
     "testStatus": "FAILED",
     "failed": 1,
     "passed": 0,
     "ran": 1
+  },
+  "scnarioOverview": {
+    "failed": 1,
+    "passed": 1,
+    "ran": 2
+  },
+  "testStepOverview": {
+    "failed": 1,
+    "passed": 3,
+    "ran": 4
   }
 }

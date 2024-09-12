@@ -4,6 +4,7 @@ export interface FeatureReportModel {
   name: string;
   scenarios: ScenarioReportModel[];
   overview?: ReportOverview
+  testStepOverview?: ReportOverview
 }
 
 export interface ScenarioReportModel {
