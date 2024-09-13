@@ -1,3 +1,4 @@
 {
-    "baseUrl":"http://localhost:9391/"
+    "baseUrl": "http://localhost:9391/",
+    "headers": {"test":1}
 }

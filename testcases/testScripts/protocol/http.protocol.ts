@@ -1,8 +1,10 @@
+import _ from 'lodash';
 import Cfg from '../class/config.class';
 import Formatter from '../class/formatter.class';
 import ResClass from '../class/response.class';
 import IndianReportLogic from '../logic/report.logic';
 import StorageLogic from '../logic/storage.logic';
+import Validator from '../logic/validator.logic';
 import Obj from '../util/object.util';
 import Str from '../util/string.util';
 
@@ -23,8 +25,8 @@ class HttpProtocol {
       apiPath.startsWith('/') ? `${Cfg.appSetting.baseUrl}${apiPath}` : apiPath
     );
     console.warn(`${method} : ${url}`);
-
-    headers = Formatter.Exec(headers);
+    const defaultHeader = !Obj.IsObj(Validator.Var(Cfg.appSetting.headers)) ? Cfg.appSetting.headers : {}
+    headers = Formatter.Exec(_.merge(headers, defaultHeader));
     headers['content-type'] = headers['content-type'] || 'application/json';
 
     body = Formatter.Exec(body);
@@ -45,6 +47,7 @@ class HttpProtocol {
         request: {
           url,
           ...fetchOption,
+          body: Obj.Parse(body)
         },
         response: ResClass.Http,
       });

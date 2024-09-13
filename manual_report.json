@@ -13,7 +13,7 @@
               "id": 1,
               "name": "Feature \"test\" tcNo.1",
               "contents": [],
-              "duration": 0.4821,
+              "duration": 0.6187,
               "testStatus": "PASSED"
             },
             {
@@ -34,14 +34,18 @@
                     "url": "http://localhost:9391/api/tms/login",
                     "method": "POST",
                     "headers": {
+                      "test": 1,
                       "content-type": "application/json"
                     },
-                    "body": "{\"email\":\"masada.hir@turbo.co.th\",\"accountId\":\"110776431002552937907\"}"
+                    "body": {
+                      "email": "masada.hir@turbo.co.th",
+                      "accountId": "110776431002552937907"
+                    }
                   },
                   "response": {}
                 }
               ],
-              "duration": 61.8404,
+              "duration": 85.4832,
               "testStatus": "PASSED"
             },
             {
@@ -57,12 +61,12 @@
                 },
                 "expected undefined to equal 200"
               ],
-              "duration": 1.122499,
+              "duration": 1.298099,
               "testStatus": "FAILED"
             }
           ],
           "overview": {
-            "duration": 63.444999,
+            "duration": 87.399999,
             "testStatus": "FAILED",
             "failed": 1,
             "passed": 2,
@@ -77,12 +81,12 @@
               "id": 1,
               "name": "Feature \"test\" tcNo.1",
               "contents": [],
-              "duration": 0.130199,
+              "duration": 0.1807,
               "testStatus": "PASSED"
             }
           ],
           "overview": {
-            "duration": 0.130199,
+            "duration": 0.1807,
             "testStatus": "PASSED",
             "failed": 0,
             "passed": 1,
@@ -91,7 +95,7 @@
         }
       ],
       "overview": {
-        "duration": 63.575198,
+        "duration": 87.580699,
         "testStatus": "FAILED",
         "failed": 1,
         "passed": 1,
@@ -105,7 +109,7 @@
     }
   ],
   "overview": {
-    "duration": 63.575198,
+    "duration": 87.580699,
     "testStatus": "FAILED",
     "failed": 1,
     "passed": 0,
