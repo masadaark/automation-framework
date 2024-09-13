@@ -1,3 +1,4 @@
+import { DataTable } from '@cucumber/cucumber';
 import Formatter from '../../class/formatter.class';
 import ScenarioClass from '../../class/scenario.class';
 import TcClass from '../../class/test_cases.class';
@@ -6,6 +7,7 @@ import HttpProtocol from '../../protocol/http.protocol';
 import File from '../../util/file.util';
 import Obj from '../../util/object.util';
 import Validator from '../validator.logic';
+import StorageLogic from '../storage.logic';
 
 class HttpLogic {
   private static initApiPath(): string {
@@ -27,6 +29,26 @@ class HttpLogic {
     if (!Validator.Var(ScenarioClass.Http)) return;
     const request = ScenarioClass.Http.request;
     await HttpProtocol.REQUEST(this.initApiPath(), TcClass.HttpFile.method, request?.headers, request?.body);
+  }
+  static async TableHttp(api: string, method: string, dbbTable: DataTable): Promise<any> {
+    if (!Validator.Var(dbbTable)) return await HttpProtocol.REQUEST(StorageLogic.RepStrVar(api), method)
+    const reqObjs: Record<string, any>[] = Obj.ArrToObj(dbbTable["rawTable"])
+      .filter((o: Record<string, any>) => String(o["tcNo"]).split(",").includes(String(TcClass.tcNo)))
+    if (!reqObjs.length) return
+    const promises = reqObjs.map(async (reqObj) => {
+      delete reqObj["tcNo"];
+      let requestBody: any = reqObj;
+      if ('requestBody' in reqObj) {
+        requestBody = reqObj['requestBody'];
+      }
+      return HttpProtocol.REQUEST(
+        api,
+        method,
+        reqObj["headers"],
+        Formatter.Exec(requestBody)
+      );
+    });
+    return await Promise.all(promises);
   }
 }
 

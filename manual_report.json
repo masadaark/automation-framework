@@ -13,7 +13,7 @@
               "id": 1,
               "name": "Feature \"test\" tcNo.1",
               "contents": [],
-              "duration": 0.6187,
+              "duration": 0.6077,
               "testStatus": "PASSED"
             },
             {
@@ -45,7 +45,7 @@
                   "response": {}
                 }
               ],
-              "duration": 85.4832,
+              "duration": 67.470799,
               "testStatus": "PASSED"
             },
             {
@@ -61,12 +61,12 @@
                 },
                 "expected undefined to equal 200"
               ],
-              "duration": 1.298099,
+              "duration": 1.5886,
               "testStatus": "FAILED"
             }
           ],
           "overview": {
-            "duration": 87.399999,
+            "duration": 69.667099,
             "testStatus": "FAILED",
             "failed": 1,
             "passed": 2,
@@ -81,21 +81,75 @@
               "id": 1,
               "name": "Feature \"test\" tcNo.1",
               "contents": [],
-              "duration": 0.1807,
+              "duration": 0.0901,
+              "testStatus": "PASSED"
+            },
+            {
+              "id": 2,
+              "name": "Http POST \"/api/tms/products/1/modules\"",
+              "contents": [
+                {
+                  "cause": {
+                    "errno": -4078,
+                    "code": "ECONNREFUSED",
+                    "syscall": "connect",
+                    "address": "::1",
+                    "port": 9391
+                  }
+                },
+                {
+                  "request": {
+                    "url": "http://localhost:9391/api/tms/products/1/modules",
+                    "method": "POST",
+                    "headers": {
+                      "test": 1,
+                      "content-type": "application/json"
+                    },
+                    "body": {
+                      "name": "test"
+                    }
+                  },
+                  "response": {}
+                },
+                {
+                  "cause": {
+                    "errno": -4078,
+                    "code": "ECONNREFUSED",
+                    "syscall": "connect",
+                    "address": "::1",
+                    "port": 9391
+                  }
+                },
+                {
+                  "request": {
+                    "url": "http://localhost:9391/api/tms/products/1/modules",
+                    "method": "POST",
+                    "headers": {
+                      "test": 1,
+                      "content-type": "application/json"
+                    },
+                    "body": {
+                      "name": "test2"
+                    }
+                  },
+                  "response": {}
+                }
+              ],
+              "duration": 10.7311,
               "testStatus": "PASSED"
             }
           ],
           "overview": {
-            "duration": 0.1807,
+            "duration": 10.8212,
             "testStatus": "PASSED",
             "failed": 0,
-            "passed": 1,
-            "ran": 1
+            "passed": 2,
+            "ran": 2
           }
         }
       ],
       "overview": {
-        "duration": 87.580699,
+        "duration": 80.488299,
         "testStatus": "FAILED",
         "failed": 1,
         "passed": 1,
@@ -103,13 +157,13 @@
       },
       "testStepOverview": {
         "failed": 1,
-        "passed": 3,
-        "ran": 4
+        "passed": 4,
+        "ran": 5
       }
     }
   ],
   "overview": {
-    "duration": 87.580699,
+    "duration": 80.488299,
     "testStatus": "FAILED",
     "failed": 1,
     "passed": 0,
@@ -122,7 +176,7 @@
   },
   "testStepOverview": {
     "failed": 1,
-    "passed": 3,
-    "ran": 4
+    "passed": 4,
+    "ran": 5
   }
 }

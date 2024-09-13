@@ -40,5 +40,18 @@ class Obj {
       return false;
     }
   }
+  static ArrToObj(arr2D: any[][]): Record<string, any>[] {
+    const cols: string[] = arr2D[0];
+    const objArr: Record<string, any>[] = [];
+    for (let i = 1; i < arr2D.length; i++) {
+      const row: Record<string, any> = {}
+      for (let ic = 0; ic < cols.length; ic++) {
+        const val = arr2D[i][ic]
+        row[cols[ic]] = this.Parse(val)
+      }
+      objArr.push(this.New(row))
+    }
+    return objArr
+  }
 }
 export default Obj;
