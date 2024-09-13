@@ -8,6 +8,7 @@ import File from '../../util/file.util';
 import Obj from '../../util/object.util';
 import Validator from '../validator.logic';
 import StorageLogic from '../storage.logic';
+import { ApiFileModel } from '../../interface/file_interface/api_collection.model';
 
 class HttpLogic {
   private static initApiPath(): string {
@@ -21,7 +22,7 @@ class HttpLogic {
     return apiPath;
   }
   static async RequestJsonFile(file: string): Promise<void> {
-    const filePath = `payloads/${TcClass.feature}/${file}`.replace('//', '');
+    const filePath = `payloads/${TcClass.feature}/${file}`.replace(/\/\//g, '');
     const httpFile: HttpFile = await File.readJson(filePath);
     TcClass.HttpFile = httpFile;
     ScenarioClass.Http = ScenarioClass.NewHttp();
@@ -49,6 +50,16 @@ class HttpLogic {
       );
     });
     return await Promise.all(promises);
+  }
+  static async ApiFolder(file: string): Promise<any> {
+    const filePath = `payloads/api/${file}`.replace(/\/\//g, '');
+    const apiFile: ApiFileModel = Formatter.Exec(await File.readJson(filePath));
+    await HttpProtocol.REQUEST(
+      apiFile.apiPath,
+      apiFile.method,
+      apiFile.headers,
+      apiFile.body
+    )
   }
 }
 

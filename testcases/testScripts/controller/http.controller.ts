@@ -1,4 +1,4 @@
-import { binding, when } from 'cucumber-tsflow';
+import { binding, given, when } from 'cucumber-tsflow';
 import HttpLogic from '../logic/้http/http.logic';
 import Cfg from '../class/config.class';
 import HttpProtocol from '../protocol/http.protocol';
@@ -27,5 +27,9 @@ export class HttpController {
   @when(`Http {string} {string}`, { timeout: Cfg.stepTimeOut })
   public async HttpMethodRequest(method: string, api: string, bddTable: DataTable): Promise<void> {
     await HttpLogic.TableHttp(api, method, bddTable);
+  }
+  @given(`Http Request api:{string}`, { timeout: Cfg.stepTimeOut })
+  public async HttpCollectionRequest(file: string): Promise<void> {
+    await HttpLogic.ApiFolder(file)
   }
 }
