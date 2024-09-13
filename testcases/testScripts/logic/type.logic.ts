@@ -10,7 +10,6 @@ const TypeLogic = {
     if (typeof val === 'number' || Str.IsStrNum(val)) return 'number';
     if (DateU.IsDateStr(val)) return 'date';
     else if (DateU.IsDateTimeStr(val)) return 'dateTime';
-    else if (/keyexpected/i.test(val)) return 'key';
     else if (Obj.CanParse(val)) return 'json';
     return 'string';
   },

@@ -21,9 +21,6 @@ class AssertionLogic {
       case 'dateTime':
         expect(DateU.ToDateTime(act), path).eq(DateU.ToDateTime(exp));
         break;
-      case 'key':
-        expect(act, path).to.not.eq(undefined);
-        break;
       case 'null':
         expect(act, path).to.be.oneOf([undefined, null]);
         break;

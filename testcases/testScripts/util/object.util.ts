@@ -53,5 +53,17 @@ class Obj {
     }
     return objArr
   }
+  static ReplaceObjVal(obj: any, val: any): any {
+    if (obj === null || typeof obj !== 'object') {
+      return val;
+    }
+    if (Array.isArray(obj)) {
+      return obj.map(item => this.ReplaceObjVal(item, val));
+    }
+    for (const [key, value] of Object.entries(obj)) {
+      obj[key] = this.ReplaceObjVal(value, val);
+    }
+    return obj;
+  }
 }
 export default Obj;
