@@ -16,6 +16,14 @@ export class HttpController {
   public async HttpRequestByJsonFile(file: string): Promise<void> {
     await HttpLogic.RequestJsonFile(file);
   }
+  @given(`StepDef.{string} fileName.{string} Multiple Http Request`, { timeout: Cfg.stepTimeOut })
+  public async HttpMultipleRequestByJsonFileWithComment(_des: string, file: string): Promise<void> {
+    await HttpLogic.MultiRequestJsonFile(file)
+  }
+  @given(`{string} Multiple Http Request`, { timeout: Cfg.stepTimeOut })
+  public async HttpMultipleRequestByJsonFile(file: string): Promise<void> {
+    await HttpLogic.MultiRequestJsonFile(file)
+  }
   @when('{string} Http GET', { timeout: Cfg.stepTimeOut })
   public async HttpGETRequest(api: string): Promise<void> {
     await HttpProtocol.REQUEST(api, "GET");

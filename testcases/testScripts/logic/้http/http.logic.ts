@@ -9,6 +9,7 @@ import Obj from '../../util/object.util';
 import Validator from '../validator.logic';
 import StorageLogic from '../storage.logic';
 import { ApiFileModel } from '../../interface/file_interface/api_collection.model';
+import ResClass from '../../class/response.class';
 
 class HttpLogic {
   private static initApiPath(): string {
@@ -31,6 +32,35 @@ class HttpLogic {
     const request = ScenarioClass.Http.request;
     await HttpProtocol.REQUEST(this.initApiPath(), TcClass.HttpFile.method, request?.headers, request?.body);
   }
+
+  static async MultiRequestJsonFile(file: string): Promise<void> {
+    const filePath = `payloads/${TcClass.feature}/${file}`.replace(/\/\//g, '');
+    const httpFile: HttpFile = await File.readJson(filePath);
+    TcClass.HttpFile = httpFile;
+    const filteredScenarios = httpFile.scenarios.filter(o => o.tcNo.includes(TcClass.tcNo));
+    ScenarioClass.MultiHttp = Obj.New(filteredScenarios);
+    if (Validator.Var(ScenarioClass.MultiHttp)) {
+      const requests = ScenarioClass.MultiHttp.map(async (http, requestId) => {
+        ScenarioClass.Http = http;
+        const rawReq = http.request;
+
+        const resp = await HttpProtocol.REQUEST(
+          this.initApiPath(),
+          httpFile.method,
+          rawReq?.headers,
+          rawReq?.body
+        );
+        return {
+          requestId,
+          body: resp?.body,
+          status: resp?.status
+        };
+      });
+      const responses = await Promise.all(requests);
+      ResClass.MultiHttp = responses.sort((a, b) => a.requestId - b.requestId);
+    }
+  }
+
   static async TableHttp(api: string, method: string, dbbTable: DataTable): Promise<any> {
     if (!Validator.Var(dbbTable)) return await HttpProtocol.REQUEST(StorageLogic.RepStrVar(api), method)
     const reqObjs: Record<string, any>[] = Obj.ArrToObj(dbbTable["rawTable"])
