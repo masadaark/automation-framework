@@ -48,6 +48,11 @@ class AssertionLogic {
     const expectedResult = Formatter.Exec(Obj.Parse(expVal));
     expect(actVal, `response:${path}`).to.include(expectedResult);
   }
+  static PathNotContins(actualRes: {}, path: string, expVal: string): void {
+    const actVal: any = StorageLogic.ObjPathVal(actualRes, path);
+    const expectedResult = Formatter.Exec(Obj.Parse(expVal));
+    expect(actVal, `response:${path}`).to.not.include(expectedResult);
+  }
 }
 
 export default AssertionLogic;

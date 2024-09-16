@@ -57,4 +57,9 @@ export class HttpAssertionController {
     if (!ResClass.Http) return;
     AssertionLogic.PathContins(ResClass.Http.body, path, expectValue);
   }
+  @then('response path {string} not contains {string}')
+  public HttpPathNotContainsAssertion(path: string = '', expectValue: string): void {
+    if (!ResClass.Http) return;
+    AssertionLogic.PathNotContins(ResClass.Http.body, path, expectValue);
+  }
 }
