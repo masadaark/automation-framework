@@ -13,7 +13,7 @@
               "id": 1,
               "name": "Feature \"test\" tcNo.1",
               "contents": [],
-              "duration": 0.5743,
+              "duration": 0.4289,
               "testStatus": "PASSED"
             },
             {
@@ -45,7 +45,7 @@
                   "response": {}
                 }
               ],
-              "duration": 121.2118,
+              "duration": 67.239799,
               "testStatus": "PASSED"
             },
             {
@@ -61,12 +61,12 @@
                 },
                 "expected undefined to equal 200"
               ],
-              "duration": 2.643799,
+              "duration": 0.9502,
               "testStatus": "FAILED"
             }
           ],
           "overview": {
-            "duration": 124.429899,
+            "duration": 68.618899,
             "testStatus": "FAILED",
             "failed": 1,
             "passed": 2,
@@ -81,7 +81,7 @@
               "id": 1,
               "name": "Feature \"test\" tcNo.1",
               "contents": [],
-              "duration": 0.194499,
+              "duration": 0.268899,
               "testStatus": "PASSED"
             },
             {
@@ -135,12 +135,12 @@
                   "response": {}
                 }
               ],
-              "duration": 18.336299,
+              "duration": 10.085999,
               "testStatus": "PASSED"
             }
           ],
           "overview": {
-            "duration": 18.530798,
+            "duration": 10.354898,
             "testStatus": "PASSED",
             "failed": 0,
             "passed": 2,
@@ -149,7 +149,7 @@
         }
       ],
       "overview": {
-        "duration": 142.960697,
+        "duration": 78.973797,
         "testStatus": "FAILED",
         "failed": 1,
         "passed": 1,
@@ -163,7 +163,7 @@
     }
   ],
   "overview": {
-    "duration": 142.960697,
+    "duration": 78.973797,
     "testStatus": "FAILED",
     "failed": 1,
     "passed": 0,

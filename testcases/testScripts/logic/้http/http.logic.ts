@@ -37,23 +37,18 @@ class HttpLogic {
     const filePath = `payloads/${TcClass.feature}/${file}`.replace(/\/\//g, '');
     const httpFile: HttpFile = await File.readJson(filePath);
     TcClass.HttpFile = httpFile;
-    const filteredScenarios = httpFile.scenarios.filter(o => o.tcNo.includes(TcClass.tcNo));
+    const filteredScenarios = httpFile.scenarios.filter((o) => o.tcNo.includes(TcClass.tcNo));
     ScenarioClass.MultiHttp = Obj.New(filteredScenarios);
     if (Validator.Var(ScenarioClass.MultiHttp)) {
       const requests = ScenarioClass.MultiHttp.map(async (http, requestId) => {
         ScenarioClass.Http = http;
         const rawReq = http.request;
 
-        const resp = await HttpProtocol.REQUEST(
-          this.initApiPath(),
-          httpFile.method,
-          rawReq?.headers,
-          rawReq?.body
-        );
+        const resp = await HttpProtocol.REQUEST(this.initApiPath(), httpFile.method, rawReq?.headers, rawReq?.body);
         return {
           requestId,
           body: resp?.body,
-          status: resp?.status
+          status: resp?.status,
         };
       });
       const responses = await Promise.all(requests);
@@ -62,34 +57,25 @@ class HttpLogic {
   }
 
   static async TableHttp(api: string, method: string, dbbTable: DataTable): Promise<any> {
-    if (!Validator.Var(dbbTable)) return await HttpProtocol.REQUEST(StorageLogic.RepStrVar(api), method)
-    const reqObjs: Record<string, any>[] = Obj.ArrToObj(dbbTable["rawTable"])
-      .filter((o: Record<string, any>) => String(o["tcNo"]).split(",").includes(String(TcClass.tcNo)))
-    if (!reqObjs.length) return
+    if (!Validator.Var(dbbTable)) return await HttpProtocol.REQUEST(StorageLogic.RepStrVar(api), method);
+    const reqObjs: Record<string, any>[] = Obj.ArrToObj(dbbTable['rawTable']).filter((o: Record<string, any>) =>
+      String(o['tcNo']).split(',').includes(String(TcClass.tcNo))
+    );
+    if (!reqObjs.length) return;
     const promises = reqObjs.map(async (reqObj) => {
-      delete reqObj["tcNo"];
+      delete reqObj['tcNo'];
       let requestBody: any = reqObj;
       if ('requestBody' in reqObj) {
         requestBody = reqObj['requestBody'];
       }
-      return HttpProtocol.REQUEST(
-        api,
-        method,
-        reqObj["headers"],
-        Formatter.Exec(requestBody)
-      );
+      return HttpProtocol.REQUEST(api, method, reqObj['headers'], Formatter.Exec(requestBody));
     });
     return await Promise.all(promises);
   }
   static async ApiFolder(file: string): Promise<any> {
     const filePath = `payloads/api/${file}`.replace(/\/\//g, '');
     const apiFile: ApiFileModel = Formatter.Exec(await File.readJson(filePath));
-    await HttpProtocol.REQUEST(
-      apiFile.apiPath,
-      apiFile.method,
-      apiFile.headers,
-      apiFile.body
-    )
+    await HttpProtocol.REQUEST(apiFile.apiPath, apiFile.method, apiFile.headers, apiFile.body);
   }
 }
 

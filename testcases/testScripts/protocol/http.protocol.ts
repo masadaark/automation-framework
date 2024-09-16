@@ -25,7 +25,7 @@ class HttpProtocol {
       apiPath.startsWith('/') ? `${Cfg.appSetting.baseUrl}${apiPath}` : apiPath
     );
     console.warn(`${method} : ${url}`);
-    const defaultHeader = !Obj.IsObj(Validator.Var(Cfg.appSetting.headers)) ? Cfg.appSetting.headers : {}
+    const defaultHeader = !Obj.IsObj(Validator.Var(Cfg.appSetting.headers)) ? Cfg.appSetting.headers : {};
     headers = Formatter.Exec(_.merge(headers, defaultHeader));
     headers['content-type'] = headers['content-type'] || 'application/json';
 
@@ -47,7 +47,7 @@ class HttpProtocol {
         request: {
           url,
           ...fetchOption,
-          body: Obj.Parse(body)
+          body: Obj.Parse(body),
         },
         response: ResClass.Http,
       });

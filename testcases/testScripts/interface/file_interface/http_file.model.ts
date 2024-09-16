@@ -10,7 +10,7 @@ export interface ScenarioHttp {
   paramReplace?: Record<string, string | number>;
   tcNo: number[];
   request: HttpRequest;
-  response: HttpResponse;
+  response: HttpResponse | HttpListResponse;
 }
 
 export interface HttpRequest {
