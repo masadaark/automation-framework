@@ -26,10 +26,10 @@ class HttpProtocol {
     );
     console.warn(`${method} : ${url}`);
     const defaultHeader = !Obj.IsObj(Validator.Var(Cfg.appSetting.headers)) ? Cfg.appSetting.headers : {};
-    headers = Formatter.Exec(_.merge(headers, defaultHeader));
+    headers = Formatter.Exec(Obj.Merge(headers, defaultHeader));
     headers['content-type'] = headers['content-type'] ?? 'application/json';
-    body = Formatter.Exec(body);
-    const fetchOption = { method, headers, body: Obj.ToString(body) };
+    body = Formatter.Exec(body) ?? {};
+    const fetchOption = { method, headers, body: Obj.ToString(body)};
     let response;
     try {
       response = await fetch(url, fetchOption);

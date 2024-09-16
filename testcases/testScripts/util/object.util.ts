@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _, { add } from 'lodash';
 import Str from './string.util';
 
 class Obj {
@@ -15,6 +15,12 @@ class Obj {
     } catch (error) {
       return String(val);
     }
+  }
+  static Merge(raw: Record<string, any>, added: Record<string, any>) {
+    for (const key in added) {
+      if (!(key in raw)) raw[key] = added[key]
+    }
+    return raw
   }
   static New(rawObject: any): any {
     return _.cloneDeep(rawObject);

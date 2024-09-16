@@ -50,7 +50,7 @@
             ],
             "request": {
                 "headers": {
-                    
+                    "Authorization": "sdasdas4das4d89a489489"
                 },
                 "body": {
                     "name": "module"
@@ -69,18 +69,11 @@
             "tcNo": [
                 7
             ],
-            "request": {
-                "headers": {
-                    
-                },
-                "body": {
-                    
-                }
-            },
+            "request": {},
             "response": {
-                "status": 401,
+                "status": 400,
                 "body": {
-                    "errorMessage": "Invalid token",
+                    "errorMessage": "โปรดระบุชื่อ module",
                     "api": "/api/tms/products/1/modules",
                     "method": "POST"
                 }
@@ -95,7 +88,7 @@
                     "Authorization": "Bearer {jwtToken}"
                 },
                 "body": {
-                    "description":"Test"
+                    "description": "Test"
                 }
             },
             "response": {
@@ -106,7 +99,8 @@
                     "method": "POST"
                 }
             }
-        },        {
+        },
+        {
             "tcNo": [
                 9
             ],
@@ -128,4 +122,4 @@
             }
         }
     ]
-    }
+}
