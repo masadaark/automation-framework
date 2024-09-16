@@ -36,9 +36,14 @@ export class HttpAssertionController {
     expect(ResClass.Http.body.errorMessage).eql(Formatter.Exec(errorMessage));
   }
   @then('Expect Http Status equal to {int}')
-  public HttpStatusAssertion(status: number = 200): void {
+  public HttpStatusAssertion(status: number): void {
     if (!ResClass.Http) return;
     expect(ResClass.Http.status, `Http status`).eql(status);
+  }
+  @then('Expect Http Status not equal to {int}')
+  public HttpNotStatusAssertion(status: number): void {
+    if (!ResClass.Http) return;
+    expect(ResClass.Http.status, `Http status`).not.eql(status);
   }
   @then('Expect message path {string} equal to {string}')
   @then('Expect Http responsePath {string} equal to {string}')
