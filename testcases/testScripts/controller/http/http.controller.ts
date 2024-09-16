@@ -1,7 +1,7 @@
 import { binding, given, when } from 'cucumber-tsflow';
-import HttpLogic from '../logic/้http/http.logic';
-import Cfg from '../class/config.class';
-import HttpProtocol from '../protocol/http.protocol';
+import HttpLogic from '../../logic/้http/http.logic';
+import Cfg from '../../class/config.class';
+import HttpProtocol from '../../protocol/http.protocol';
 import { DataTable } from '@cucumber/cucumber';
 
 @binding()

@@ -1,11 +1,11 @@
 import { expect } from 'chai';
-import { ListExpect } from '../interface/file_interface/http_file.model';
-import Validator from '../logic/validator.logic';
-import Obj from '../util/object.util';
-import StorageLogic from '../logic/storage.logic';
-import { Comparator, LogicOperator } from '../enum/type.enum';
-import Formatter from '../class/formatter.class';
-import CompLogic from '../logic/comparator.logic';
+import { ListExpect } from '../../interface/file_interface/http_file.model';
+import Validator from '../validator.logic';
+import Obj from '../../util/object.util';
+import StorageLogic from '../storage.logic';
+import { Comparator, LogicOperator } from '../../enum/type.enum';
+import Formatter from '../../class/formatter.class';
+import CompLogic from '../comparator.logic';
 
 const AssertHttpList = {
   Index(actArr: any[], expArr: ListExpect[], operator: string = 'and'): void {

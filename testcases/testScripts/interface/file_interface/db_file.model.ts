@@ -1,4 +1,4 @@
-export interface DBFile {
+export interface PgDBFileModel {
   sql: string;
   scenarios: ScenarioDB[];
 }

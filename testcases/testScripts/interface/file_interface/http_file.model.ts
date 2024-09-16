@@ -1,6 +1,6 @@
 import { Comparator, LogicOperator } from '../../enum/type.enum';
 
-export interface HttpFile {
+export interface HttpFileModel {
   apiPath: string;
   method: string;
   scenarios: ScenarioHttp[];

@@ -5,6 +5,7 @@ import { EnumFilePath } from '../enum/file_path.enum';
 import Cfg from '../class/config.class';
 import { AppSettingModel } from '../interface/app_setting.model';
 import File from '../util/file.util';
+import PgProtocol from '../protocol/pg.protocol';
 let scenarioId: string = '';
 let testStepId: string = '';
 @binding()
@@ -16,6 +17,7 @@ export class BeforeHook {
     const appSettingFile = await File.readJson(appSettingPath);
     Cfg.appSetting = appSettingFile as AppSettingModel;
     if (Cfg.appSetting.baseUrl?.endsWith('/')) Cfg.appSetting.baseUrl = Cfg.appSetting.baseUrl.slice(0, -1);
+    PgProtocol.Connect();
     return;
   }
   @beforeStep()

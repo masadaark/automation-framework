@@ -2,7 +2,7 @@ import { DataTable } from '@cucumber/cucumber';
 import Formatter from '../../class/formatter.class';
 import ScenarioClass from '../../class/scenario.class';
 import TcClass from '../../class/test_cases.class';
-import { HttpFile } from '../../interface/file_interface/http_file.model';
+import { HttpFileModel } from '../../interface/file_interface/http_file.model';
 import HttpProtocol from '../../protocol/http.protocol';
 import File from '../../util/file.util';
 import Obj from '../../util/object.util';
@@ -24,7 +24,7 @@ class HttpLogic {
   }
   static async RequestJsonFile(file: string): Promise<void> {
     const filePath = `payloads/${TcClass.feature}/${file}`.replace(/\/\//g, '');
-    const httpFile: HttpFile = await File.readJson(filePath);
+    const httpFile: HttpFileModel = await File.readJson(filePath);
     TcClass.HttpFile = httpFile;
     ScenarioClass.Http = ScenarioClass.NewHttp();
     ScenarioClass.Http = Obj.New(Obj.FindInclude(httpFile.scenarios, 'tcNo', TcClass.tcNo));
@@ -35,7 +35,7 @@ class HttpLogic {
 
   static async MultiRequestJsonFile(file: string): Promise<void> {
     const filePath = `payloads/${TcClass.feature}/${file}`.replace(/\/\//g, '');
-    const httpFile: HttpFile = await File.readJson(filePath);
+    const httpFile: HttpFileModel = await File.readJson(filePath);
     TcClass.HttpFile = httpFile;
     const filteredScenarios = httpFile.scenarios.filter((o) => o.tcNo.includes(TcClass.tcNo));
     ScenarioClass.MultiHttp = Obj.New(filteredScenarios);

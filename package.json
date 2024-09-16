@@ -19,6 +19,7 @@
     "@types/cucumber": "7.0.0",
     "@types/lodash": "4.17.7",
     "@types/node": "22.5.4",
+    "@types/pg": "8.11.10",
     "@cucumber/cucumber": "9.6.0",
     "cucumber-tsflow": "4.4.4",
     "dayjs": "1.11.13",
@@ -27,6 +28,7 @@
     "handlebars": "4.7.8",
     "lodash": "4.17.21",
     "ts-node": "10.9.2",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "pg": "8.12.0"
   }
 }

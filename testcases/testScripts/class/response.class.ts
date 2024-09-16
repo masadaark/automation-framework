@@ -6,7 +6,7 @@ const ResClass = {
   MultiHttp: [httpRes],
   Http: httpRes,
   // rabbitMesssage:rabbitMesssage,
-  Query: [],
+  Query: [] as any[],
 };
 
 export default ResClass;

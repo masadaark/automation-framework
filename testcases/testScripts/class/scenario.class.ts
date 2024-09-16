@@ -4,7 +4,7 @@ import Validator from '../logic/validator.logic';
 import Formatter from './formatter.class';
 
 class ScenarioClass {
-  private static _DB: ScenarioDB;
+  private static _PgDB: ScenarioDB;
 
   private static _Http: ScenarioHttp;
 
@@ -13,7 +13,7 @@ class ScenarioClass {
   // private static _Rabbit: ScenarioRabbit
 
   static reset(): void {
-    this._DB = this.NewDB();
+    this._PgDB = this.NewPgDB();
     this._Http = this.NewHttp();
     this._MultiHttp = [];
     // this._Rabbit = this.NewRabbit()
@@ -29,12 +29,12 @@ class ScenarioClass {
     return this._Http;
   }
 
-  static set DB(val: ScenarioDB) {
-    this._DB = val;
+  static set PgDB(val: ScenarioDB) {
+    this._PgDB = val;
   }
 
-  static get DB() {
-    return this._DB;
+  static get PgDB() {
+    return this._PgDB;
   }
 
   static set MultiHttp(val: ScenarioHttp[]) {
@@ -57,7 +57,7 @@ class ScenarioClass {
     return { request: {}, response: { body: {} }, tcNo: [] };
   }
 
-  static NewDB() {
+  static NewPgDB() {
     return { tcNo: [] };
   }
 

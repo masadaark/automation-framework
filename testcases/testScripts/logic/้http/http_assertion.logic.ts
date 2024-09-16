@@ -5,7 +5,7 @@ import AssertionLogic from '../assertion.logic';
 import { HttpListResponse, HttpResponse } from '../../interface/file_interface/http_file.model';
 import Obj from '../../util/object.util';
 import StorageLogic from '../storage.logic';
-import AssertHttpList from '../../controller/http_assertion_list.controller';
+import AssertHttpList from './http_assertion_list.logic';
 
 class HttpAssertionLogic {
   static SubSet(actualRes: HttpResponse, expectRes: HttpResponse): void {

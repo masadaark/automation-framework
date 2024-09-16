@@ -1,14 +1,14 @@
-import { DBFile } from '../interface/file_interface/db_file.model';
-import { HttpFile } from '../interface/file_interface/http_file.model';
+import { PgDBFileModel } from '../interface/file_interface/db_file.model';
+import { HttpFileModel } from '../interface/file_interface/http_file.model';
 
 const TcClass = {
   feature: '',
   tcNo: 0,
-  DBFile: undefined as DBFile | undefined,
-  HttpFile: undefined as HttpFile | undefined,
+  PgDBFile: undefined as PgDBFileModel | undefined,
+  HttpFile: undefined as HttpFileModel | undefined,
 
   reset() {
-    this.DBFile = undefined;
+    this.PgDBFile = undefined;
     this.HttpFile = undefined;
   },
 };

@@ -1,15 +1,15 @@
 import { binding, then } from 'cucumber-tsflow';
-import ScenarioClass from '../class/scenario.class';
-import HttpAssertionLogic from '../logic/้http/http_assertion.logic';
-import ResClass from '../class/response.class';
-import { HttpListResponse, HttpResponse } from '../interface/file_interface/http_file.model';
+import ScenarioClass from '../../class/scenario.class';
+import HttpAssertionLogic from '../../logic/้http/http_assertion.logic';
+import ResClass from '../../class/response.class';
+import { HttpListResponse, HttpResponse } from '../../interface/file_interface/http_file.model';
 import { expect } from 'chai';
-import StorageLogic from '../logic/storage.logic';
-import Formatter from '../class/formatter.class';
-import AssertionLogic from '../logic/assertion.logic';
-import CompLogic from '../logic/comparator.logic';
-import Obj from '../util/object.util';
-import Validator from '../logic/validator.logic';
+import StorageLogic from '../../logic/storage.logic';
+import Formatter from '../../class/formatter.class';
+import AssertionLogic from '../../logic/assertion.logic';
+import CompLogic from '../../logic/comparator.logic';
+import Obj from '../../util/object.util';
+import Validator from '../../logic/validator.logic';
 
 @binding()
 export class HttpAssertionController {
@@ -25,16 +25,16 @@ export class HttpAssertionController {
   }
   @then('Expecting Multiple Http response subset')
   public HttpMultipleResponseSubsetAssertion(): void {
-    if (!Validator.Var(ScenarioClass.MultiHttp)) return
+    if (!Validator.Var(ScenarioClass.MultiHttp)) return;
     for (let i = 0; i < ScenarioClass.MultiHttp.length; i++) {
-      HttpAssertionLogic.SubSet(ResClass.MultiHttp[i], ScenarioClass.MultiHttp[i].response as HttpResponse)
+      HttpAssertionLogic.SubSet(ResClass.MultiHttp[i], ScenarioClass.MultiHttp[i].response as HttpResponse);
     }
   }
   @then('Expecting Multiple Http response deeply equal')
   public HttpMultipleResponseDeeplyEqualAssertion(): void {
-    if (!Validator.Var(ScenarioClass.MultiHttp)) return
+    if (!Validator.Var(ScenarioClass.MultiHttp)) return;
     for (let i = 0; i < ScenarioClass.MultiHttp.length; i++) {
-      HttpAssertionLogic.DeepEqual(ResClass.MultiHttp[i], ScenarioClass.MultiHttp[i].response as HttpResponse)
+      HttpAssertionLogic.DeepEqual(ResClass.MultiHttp[i], ScenarioClass.MultiHttp[i].response as HttpResponse);
     }
   }
   @then('Expecting Http response list')
@@ -87,10 +87,11 @@ export class HttpAssertionController {
   @then('response path {string} is member of {string}')
   public HttpPathIsMemberOfAssertion(path: string = '', expectValue: string): void {
     if (!ResClass.Http) return;
-    const expValues = Formatter.Exec(expectValue.split(","))
-    const actValues = StorageLogic.ObjPathVal(ResClass.Http.body, path)
-    expect(expValues.some((val: any) => CompLogic.Flag(actValues, val, "equal"))
-      , `${path} value : ${actValues} is member of ${Obj.ToString(expValues)}`)
-      .to.be.true
+    const expValues = Formatter.Exec(expectValue.split(','));
+    const actValues = StorageLogic.ObjPathVal(ResClass.Http.body, path);
+    expect(
+      expValues.some((val: any) => CompLogic.Flag(actValues, val, 'equal')),
+      `${path} value : ${actValues} is member of ${Obj.ToString(expValues)}`
+    ).to.be.true;
   }
 }
