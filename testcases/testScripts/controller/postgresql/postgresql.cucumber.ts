@@ -53,7 +53,7 @@ export class PostgresqlController {
   @given('Exec sql: {string}', { timeout: Cfg.stepTimeOut })
   @given('Pg Exec {string}', { timeout: Cfg.stepTimeOut })
   public async InsertFromSql(file: string): Promise<void> {
-    const fileText: string = await File.readText(`sql/${file}`);
+    const fileText: string = await File.readText(`payloads/sql/${file}`);
     await PgProtocol.Query(fileText);
   }
 }
