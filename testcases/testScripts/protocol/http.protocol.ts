@@ -27,10 +27,8 @@ class HttpProtocol {
     console.warn(`${method} : ${url}`);
     const defaultHeader = !Obj.IsObj(Validator.Var(Cfg.appSetting.headers)) ? Cfg.appSetting.headers : {};
     headers = Formatter.Exec(_.merge(headers, defaultHeader));
-    headers['content-type'] = headers['content-type'] || 'application/json';
-
+    headers['content-type'] = headers['content-type'] ?? 'application/json';
     body = Formatter.Exec(body);
-
     const fetchOption = { method, headers, body: Obj.ToString(body) };
     let response;
     try {

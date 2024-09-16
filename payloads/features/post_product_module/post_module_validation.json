@@ -1,0 +1,131 @@
+{
+    "apiPath": "/api/tms/products/1/modules",
+    "method": "POST",
+    "scenarios": [
+        {
+            "tcNo": [
+                4
+            ],
+            "request": {
+                "headers": {
+                    "Authorization": "Bearer {jwtToken}"
+                },
+                "body": {
+                    "name": "module",
+                    "description": 4
+                }
+            },
+            "response": {
+                "status": 500,
+                "body": {
+                    "api": "/api/tms/products/1/modules",
+                    "method": "POST"
+                }
+            }
+        },
+        {
+            "tcNo": [
+                5
+            ],
+            "request": {
+                "headers": {
+                    "Authorization": "Bearer {jwtToken}"
+                },
+                "body": {
+                    "name": "module"
+                }
+            },
+            "response": {
+                "status": 400,
+                "body": {
+                    "errorMessage": "พบ module นี้แล้วในระบบ",
+                    "api": "/api/tms/products/1/modules",
+                    "method": "POST"
+                }
+            }
+        },
+        {
+            "tcNo": [
+                6
+            ],
+            "request": {
+                "headers": {
+                    
+                },
+                "body": {
+                    "name": "module"
+                }
+            },
+            "response": {
+                "status": 401,
+                "body": {
+                    "errorMessage": "Invalid token",
+                    "api": "/api/tms/products/1/modules",
+                    "method": "POST"
+                }
+            }
+        },
+        {
+            "tcNo": [
+                7
+            ],
+            "request": {
+                "headers": {
+                    
+                },
+                "body": {
+                    
+                }
+            },
+            "response": {
+                "status": 401,
+                "body": {
+                    "errorMessage": "Invalid token",
+                    "api": "/api/tms/products/1/modules",
+                    "method": "POST"
+                }
+            }
+        },
+        {
+            "tcNo": [
+                8
+            ],
+            "request": {
+                "headers": {
+                    "Authorization": "Bearer {jwtToken}"
+                },
+                "body": {
+                    "description":"Test"
+                }
+            },
+            "response": {
+                "status": 400,
+                "body": {
+                    "errorMessage": "โปรดระบุชื่อ module",
+                    "api": "/api/tms/products/1/modules",
+                    "method": "POST"
+                }
+            }
+        },        {
+            "tcNo": [
+                9
+            ],
+            "request": {
+                "headers": {
+                    "Authorization": "Bearer {jwtToken}"
+                },
+                "body": {
+                    "name": "MoDuLe"
+                }
+            },
+            "response": {
+                "status": 400,
+                "body": {
+                    "errorMessage": "พบ module นี้แล้วในระบบ",
+                    "api": "/api/tms/products/1/modules",
+                    "method": "POST"
+                }
+            }
+        }
+    ]
+    }

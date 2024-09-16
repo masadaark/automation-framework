@@ -1,0 +1,18 @@
+{
+    "sql": "SELECT * FROM testcase_management.module where id =2",
+    "scenarios": [
+        {
+            "tcNo": [
+                1
+            ],
+            "expect": [
+                {
+                    "id": 2,
+                    "name": "module2",
+                    "description": "",
+                    "product_id":1
+                }
+            ]
+        }
+    ]
+}

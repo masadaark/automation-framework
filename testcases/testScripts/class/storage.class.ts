@@ -1,3 +1,4 @@
+import IndianReportLogic from '../logic/report.logic';
 import StorageLogic from '../logic/storage.logic';
 import Obj from '../util/object.util';
 import EnvClass from './env.class';
@@ -10,6 +11,7 @@ class StorageClass {
     const valSet: any = Formatter.Exec(val);
     const logSetVar = `**Store ${key} : Val ${Obj.ToString(valSet)}**`;
     if (log) console.warn(logSetVar);
+    IndianReportLogic.AddTestStep(logSetVar);
     this._vals[key] = valSet;
   }
 

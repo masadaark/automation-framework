@@ -3,14 +3,15 @@ import StorageLogic from '../logic/storage.logic';
 import StorageClass from './storage.class';
 
 class Formatter {
-  static Exec(v: any): any {
-    if (typeof v === 'object' && v !== null) {
-      if (Array.isArray(v)) return v.map(this.Exec);
-    } else return this.Switch(v);
-    return v;
+  static Exec(val: any): any {
+      if (typeof val === 'object' && val !== null) {
+          if (Array.isArray(val)) return val.map(this.Exec);
+          for (let key in val) val[key] = this.Exec(val[key]);
+      } else return this.Switch(val);
+      return val;
   }
   static Switch(v: any): any {
-    if (v !== 'string') return v;
+    if (typeof v !== 'string') return v;
     v = StorageLogic.RepStrVar(v);
     switch (true) {
       case StorageClass.has(v):

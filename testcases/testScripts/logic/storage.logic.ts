@@ -15,6 +15,8 @@ class StorageLogic {
 
   private static ReplaceStrVarExec(str: string, regex: RegExp, slice: number): string {
     const matches = str.match(regex);
+    const isLog = str === 'Bearer {jwtToken}';
+
     if (matches) {
       let result = str;
       for (const match of matches) {

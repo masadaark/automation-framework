@@ -1,4 +1,12 @@
 {
     "baseUrl": "http://localhost:9391/",
-    "headers": {"test":1}
+    "headers": {
+        "Authorization": "Bearer {jwtToken}"
+    },
+    "pgDB": {
+        "user": "postgres",
+        "host": "localhost",
+        "database": "ngernturbo",
+        "port": 5391
+    }
 }

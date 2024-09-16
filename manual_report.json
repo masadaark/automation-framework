@@ -2,181 +2,156 @@
   "features": [
     {
       "id": 1,
-      "uri": "testcases\\test.feature",
-      "name": "FEATURE",
+      "uri": "testcases\\post_module.feature",
+      "name": "POST_MODULE",
       "scenarios": [
         {
           "id": 1,
-          "name": "SCENARIO",
+          "name": "TearDown",
           "testSteps": [
             {
               "id": 1,
-              "name": "Feature \"test\" tcNo.1",
+              "name": "Exec sql: \"reset_db\"",
+              "contents": [
+                {
+                  "pgQuery": "TRUNCATE TABLE testcase_management.user RESTART IDENTITY CASCADE ; \r\nTRUNCATE TABLE testcase_management.product RESTART IDENTITY CASCADE ; \r\nTRUNCATE TABLE testcase_management.module RESTART IDENTITY CASCADE ; \r\nTRUNCATE TABLE testcase_management.business_feature RESTART IDENTITY CASCADE ; \r\nTRUNCATE TABLE testcase_management.scenario RESTART IDENTITY CASCADE ; \r\nTRUNCATE TABLE testcase_management.test_case RESTART IDENTITY CASCADE ; \r\nTRUNCATE TABLE testcase_management.test_step RESTART IDENTITY CASCADE ; \r\nTRUNCATE TABLE testcase_management.source RESTART IDENTITY CASCADE ; \r\nTRUNCATE TABLE testcase_management.test_case_source RESTART IDENTITY CASCADE ; \r\nTRUNCATE TABLE testcase_management.transaction RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.test_case_v2 RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.tms_key_version RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.tms_commit_log RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.deployment_commit RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.deployment_ticket RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.test_step_group RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.test_step_v2 RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.test_case_v2_source RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.tms_key_tag RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.test_result RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.automate_test_scenario_log RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.automate_test_scenario RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.automate_test_feature RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.test_step_log RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.reason_failed RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.automate_test_step RESTART IDENTITY CASCADE ;\r\nTRUNCATE TABLE testcase_management.resource_tag RESTART IDENTITY CASCADE ; "
+                }
+              ],
+              "duration": 378.9208,
+              "testStatus": "PASSED"
+            }
+          ],
+          "overview": {
+            "duration": 378.9208,
+            "testStatus": "PASSED",
+            "failed": 0,
+            "passed": 1,
+            "ran": 1
+          }
+        },
+        {
+          "id": 2,
+          "name": "POST_MODULE สำเร็จ",
+          "testSteps": [
+            {
+              "id": 1,
+              "name": "Feature \"post_product_module\" tcNo.1",
               "contents": [],
-              "duration": 0.4289,
+              "duration": 0.309099,
               "testStatus": "PASSED"
             },
             {
               "id": 2,
-              "name": "\"test.json\" Http Request",
+              "name": "Http Request api:\"login\"",
               "contents": [
-                {
-                  "cause": {
-                    "errno": -4078,
-                    "code": "ECONNREFUSED",
-                    "syscall": "connect",
-                    "address": "::1",
-                    "port": 9391
-                  }
-                },
                 {
                   "request": {
                     "url": "http://localhost:9391/api/tms/login",
                     "method": "POST",
                     "headers": {
-                      "test": 1,
+                      "Authorization": "Bearer {jwtToken}",
                       "content-type": "application/json"
                     },
                     "body": {
-                      "email": "masada.hir@turbo.co.th",
-                      "accountId": "110776431002552937907"
+                      "email": "test@gmail.com",
+                      "accountID": "admin"
                     }
                   },
-                  "response": {}
+                  "response": {
+                    "body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA",
+                    "status": 200
+                  }
                 }
               ],
-              "duration": 67.239799,
+              "duration": 80.6997,
               "testStatus": "PASSED"
             },
             {
               "id": 3,
-              "name": "Expecting Http response subset",
+              "name": "Collect Response Path:\".\" Var:\"jwtToken\"",
               "contents": [
-                {
-                  "actualResult": {},
-                  "expectedResult": {
-                    "status": 200,
-                    "body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA"
-                  }
-                },
-                "expected undefined to equal 200"
+                "**Store jwtToken : Val \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA\"**"
               ],
-              "duration": 0.9502,
-              "testStatus": "FAILED"
-            }
-          ],
-          "overview": {
-            "duration": 68.618899,
-            "testStatus": "FAILED",
-            "failed": 1,
-            "passed": 2,
-            "ran": 3
-          }
-        },
-        {
-          "id": 2,
-          "name": "SCENARIO",
-          "testSteps": [
-            {
-              "id": 1,
-              "name": "Feature \"test\" tcNo.1",
-              "contents": [],
-              "duration": 0.268899,
+              "duration": 0.5506,
               "testStatus": "PASSED"
             },
             {
-              "id": 2,
-              "name": "Http POST \"/api/tms/products/1/modules\"",
+              "id": 4,
+              "name": "Http \"POST\" \"/api/tms/products\"",
               "contents": [
                 {
-                  "cause": {
-                    "errno": -4078,
-                    "code": "ECONNREFUSED",
-                    "syscall": "connect",
-                    "address": "::1",
-                    "port": 9391
-                  }
-                },
-                {
                   "request": {
-                    "url": "http://localhost:9391/api/tms/products/1/modules",
+                    "url": "http://localhost:9391/api/tms/products",
                     "method": "POST",
                     "headers": {
-                      "test": 1,
+                      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA",
                       "content-type": "application/json"
                     },
                     "body": {
-                      "name": "test"
+                      "headers": {
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyfQ.vzpIjl4fRoMO0OSkxd_MZk8W8GWdS4xxbzBo36ZrlSA",
+                        "content-type": "application/json"
+                      },
+                      "name": "product",
+                      "description": "test"
                     }
                   },
-                  "response": {}
-                },
-                {
-                  "cause": {
-                    "errno": -4078,
-                    "code": "ECONNREFUSED",
-                    "syscall": "connect",
-                    "address": "::1",
-                    "port": 9391
-                  }
-                },
-                {
-                  "request": {
-                    "url": "http://localhost:9391/api/tms/products/1/modules",
-                    "method": "POST",
-                    "headers": {
-                      "test": 1,
-                      "content-type": "application/json"
-                    },
+                  "response": {
                     "body": {
-                      "name": "test2"
-                    }
-                  },
-                  "response": {}
+                      "id": 1,
+                      "name": "product",
+                      "description": "test",
+                      "isDeleted": false,
+                      "modules": null,
+                      "createdAt": "2024-09-16T17:13:39.160634+07:00",
+                      "updatedAt": "2024-09-16T17:13:39.160634+07:00"
+                    },
+                    "status": 200
+                  }
                 }
               ],
-              "duration": 10.085999,
+              "duration": 33.204699,
               "testStatus": "PASSED"
             }
           ],
           "overview": {
-            "duration": 10.354898,
+            "duration": 114.764098,
             "testStatus": "PASSED",
             "failed": 0,
-            "passed": 2,
-            "ran": 2
+            "passed": 4,
+            "ran": 4
           }
         }
       ],
       "overview": {
-        "duration": 78.973797,
-        "testStatus": "FAILED",
-        "failed": 1,
-        "passed": 1,
+        "duration": 493.684898,
+        "testStatus": "PASSED",
+        "failed": 0,
+        "passed": 2,
         "ran": 2
       },
       "testStepOverview": {
-        "failed": 1,
-        "passed": 4,
+        "failed": 0,
+        "passed": 5,
         "ran": 5
       }
     }
   ],
   "overview": {
-    "duration": 78.973797,
-    "testStatus": "FAILED",
-    "failed": 1,
-    "passed": 0,
+    "duration": 493.684898,
+    "testStatus": "PASSED",
+    "failed": 0,
+    "passed": 1,
     "ran": 1
   },
   "scnarioOverview": {
-    "failed": 1,
-    "passed": 1,
+    "failed": 0,
+    "passed": 2,
     "ran": 2
   },
   "testStepOverview": {
-    "failed": 1,
-    "passed": 4,
+    "failed": 0,
+    "passed": 5,
     "ran": 5
   }
 }
