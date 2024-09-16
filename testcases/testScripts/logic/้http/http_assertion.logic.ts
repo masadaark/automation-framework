@@ -44,7 +44,7 @@ class HttpAssertionLogic {
       ? StorageLogic.ObjPathVal(actualRes.body, expResList.responsePath)
       : actualRes.body;
     if (expResList.length) expect(actualList.length, `array length`).equal(expResList.length);
-    AssertHttpList.Index(actualList, expResList.expectList, expResList.logicOperator)
+    AssertHttpList.Index(actualList, expResList.expectList, expResList.logicOperator);
   }
 }
 

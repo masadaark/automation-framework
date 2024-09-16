@@ -2,8 +2,8 @@ import Obj from '../util/object.util';
 import Str from '../util/string.util';
 
 class Validator {
-  private static LogicOperatorList = ["and", "or", "not"]
-  private static LogicOperatorSet = new Set(this.LogicOperatorList)
+  private static LogicOperatorList = ['and', 'or', 'not'];
+  private static LogicOperatorSet = new Set(this.LogicOperatorList);
   static Var(val: any): boolean {
     return val !== undefined && val !== null && val !== '' && !Obj.IsBlank(val);
   }
@@ -14,7 +14,7 @@ class Validator {
 
   static LogicOperator(v: string): void {
     if (!this.LogicOperatorSet.has(v))
-      throw new Error(`Operator ไม่ถูกต้อง ${v} (${this.LogicOperatorList.join(",")})`);
+      throw new Error(`Operator ไม่ถูกต้อง ${v} (${this.LogicOperatorList.join(',')})`);
   }
 }
 

@@ -68,7 +68,7 @@ class Obj {
   static DeepKeyVal(obj: any, searchKey: string): any[] {
     let v: any[] = [];
     function search(obj: any) {
-      if (typeof obj === "object" && obj !== null) {
+      if (typeof obj === 'object' && obj !== null) {
         for (const key in obj) {
           if (searchKey === key) v.push(obj[key]);
           else search(obj[key]);

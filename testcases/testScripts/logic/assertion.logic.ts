@@ -1,6 +1,9 @@
 import { expect } from 'chai';
 import TypeLogic from './type.logic';
 import DateU from '../util/date.util';
+import StorageLogic from './storage.logic';
+import Formatter from '../class/formatter.class';
+import Obj from '../util/object.util';
 
 class AssertionLogic {
   static SubSet(acc: any, exp: any, path: string) {
@@ -34,6 +37,16 @@ class AssertionLogic {
         }
         expect(act, path).eq(exp);
     }
+  }
+  static Path(actualRes: {}, path: string, expVal: string): void {
+    const actVal: any = StorageLogic.ObjPathVal(actualRes, path);
+    const expectedResult = Formatter.Exec(Obj.Parse(expVal));
+    AssertionLogic.SubSet(actVal, expectedResult, '');
+  }
+  static PathContins(actualRes: {}, path: string, expVal: string): void {
+    const actVal: any = StorageLogic.ObjPathVal(actualRes, path);
+    const expectedResult = Formatter.Exec(Obj.Parse(expVal));
+    expect(actVal, `response:${path}`).to.include(expectedResult);
   }
 }
 
