@@ -7,6 +7,9 @@ import { expect } from 'chai';
 import StorageLogic from '../logic/storage.logic';
 import Formatter from '../class/formatter.class';
 import AssertionLogic from '../logic/assertion.logic';
+import CompLogic from '../logic/comparator.logic';
+import Obj from '../util/object.util';
+import Validator from '../logic/validator.logic';
 
 @binding()
 export class HttpAssertionController {
@@ -19,6 +22,20 @@ export class HttpAssertionController {
   public HttpResponseAssertionDeeplyEqual(): void {
     if (!ScenarioClass.Http) return;
     HttpAssertionLogic.DeepEqual(ResClass.Http, ScenarioClass.Http.response as HttpResponse);
+  }
+  @then('Expecting Multiple Http response subset')
+  public HttpMultipleResponseSubsetAssertion(): void {
+    if (!Validator.Var(ScenarioClass.MultiHttp)) return
+    for (let i = 0; i < ScenarioClass.MultiHttp.length; i++) {
+      HttpAssertionLogic.SubSet(ResClass.MultiHttp[i], ScenarioClass.MultiHttp[i].response as HttpResponse)
+    }
+  }
+  @then('Expecting Multiple Http response deeply equal')
+  public HttpMultipleResponseDeeplyEqualAssertion(): void {
+    if (!Validator.Var(ScenarioClass.MultiHttp)) return
+    for (let i = 0; i < ScenarioClass.MultiHttp.length; i++) {
+      HttpAssertionLogic.DeepEqual(ResClass.MultiHttp[i], ScenarioClass.MultiHttp[i].response as HttpResponse)
+    }
   }
   @then('Expecting Http response list')
   public HttpResponseAssertionList(): void {
@@ -66,5 +83,14 @@ export class HttpAssertionController {
   public HttpPathNotContainsAssertion(path: string = '', expectValue: string): void {
     if (!ResClass.Http) return;
     AssertionLogic.PathNotContins(ResClass.Http.body, path, expectValue);
+  }
+  @then('response path {string} is member of {string}')
+  public HttpPathIsMemberOfAssertion(path: string = '', expectValue: string): void {
+    if (!ResClass.Http) return;
+    const expValues = Formatter.Exec(expectValue.split(","))
+    const actValues = StorageLogic.ObjPathVal(ResClass.Http.body, path)
+    expect(expValues.some((val: any) => CompLogic.Flag(actValues, val, "equal"))
+      , `${path} value : ${actValues} is member of ${Obj.ToString(expValues)}`)
+      .to.be.true
   }
 }
