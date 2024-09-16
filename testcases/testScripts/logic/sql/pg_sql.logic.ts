@@ -5,12 +5,12 @@ import { PgDBFileModel } from '../../interface/file_interface/db_file.model';
 import PgProtocol from '../../protocol/pg.protocol';
 import File from '../../util/file.util';
 import Obj from '../../util/object.util';
+import FileReaderLogic from '../file_reader.logic';
 
 export default class PgLogic {
   private static _tableList: string[] = [];
   static async Exec(file: string) {
-    const filePath = `payloads/${TcClass.feature}/${file}`.replace(/\/\//g, '');
-    const pgSqlFile: PgDBFileModel = await File.readJson(filePath);
+    const pgSqlFile: PgDBFileModel = await FileReaderLogic.JsonPayload(file);
     TcClass.PgDBFile = pgSqlFile;
     ScenarioClass.PgDB = ScenarioClass.NewPgDB();
     ScenarioClass.PgDB = Obj.New(Obj.FindInclude(pgSqlFile.scenarios, 'tcNo', TcClass.tcNo));

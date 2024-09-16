@@ -10,6 +10,8 @@ import Validator from '../validator.logic';
 import StorageLogic from '../storage.logic';
 import { ApiFileModel } from '../../interface/file_interface/api_collection.model';
 import ResClass from '../../class/response.class';
+import { EnumFilePath } from '../../enum/file_path.enum';
+import FileReaderLogic from '../file_reader.logic';
 
 class HttpLogic {
   private static initApiPath(): string {
@@ -23,8 +25,7 @@ class HttpLogic {
     return apiPath;
   }
   static async RequestJsonFile(file: string): Promise<void> {
-    const filePath = `payloads/${TcClass.feature}/${file}`.replace(/\/\//g, '');
-    const httpFile: HttpFileModel = await File.readJson(filePath);
+    const httpFile: HttpFileModel = await FileReaderLogic.JsonPayload(file);
     TcClass.HttpFile = httpFile;
     ScenarioClass.Http = ScenarioClass.NewHttp();
     ScenarioClass.Http = Obj.New(Obj.FindInclude(httpFile.scenarios, 'tcNo', TcClass.tcNo));
@@ -34,8 +35,7 @@ class HttpLogic {
   }
 
   static async MultiRequestJsonFile(file: string): Promise<void> {
-    const filePath = `payloads/${TcClass.feature}/${file}`.replace(/\/\//g, '');
-    const httpFile: HttpFileModel = await File.readJson(filePath);
+    const httpFile: HttpFileModel = await FileReaderLogic.JsonPayload(file);
     TcClass.HttpFile = httpFile;
     const filteredScenarios = httpFile.scenarios.filter((o) => o.tcNo.includes(TcClass.tcNo));
     ScenarioClass.MultiHttp = Obj.New(filteredScenarios);
@@ -73,8 +73,7 @@ class HttpLogic {
     return await Promise.all(promises);
   }
   static async ApiFolder(file: string): Promise<any> {
-    const filePath = `payloads/api/${file}`.replace(/\/\//g, '');
-    const apiFile: ApiFileModel = Formatter.Exec(await File.readJson(filePath));
+    const apiFile: ApiFileModel = Formatter.Exec(await FileReaderLogic.ApiCollection(file));
     await HttpProtocol.REQUEST(apiFile.apiPath, apiFile.method, apiFile.headers, apiFile.body);
   }
 }

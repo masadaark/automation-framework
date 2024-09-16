@@ -5,6 +5,8 @@ import PgProtocol from '../../protocol/pg.protocol';
 import { DataTable } from '@cucumber/cucumber';
 import Formatter from '../../class/formatter.class';
 import File from '../../util/file.util';
+import { EnumFilePath } from '../../enum/file_path.enum';
+import FileReaderLogic from '../../logic/file_reader.logic';
 
 @binding()
 export class PostgresqlController {
@@ -53,7 +55,7 @@ export class PostgresqlController {
   @given('Exec sql: {string}', { timeout: Cfg.stepTimeOut })
   @given('Pg Exec {string}', { timeout: Cfg.stepTimeOut })
   public async InsertFromSql(file: string): Promise<void> {
-    const fileText: string = await File.readText(`payloads/sql/${file}`);
+    const fileText: string = await FileReaderLogic.PgSql(file);
     await PgProtocol.Query(fileText);
   }
 }

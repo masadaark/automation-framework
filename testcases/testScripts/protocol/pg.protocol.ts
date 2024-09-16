@@ -2,6 +2,7 @@ import { Pool } from 'pg';
 import Cfg from '../class/config.class';
 import StorageLogic from '../logic/storage.logic';
 import ResClass from '../class/response.class';
+import IndianReportLogic from '../logic/report.logic';
 
 class PgProtocol {
   private static _pool: Pool;
@@ -18,6 +19,10 @@ class PgProtocol {
     try {
       const queryResult = (await this._pool.query(StorageLogic.RepStrVar(sql))).rows;
       ResClass.Query = queryResult;
+      IndianReportLogic.AddTestStep({
+        pgQuery: sql,
+        result: queryResult,
+      });
       return;
     } catch (err) {
       throw new Error(`err: ${err} SQL: ${sql}`);
