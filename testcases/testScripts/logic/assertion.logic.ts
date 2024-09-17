@@ -4,6 +4,7 @@ import DateU from '../util/date.util';
 import StorageLogic from './storage/storage.logic';
 import VFormatter from '../class/formatter.class';
 import Obj from '../util/object.util';
+import IndianReportLogic from './report.logic';
 
 class AssertionLogic {
   static SubSet(acc: any, exp: any, path: string) {
@@ -39,19 +40,22 @@ class AssertionLogic {
     }
   }
   static Path(actualRes: {}, path: string, expVal: string): void {
-    const actVal: any = StorageLogic.ObjPathVal(actualRes, path);
+    const actualResult: any = StorageLogic.ObjPathVal(actualRes, path);
     const expectedResult = VFormatter.Exec(Obj.Parse(expVal));
-    AssertionLogic.SubSet(actVal, expectedResult, '');
+    IndianReportLogic.AddTestStep({ actualResult, expectedResult, path });
+    AssertionLogic.SubSet(actualResult, expectedResult, '');
   }
   static PathContins(actualRes: {}, path: string, expVal: string): void {
-    const actVal: any = StorageLogic.ObjPathVal(actualRes, path);
+    const actualResult: any = StorageLogic.ObjPathVal(actualRes, path);
     const expectedResult = VFormatter.Exec(Obj.Parse(expVal));
-    expect(actVal, `response:${path}`).to.include(expectedResult);
+    IndianReportLogic.AddTestStep({ actualResult, expectedResult, path });
+    expect(actualResult, `response:${path}`).to.include(expectedResult);
   }
   static PathNotContins(actualRes: {}, path: string, expVal: string): void {
-    const actVal: any = StorageLogic.ObjPathVal(actualRes, path);
+    const actualResult: any = StorageLogic.ObjPathVal(actualRes, path);
     const expectedResult = VFormatter.Exec(Obj.Parse(expVal));
-    expect(actVal, `response:${path}`).to.not.include(expectedResult);
+    IndianReportLogic.AddTestStep({ actualResult, expectedResult, path });
+    expect(actualResult, `response:${path}`).to.not.include(expectedResult);
   }
 }
 
