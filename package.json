@@ -17,6 +17,7 @@
     "@types/node": "22.5.4",
     "@types/papaparse": "5.3.14",
     "@types/pg": "8.11.10",
+    "@types/mongodb": "4.0.7",
     "@typescript-eslint/eslint-plugin": "8.5.0",
     "@types/mime-types": "2.1.4",
     "big.js": "6.2.1",
@@ -33,6 +34,7 @@
     "pg": "8.12.0",
     "prettier": "^3.3.3",
     "ts-node": "10.9.2",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "mongodb": "6.9.0"
   }
 }
