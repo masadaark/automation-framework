@@ -1,9 +1,9 @@
 export interface PgDBFileModel {
   sql: string;
-  scenarios: ScenarioDB[];
+  scenarios: ScenarioPgDB[];
 }
 
-export interface ScenarioDB {
+export interface ScenarioPgDB {
   paramReplace?: Record<string, string | number>;
   tcNo: number[];
   expect?: Record<string, any>[];

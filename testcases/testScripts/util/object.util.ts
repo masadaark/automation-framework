@@ -1,5 +1,6 @@
-import _, { add } from 'lodash';
+import _ from 'lodash';
 import Str from './string.util';
+import Papa from 'papaparse';
 
 class Obj {
   static IsBlank(val: any): boolean {
@@ -18,9 +19,9 @@ class Obj {
   }
   static Merge(raw: Record<string, any>, added: Record<string, any>) {
     for (const key in added) {
-      if (!(key in raw)) raw[key] = added[key]
+      if (!(key in raw)) raw[key] = added[key];
     }
-    return raw
+    return raw;
   }
   static New(rawObject: any): any {
     return _.cloneDeep(rawObject);
@@ -87,16 +88,16 @@ class Obj {
   static CSVtoJSON(csv: string) {
     if (Str.IsStrNum(csv)) return csv;
     try {
-        // return Papa.parse(csv, {
-        //     header: true,
-        //     complete: function (results) {
-        //         const jsonString = JSON.stringify(results.data);
-        //         return JSON.parse(jsonString);
-        //     },
-        // }).data;
+      return Papa.parse(csv, {
+        header: true,
+        complete: function (results) {
+          const jsonString = JSON.stringify(results.data);
+          return JSON.parse(jsonString);
+        },
+      }).data;
     } catch {
-        return csv;
+      return csv;
     }
-}
+  }
 }
 export default Obj;

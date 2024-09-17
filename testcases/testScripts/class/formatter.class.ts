@@ -4,11 +4,11 @@ import StorageClass from './storage.class';
 
 class VFormatter {
   static Exec(val: any): any {
-      if (typeof val === 'object' && val !== null) {
-          if (Array.isArray(val)) return val.map(this.Exec);
-          for (let key in val) val[key] = this.Exec(val[key]);
-      } else return this.Switch(val);
-      return val;
+    if (typeof val === 'object' && val !== null) {
+      if (Array.isArray(val)) return val.map(VFormatter.Exec);
+      for (let key in val) val[key] = VFormatter.Exec(val[key]);
+    } else return VFormatter.Switch(val);
+    return val;
   }
   static Switch(v: any): any {
     if (typeof v !== 'string') return v;

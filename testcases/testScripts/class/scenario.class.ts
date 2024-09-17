@@ -1,10 +1,10 @@
-import { ScenarioDB } from '../interface/file_interface/db_file.model';
+import { ScenarioPgDB } from '../interface/file_interface/db_file.model';
 import { ScenarioHttp } from '../interface/file_interface/http_file.model';
 import Validator from '../logic/validator.logic';
 import VFormatter from './formatter.class';
 
 class ScenarioClass {
-  private static _PgDB: ScenarioDB;
+  private static _PgDB: ScenarioPgDB;
 
   private static _Http: ScenarioHttp;
 
@@ -29,7 +29,7 @@ class ScenarioClass {
     return this._Http;
   }
 
-  static set PgDB(val: ScenarioDB) {
+  static set PgDB(val: ScenarioPgDB) {
     this._PgDB = val;
   }
 

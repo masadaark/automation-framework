@@ -29,7 +29,7 @@ class HttpProtocol {
     headers = VFormatter.Exec(Obj.Merge(headers, defaultHeader));
     headers['content-type'] = headers['content-type'] ?? 'application/json';
     body = VFormatter.Exec(body) ?? {};
-    const fetchOption = { method, headers, body: Obj.ToString(body)};
+    const fetchOption = { method, headers, body: Obj.ToString(body) };
     let response;
     try {
       response = await fetch(url, fetchOption);

@@ -1,5 +1,8 @@
 import fs from 'fs/promises';
-import mime from 'mime'
+import mime from 'mime-types';
+
+
+
 class FileU {
   private static errorMessage(filePath: string, err: any): string {
     return `อ่านไฟล์ ${filePath} ไม่สำเร็จ err:${err}`;
@@ -26,8 +29,8 @@ class FileU {
       return await fs.readFile(filePath, 'utf8');
     } catch {
       try {
-        const fileType = mime.getType(filePath)?.split("/")[1]
-        return await fs.readFile(`${filePath}.${fileType}`, 'utf8');
+        const fileType = mime.lookup(filePath) ?? ""
+        return await fs.readFile(`${filePath}.${String(fileType).split('/')[1]}`, 'utf8');
       } catch (err) {
         throw new Error(this.errorMessage(filePath, err));
       }

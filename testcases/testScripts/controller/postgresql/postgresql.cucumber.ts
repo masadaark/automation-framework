@@ -4,8 +4,6 @@ import PgLogic from '../../logic/sql/pg_sql.logic';
 import PgProtocol from '../../protocol/pg.protocol';
 import { DataTable } from '@cucumber/cucumber';
 import VFormatter from '../../class/formatter.class';
-import FileU from '../../util/file.util';
-import { EnumFilePath } from '../../enum/file_path.enum';
 import FileReaderLogic from '../../logic/file_reader.logic';
 
 @binding()
