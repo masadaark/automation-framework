@@ -5,3 +5,7 @@ afterStepHook.json
 beforeStepHook.json
 test_result.json
 beforeHook.json
+testcases/features
+payloads
+app-setting.json
+test_result_report.json

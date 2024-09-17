@@ -1,0 +1,95 @@
+const { exec } = require("child_process");
+const fs = require('fs');
+const path = require('path');
+
+const srcFolder = {
+    payloads: path.resolve(__dirname, '../payloads'),
+    testcases: path.resolve(__dirname, '../testcases'),
+    appsetting: path.resolve(__dirname, '../app-setting.json'),
+    testresultreport: path.resolve(__dirname, 'test_result_report.json')
+}
+const targetFolder = {
+    payloads: path.resolve(__dirname, 'payloads'),
+    testcases: path.resolve(__dirname, 'testcases/features'),
+    appsetting: path.resolve(__dirname, 'app-setting.json'),
+    testresultreport: path.resolve(__dirname, '../test_result_report.json')
+}
+function runCommand(command) {
+    console.warn(`Running : ${command}`)
+    return new Promise((resolve, reject) => {
+        exec(command, { cwd: __dirname }, (error, stdout, stderr) => {
+            if (error) {
+                reject(`Error: ${error.message}`);
+            }
+            if (stderr) {
+                console.log(`stdout: ${stderr}`);
+            }
+            console.log(`stdout: ${stdout}`);
+            resolve();
+        });
+    });
+}
+
+const copyDir = (src, dest) => {
+    const copy = (copySrc, copyDest) => {
+        fs.readdir(copySrc, (err, list) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            list.forEach((item) => {
+                const srcPath = path.resolve(copySrc, item);
+                const destPath = path.resolve(copyDest, item);
+                fs.stat(srcPath, (err, stat) => {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+                    if (stat.isFile()) {
+                        fs.createReadStream(srcPath).pipe(fs.createWriteStream(destPath));
+                    } else if (stat.isDirectory()) {
+                        fs.mkdir(destPath, { recursive: true }, (err) => {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            }
+                            copy(srcPath, destPath);
+                        });
+                    }
+                });
+            });
+        });
+    };
+
+    fs.access(dest, (err) => {
+        if (err) {
+            fs.mkdir(dest, { recursive: true }, (err) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                copy(src, dest);
+            });
+        } else {
+            copy(src, dest);
+        }
+    });
+};
+async function main() {
+    try {
+        await runCommand("npm i");
+        copyDir(srcFolder.payloads, targetFolder.payloads);
+        console.warn(`**Read payloads***`)
+        copyDir(srcFolder.testcases, targetFolder.testcases);
+        console.warn(`**Read testcases***`)
+        fs.copyFile(srcFolder.appsetting, targetFolder.appsetting, (err) => { if (err) throw err; });
+        console.warn(`**Read app-setting.json***`)
+        await runCommand(`npm run test:cucumber ${process.argv.slice(2).join(" ")}`);
+        console.warn(`**Generate Report ***`)
+        fs.copyFile(srcFolder.testresultreport, targetFolder.testresultreport, (err) => { if (err) throw err; });
+    } catch (error) {
+        console.error(`running error: ${error}`);
+    }
+}
+
+main();
