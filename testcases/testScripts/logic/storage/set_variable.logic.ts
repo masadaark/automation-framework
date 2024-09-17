@@ -36,7 +36,7 @@ export default class SetVarLogic {
         if (match === null) StorageClass.add(key, fileContent);
         else StorageClass.add(key, SetVarLogic.FormatFileData(filePath, fileContent, match[1]));
       } else StorageClass.add(key, fileContent);
-    } else IndianReportLogic.AddTestStep(`** Path ไม่ถูกต้อง ${filePathFormat} ** `)
+    } else IndianReportLogic.AddTestStep(`** Path ไม่ถูกต้อง ${filePathFormat} ** `);
   }
   static FormatFileData(filePath: string, data: string, type: string) {
     if (/json/i.test(type)) {
