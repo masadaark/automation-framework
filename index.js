@@ -93,15 +93,15 @@ const rmTestImage = () => {
 async function main() {
     try {
         await runCommand("npm i");
-        copyDir(srcFolder.payloads, targetFolder.payloads);
         console.warn(`**Read payloads***`)
-        copyDir(srcFolder.testcases, targetFolder.testcases);
+        copyDir(srcFolder.payloads, targetFolder.payloads);
         console.warn(`**Read testcases***`)
-        fs.copyFile(srcFolder.appsetting, targetFolder.appsetting);
+        copyDir(srcFolder.testcases, targetFolder.testcases);
         console.warn(`**Read app-setting.json***`)
-        await runCommand(`npm run test:cucumber ${process.argv.slice(2).join(" ")}`); 
-        fs.copyFile(srcFolder.testresultreport, targetFolder.testresultreport);
-        console.warn(`*** Generate Report ***`)
+        fs.copyFile(srcFolder.appsetting, targetFolder.appsetting, (err) => { if (err) throw `ไม่พบ app-setting.json`; });
+        await runCommand(`npm run test:cucumber ${process.argv.slice(2).join(" ")}`);
+        console.warn(`**Generate Report ***`)
+        fs.copyFile(srcFolder.testresultreport, targetFolder.testresultreport, (err) => { if (err) throw `เกิดข้อผิดพลาดในการออก report` });
         rmTestImage();
     } catch (error) {
         console.error(`running error: ${error}`);
