@@ -4,7 +4,7 @@ import { ITestStepHookParameter } from '@cucumber/cucumber';
 import { EnumFilePath } from '../enum/file_path.enum';
 import Cfg from '../class/config.class';
 import { AppSettingModel } from '../interface/app_setting.model';
-import File from '../util/file.util';
+import FileU from '../util/file.util';
 import PgProtocol from '../protocol/pg.protocol';
 let scenarioId: string = '';
 let testStepId: string = '';
@@ -14,7 +14,7 @@ export class BeforeHook {
   public async beforeAllHook(): Promise<void> {
     const appSettingPath = EnumFilePath.APP_SETTING;
     console.warn(`******READ_FILE: ${appSettingPath}******`);
-    const appSettingFile = await File.readJson(appSettingPath);
+    const appSettingFile = await FileU.readJson(appSettingPath);
     Cfg.appSetting = appSettingFile as AppSettingModel;
     if (Cfg.appSetting.baseUrl?.endsWith('/')) Cfg.appSetting.baseUrl = Cfg.appSetting.baseUrl.slice(0, -1);
     PgProtocol.Connect();

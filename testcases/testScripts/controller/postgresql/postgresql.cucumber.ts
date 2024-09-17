@@ -3,8 +3,8 @@ import Cfg from '../../class/config.class';
 import PgLogic from '../../logic/sql/pg_sql.logic';
 import PgProtocol from '../../protocol/pg.protocol';
 import { DataTable } from '@cucumber/cucumber';
-import Formatter from '../../class/formatter.class';
-import File from '../../util/file.util';
+import VFormatter from '../../class/formatter.class';
+import FileU from '../../util/file.util';
 import { EnumFilePath } from '../../enum/file_path.enum';
 import FileReaderLogic from '../../logic/file_reader.logic';
 
@@ -25,7 +25,7 @@ export class PostgresqlController {
   @given('Truncate Tables', { timeout: Cfg.stepTimeOut })
   public async TruncateTables(bddTable: DataTable): Promise<void> {
     await PgProtocol.Query(
-      Formatter.Exec(bddTable.hashes()).reduce(
+      VFormatter.Exec(bddTable.hashes()).reduce(
         (acc: string, row: Record<string, any>) => `${acc} 
         TRUNCATE TABLE ${row['schemaName']}.${row['tableName']} 
         RESTART IDENTITY CASCADE ;`,
@@ -36,7 +36,7 @@ export class PostgresqlController {
   @given('Insert data {string}.{string}', { timeout: Cfg.stepTimeOut })
   public async InsertData(schema: string, table: string, bddTable: DataTable): Promise<void> {
     const tablePath: string = ` ${schema}.${table}`;
-    const sqlValues: string = Formatter.Exec(bddTable['rawTable'].slice(1))
+    const sqlValues: string = VFormatter.Exec(bddTable['rawTable'].slice(1))
       .map((row: string[]) => PgLogic.FormatSqlVal(row))
       .join(',');
     await PgProtocol.Query(`INSERT INTO ${tablePath} (${bddTable['rawTable'][0].join(',')}) VALUES ${sqlValues};

@@ -1,14 +1,14 @@
 import IndianReportLogic from '../logic/report.logic';
-import StorageLogic from '../logic/storage.logic';
+import StorageLogic from '../logic/storage/storage.logic';
 import Obj from '../util/object.util';
 import EnvClass from './env.class';
-import Formatter from './formatter.class';
+import VFormatter from './formatter.class';
 
 class StorageClass {
   private static _vals: Record<string, any> = {};
 
   static add(key: string, val: any, log = true): void {
-    const valSet: any = Formatter.Exec(val);
+    const valSet: any = VFormatter.Exec(val);
     const logSetVar = `**Store ${key} : Val ${Obj.ToString(valSet)}**`;
     if (log) console.warn(logSetVar);
     IndianReportLogic.AddTestStep(logSetVar);

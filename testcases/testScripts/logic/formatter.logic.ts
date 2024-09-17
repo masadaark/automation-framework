@@ -1,7 +1,7 @@
 import dayjs, { Dayjs, ManipulateType, UnitType } from 'dayjs';
 import Validator from './validator.logic';
 import Str from '../util/string.util';
-import Formatter from '../class/formatter.class';
+import VFormatter from '../class/formatter.class';
 import Big from 'big.js';
 import { MathNotation } from '../enum/type.enum';
 
@@ -90,7 +90,7 @@ class FormatterLogic {
     const operators: string[] | null = expression.match(/[-+*/]/g);
     const values: (number | Big)[] = expression
       .split(/[-+*/]/)
-      .map((val) => Number(Formatter.Exec(val)) || Number(val));
+      .map((val) => Number(VFormatter.Exec(val)) || Number(val));
 
     if (!operators || operators.length !== values.length - 1) {
       throw new Error('Invalid expression');

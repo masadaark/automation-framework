@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import Cfg from '../class/config.class';
-import Formatter from '../class/formatter.class';
+import VFormatter from '../class/formatter.class';
 import ResClass from '../class/response.class';
 import IndianReportLogic from '../logic/report.logic';
-import StorageLogic from '../logic/storage.logic';
+import StorageLogic from '../logic/storage/storage.logic';
 import Validator from '../logic/validator.logic';
 import Obj from '../util/object.util';
 import Str from '../util/string.util';
@@ -26,9 +26,9 @@ class HttpProtocol {
     );
     console.warn(`${method} : ${url}`);
     const defaultHeader = !Obj.IsObj(Validator.Var(Cfg.appSetting.headers)) ? Cfg.appSetting.headers : {};
-    headers = Formatter.Exec(Obj.Merge(headers, defaultHeader));
+    headers = VFormatter.Exec(Obj.Merge(headers, defaultHeader));
     headers['content-type'] = headers['content-type'] ?? 'application/json';
-    body = Formatter.Exec(body) ?? {};
+    body = VFormatter.Exec(body) ?? {};
     const fetchOption = { method, headers, body: Obj.ToString(body)};
     let response;
     try {

@@ -1,13 +1,13 @@
 import { DataTable } from '@cucumber/cucumber';
-import Formatter from '../../class/formatter.class';
+import VFormatter from '../../class/formatter.class';
 import ScenarioClass from '../../class/scenario.class';
 import TcClass from '../../class/test_cases.class';
 import { HttpFileModel } from '../../interface/file_interface/http_file.model';
 import HttpProtocol from '../../protocol/http.protocol';
-import File from '../../util/file.util';
+import FileU from '../../util/file.util';
 import Obj from '../../util/object.util';
 import Validator from '../validator.logic';
-import StorageLogic from '../storage.logic';
+import StorageLogic from '../storage/storage.logic';
 import { ApiFileModel } from '../../interface/file_interface/api_collection.model';
 import ResClass from '../../class/response.class';
 import { EnumFilePath } from '../../enum/file_path.enum';
@@ -17,10 +17,10 @@ class HttpLogic {
   private static initApiPath(): string {
     let apiPath: string = TcClass.HttpFile?.apiPath as string;
     if (ScenarioClass.Http.paramReplace) {
-      apiPath = Formatter.PathReplace(apiPath, Formatter.Exec(ScenarioClass.Http.paramReplace));
+      apiPath = VFormatter.PathReplace(apiPath, VFormatter.Exec(ScenarioClass.Http.paramReplace));
     }
     if (Validator.Var(ScenarioClass.Http.request?.query)) {
-      apiPath = `${apiPath}?${HttpProtocol.ObjToQueries(Formatter.Exec(ScenarioClass.Http.request.query))}`;
+      apiPath = `${apiPath}?${HttpProtocol.ObjToQueries(VFormatter.Exec(ScenarioClass.Http.request.query))}`;
     }
     return apiPath;
   }
@@ -68,12 +68,12 @@ class HttpLogic {
       if ('requestBody' in reqObj) {
         requestBody = reqObj['requestBody'];
       }
-      return HttpProtocol.REQUEST(api, method, reqObj['headers'], Formatter.Exec(requestBody));
+      return HttpProtocol.REQUEST(api, method, reqObj['headers'], VFormatter.Exec(requestBody));
     });
     return await Promise.all(promises);
   }
   static async ApiFolder(file: string): Promise<any> {
-    const apiFile: ApiFileModel = Formatter.Exec(await FileReaderLogic.ApiCollection(file));
+    const apiFile: ApiFileModel = VFormatter.Exec(await FileReaderLogic.ApiCollection(file));
     await HttpProtocol.REQUEST(apiFile.apiPath, apiFile.method, apiFile.headers, apiFile.body);
   }
 }

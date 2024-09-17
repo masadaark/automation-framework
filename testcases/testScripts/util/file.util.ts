@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
-
-class File {
+import mime from 'mime'
+class FileU {
   private static errorMessage(filePath: string, err: any): string {
     return `อ่านไฟล์ ${filePath} ไม่สำเร็จ err:${err}`;
   }
@@ -24,8 +24,13 @@ class File {
   static async readText(filePath: string): Promise<string> {
     try {
       return await fs.readFile(filePath, 'utf8');
-    } catch (err) {
-      throw new Error(this.errorMessage(filePath, err));
+    } catch {
+      try {
+        const fileType = mime.getType(filePath)?.split("/")[1]
+        return await fs.readFile(`${filePath}.${fileType}`, 'utf8');
+      } catch (err) {
+        throw new Error(this.errorMessage(filePath, err));
+      }
     }
   }
 
@@ -38,4 +43,4 @@ class File {
   }
 }
 
-export default File;
+export default FileU;

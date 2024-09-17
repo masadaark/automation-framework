@@ -1,8 +1,8 @@
 import FormatterLogic from '../logic/formatter.logic';
-import StorageLogic from '../logic/storage.logic';
+import StorageLogic from '../logic/storage/storage.logic';
 import StorageClass from './storage.class';
 
-class Formatter {
+class VFormatter {
   static Exec(val: any): any {
       if (typeof val === 'object' && val !== null) {
           if (Array.isArray(val)) return val.map(this.Exec);
@@ -34,4 +34,4 @@ class Formatter {
   }
 }
 
-export default Formatter;
+export default VFormatter;

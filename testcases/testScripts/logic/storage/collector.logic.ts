@@ -1,12 +1,13 @@
-import FileReaderLogic from './file_reader.logic';
-import { Collector, CollectorFile } from '../interface/file_interface/collection.model';
-import Obj from '../util/object.util';
-import TcClass from '../class/test_cases.class';
-import Validator from './validator.logic';
-import { ContentTypeEnum } from '../enum/content.enum';
-import ResClass from '../class/response.class';
-import StorageClass from '../class/storage.class';
-import StorageLogic from './storage.logic';
+import ResClass from "../../class/response.class";
+import StorageClass from "../../class/storage.class";
+import TcClass from "../../class/test_cases.class";
+import { ContentTypeEnum } from "../../enum/content.enum";
+import { Collector, CollectorFile } from "../../interface/file_interface/collection.model";
+import Obj from "../../util/object.util";
+import FileReaderLogic from "../file_reader.logic";
+import Validator from "../validator.logic";
+import StorageLogic from "./storage.logic";
+
 
 export default class CollectorLogic {
   static async JsonFile(file: string, type: number) {

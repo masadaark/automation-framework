@@ -1,7 +1,7 @@
 import { ScenarioDB } from '../interface/file_interface/db_file.model';
 import { ScenarioHttp } from '../interface/file_interface/http_file.model';
 import Validator from '../logic/validator.logic';
-import Formatter from './formatter.class';
+import VFormatter from './formatter.class';
 
 class ScenarioClass {
   private static _PgDB: ScenarioDB;
@@ -21,7 +21,7 @@ class ScenarioClass {
 
   static set Http(val: ScenarioHttp) {
     if (Validator.Var(val) && 'response' in val && 'body' in val.response)
-      val.response.body = Formatter.Exec(val.response.body);
+      val.response.body = VFormatter.Exec(val.response.body);
     this._Http = val;
   }
 

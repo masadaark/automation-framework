@@ -1,6 +1,6 @@
-import StorageLogic from '../logic/storage.logic';
+import StorageLogic from '../logic/storage/storage.logic';
 import Obj from '../util/object.util';
-import Formatter from './formatter.class';
+import VFormatter from './formatter.class';
 
 class EnvClass {
   static _vals: Record<string, any> = {};
@@ -10,7 +10,7 @@ class EnvClass {
   }
 
   static add(key: string, val: any, log = true): void {
-    const valSet: any = Formatter.Exec(val);
+    const valSet: any = VFormatter.Exec(val);
     if (log) console.warn(`**Env Set ${key} : Val ${Obj.ToString(valSet)}**`);
     this._vals[key] = valSet;
   }

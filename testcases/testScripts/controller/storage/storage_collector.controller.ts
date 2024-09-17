@@ -1,8 +1,8 @@
 import { binding, given } from 'cucumber-tsflow';
 import Cfg from '../../class/config.class';
-import CollectorLogic from '../../logic/collector.logic';
 import { ContentTypeEnum } from '../../enum/content.enum';
 import ResClass from '../../class/response.class';
+import CollectorLogic from '../../logic/storage/collector.logic';
 
 @binding()
 export class StorageCollectorController {

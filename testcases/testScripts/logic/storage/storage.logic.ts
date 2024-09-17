@@ -1,4 +1,4 @@
-import StorageClass from '../class/storage.class';
+import StorageClass from '../../class/storage.class';
 
 class StorageLogic {
   private static RegExps = [

@@ -1,9 +1,9 @@
-import Formatter from '../../class/formatter.class';
+import VFormatter from '../../class/formatter.class';
 import ScenarioClass from '../../class/scenario.class';
 import TcClass from '../../class/test_cases.class';
 import { PgDBFileModel } from '../../interface/file_interface/db_file.model';
 import PgProtocol from '../../protocol/pg.protocol';
-import File from '../../util/file.util';
+import FileU from '../../util/file.util';
 import Obj from '../../util/object.util';
 import FileReaderLogic from '../file_reader.logic';
 
@@ -16,7 +16,7 @@ export default class PgLogic {
     ScenarioClass.PgDB = Obj.New(Obj.FindInclude(pgSqlFile.scenarios, 'tcNo', TcClass.tcNo));
     if (!ScenarioClass.PgDB) return;
     const sql: string = ScenarioClass.PgDB.paramReplace
-      ? Formatter.PathReplace(TcClass.PgDBFile.sql, Formatter.Exec(ScenarioClass.PgDB.paramReplace))
+      ? VFormatter.PathReplace(TcClass.PgDBFile.sql, VFormatter.Exec(ScenarioClass.PgDB.paramReplace))
       : TcClass.PgDBFile.sql;
     await PgProtocol.Query(sql);
   }

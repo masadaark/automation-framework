@@ -2,7 +2,7 @@ import { ITestStepHookParameter } from '@cucumber/cucumber';
 import { afterAll, afterStep, binding } from 'cucumber-tsflow';
 import IndianReportClass from '../class/report.class';
 import IndianReportLogic from '../logic/report.logic';
-import File from '../util/file.util';
+import FileU from '../util/file.util';
 import { EnumFilePath } from '../enum/file_path.enum';
 import Big from 'big.js';
 
@@ -21,6 +21,6 @@ export class AfterHook {
   public afterAllHook(): void {
     console.warn('\n');
     console.warn('******Writing Report******');
-    File.writeJson(EnumFilePath.REPORT_PATH, IndianReportClass.toReport());
+    FileU.writeJson(EnumFilePath.REPORT_PATH, IndianReportClass.toReport());
   }
 }

@@ -2,9 +2,9 @@ import { expect } from 'chai';
 import { ListExpect } from '../../interface/file_interface/http_file.model';
 import Validator from '../validator.logic';
 import Obj from '../../util/object.util';
-import StorageLogic from '../storage.logic';
+import StorageLogic from '../storage/storage.logic';
 import { Comparator, LogicOperator } from '../../enum/type.enum';
-import Formatter from '../../class/formatter.class';
+import VFormatter from '../../class/formatter.class';
 import CompLogic from '../comparator.logic';
 
 const AssertHttpList = {
@@ -16,7 +16,7 @@ const AssertHttpList = {
         const acts = exp.key
           ? [StorageLogic.ObjPathVal(childObj, exp.key)]
           : Obj.DeepKeyVal(childObj, exp.deeplyKey ?? '');
-        const expectedResult = Formatter.Exec(exp.value);
+        const expectedResult = VFormatter.Exec(exp.value);
         const comp: Comparator = exp.comparator ?? 'equal';
         for (const act of acts) {
           isPasses.push(CompLogic.Flag(act, expectedResult, comp));

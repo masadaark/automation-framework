@@ -4,8 +4,8 @@ import HttpAssertionLogic from '../../logic/้http/http_assertion.logic';
 import ResClass from '../../class/response.class';
 import { HttpListResponse, HttpResponse } from '../../interface/file_interface/http_file.model';
 import { expect } from 'chai';
-import StorageLogic from '../../logic/storage.logic';
-import Formatter from '../../class/formatter.class';
+import StorageLogic from '../../logic/storage/storage.logic';
+import VFormatter from '../../class/formatter.class';
 import AssertionLogic from '../../logic/assertion.logic';
 import CompLogic from '../../logic/comparator.logic';
 import Obj from '../../util/object.util';
@@ -50,7 +50,7 @@ export class HttpAssertionController {
   @then('Expect Error message equal to {string}')
   public HttpErrorMessageAssertion(errorMessage: string): void {
     if (!ScenarioClass.Http) return;
-    expect(ResClass.Http.body.errorMessage).eql(Formatter.Exec(errorMessage));
+    expect(ResClass.Http.body.errorMessage).eql(VFormatter.Exec(errorMessage));
   }
   @then('Expect Http Status equal to {int}')
   public HttpStatusAssertion(status: number): void {
@@ -87,7 +87,7 @@ export class HttpAssertionController {
   @then('response path {string} is member of {string}')
   public HttpPathIsMemberOfAssertion(path: string = '', expectValue: string): void {
     if (!ResClass.Http) return;
-    const expValues = Formatter.Exec(expectValue.split(','));
+    const expValues = VFormatter.Exec(expectValue.split(','));
     const actValues = StorageLogic.ObjPathVal(ResClass.Http.body, path);
     expect(
       expValues.some((val: any) => CompLogic.Flag(actValues, val, 'equal')),

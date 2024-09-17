@@ -1,16 +1,16 @@
 import { expect } from 'chai';
 import IndianReportLogic from '../report.logic';
-import Formatter from '../../class/formatter.class';
+import VFormatter from '../../class/formatter.class';
 import AssertionLogic from '../assertion.logic';
 import { HttpListResponse, HttpResponse } from '../../interface/file_interface/http_file.model';
 import Obj from '../../util/object.util';
-import StorageLogic from '../storage.logic';
+import StorageLogic from '../storage/storage.logic';
 import AssertHttpList from './http_assertion_list.logic';
 
 class HttpAssertionLogic {
   static SubSet(actualRes: HttpResponse, expectRes: HttpResponse): void {
     if (!expectRes) return;
-    const expectedBody = Formatter.Exec(expectRes.body);
+    const expectedBody = VFormatter.Exec(expectRes.body);
     IndianReportLogic.AddTestStep({
       actualResult: {
         status: actualRes.status,
@@ -27,7 +27,7 @@ class HttpAssertionLogic {
   static DeepEqual(actualRes: HttpResponse, expectRes: HttpResponse): void {
     if (!expectRes) return;
     if ('status' in expectRes) expect(actualRes.status).equal(expectRes.status);
-    if ('body' in expectRes) expect(actualRes.body).deep.equal(Formatter.Exec(expectRes.body));
+    if ('body' in expectRes) expect(actualRes.body).deep.equal(VFormatter.Exec(expectRes.body));
   }
 
   static Model(actualRes: HttpResponse, expectRes: HttpResponse) {

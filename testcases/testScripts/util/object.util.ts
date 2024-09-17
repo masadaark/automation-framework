@@ -84,5 +84,19 @@ class Obj {
     search(obj);
     return v;
   }
+  static CSVtoJSON(csv: string) {
+    if (Str.IsStrNum(csv)) return csv;
+    try {
+        // return Papa.parse(csv, {
+        //     header: true,
+        //     complete: function (results) {
+        //         const jsonString = JSON.stringify(results.data);
+        //         return JSON.parse(jsonString);
+        //     },
+        // }).data;
+    } catch {
+        return csv;
+    }
+}
 }
 export default Obj;

@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 import Cfg from '../class/config.class';
-import StorageLogic from '../logic/storage.logic';
+import StorageLogic from '../logic/storage/storage.logic';
 import ResClass from '../class/response.class';
 import IndianReportLogic from '../logic/report.logic';
 
