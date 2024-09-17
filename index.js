@@ -75,6 +75,19 @@ const copyDir = (src, dest) => {
         }
     });
 };
+
+const rmTestImage = () => {
+    try {
+        fs.rmSync(targetFolder.appsetting, { recursive: true, force: true })
+        fs.rmSync(targetFolder.payloads, { recursive: true, force: true })
+        fs.rmSync(targetFolder.testcases, { recursive: true, force: true })
+    } catch {
+        fs.rmSync(targetFolder.appsetting, { recursive: true, force: true })
+        fs.rmSync(targetFolder.payloads, { recursive: true, force: true })
+        fs.rmSync(targetFolder.testcases, { recursive: true, force: true })
+    }
+}
+
 async function main() {
     try {
         await runCommand("npm i");
@@ -86,6 +99,7 @@ async function main() {
         console.warn(`**Read app-setting.json***`)
         await runCommand(`npm run test:cucumber ${process.argv.slice(2).join(" ")}`);
         console.warn(`**Generate Report ***`)
+        rmTestImage()
         fs.copyFile(srcFolder.testresultreport, targetFolder.testresultreport, (err) => { if (err) throw err; });
     } catch (error) {
         console.error(`running error: ${error}`);

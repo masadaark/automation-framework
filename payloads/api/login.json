@@ -1,8 +1,0 @@
-{
-    "apiPath": "/api/tms/login",
-    "method": "POST",
-    "body": {
-        "email": "test@gmail.com",
-        "accountID": "admin"
-    }
-}
