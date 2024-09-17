@@ -9,9 +9,9 @@ class EnvClass {
     return Object.keys(this._vals).length > 3;
   }
 
-  static add(key: string, val: any, log = true): void {
+  static add(key: string, val: any): void {
     const valSet: any = VFormatter.Exec(val);
-    if (log) console.warn(`**Env Set ${key} : Val ${Obj.ToString(valSet)}**`);
+    // if (log) console.warn(`**Env Set ${key} : Val ${Obj.ToString(valSet)}**`);
     this._vals[key] = valSet;
   }
 

@@ -24,7 +24,7 @@ class HttpProtocol {
     const url: string = StorageLogic.RepStrVar(
       apiPath.startsWith('/') ? `${Cfg.appSetting.baseUrl}${apiPath}` : apiPath
     );
-    console.warn(`${method} : ${url}`);
+    // console.warn(`${method} : ${url}`);
     const defaultHeader = !Obj.IsObj(Validator.Var(Cfg.appSetting.headers)) ? Cfg.appSetting.headers : {};
     headers = VFormatter.Exec(Obj.Merge(headers, defaultHeader));
     headers['content-type'] = headers['content-type'] ?? 'application/json';

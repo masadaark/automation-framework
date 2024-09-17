@@ -7,10 +7,10 @@ import VFormatter from './formatter.class';
 class StorageClass {
   private static _vals: Record<string, any> = {};
 
-  static add(key: string, val: any, log = true): void {
+  static add(key: string, val: any): void {
     const valSet: any = VFormatter.Exec(val);
     const logSetVar = `**Store ${key} : Val ${Obj.ToString(valSet)}**`;
-    if (log) console.warn(logSetVar);
+    // if (log) console.warn(logSetVar);
     IndianReportLogic.AddTestStep(logSetVar);
     this._vals[key] = valSet;
   }

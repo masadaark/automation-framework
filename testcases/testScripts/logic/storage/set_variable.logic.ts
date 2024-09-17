@@ -5,6 +5,7 @@ import { SetVarFile } from '../../interface/file_interface/sotrage.model';
 import FileU from '../../util/file.util';
 import Obj from '../../util/object.util';
 import FileReaderLogic from '../file_reader.logic';
+import IndianReportLogic from '../report.logic';
 import Validator from '../validator.logic';
 
 export default class SetVarLogic {
@@ -35,7 +36,7 @@ export default class SetVarLogic {
         if (match === null) StorageClass.add(key, fileContent);
         else StorageClass.add(key, SetVarLogic.FormatFileData(filePath, fileContent, match[1]));
       } else StorageClass.add(key, fileContent);
-    } else console.warn(`** Path ไม่ถูกต้อง ${filePathFormat} ** `);
+    } else IndianReportLogic.AddTestStep(`** Path ไม่ถูกต้อง ${filePathFormat} ** `)
   }
   static FormatFileData(filePath: string, data: string, type: string) {
     if (/json/i.test(type)) {

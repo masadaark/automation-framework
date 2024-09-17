@@ -34,7 +34,7 @@ export class StorageAssertionController {
       }
       return flag;
     });
-    if (!actualObj) console.warn('**No Matching Object Found**');
+    // if (!actualObj) console.warn('**No Matching Object Found**');
     AssertionLogic.SubSet(actualObj, expectobj, '');
   }
 }
