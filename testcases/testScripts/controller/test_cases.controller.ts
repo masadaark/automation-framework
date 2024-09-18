@@ -2,6 +2,7 @@ import { binding, when } from 'cucumber-tsflow';
 import TcClass from '../class/test_cases.class';
 import StorageClass from '../class/storage.class';
 import ScenarioClass from '../class/scenario.class';
+import WiremockLogic from '../logic/mock/wiremock.logic';
 
 @binding()
 export class TestCasesController {
@@ -11,7 +12,7 @@ export class TestCasesController {
       TcClass.reset();
       ScenarioClass.reset();
       StorageClass.reset();
-      // WiremockClass.ClearMappingUUIDs()
+      WiremockLogic.ClearMappingUUIDs()
     }
     TcClass.feature = feature;
     TcClass.tcNo = tcNo;

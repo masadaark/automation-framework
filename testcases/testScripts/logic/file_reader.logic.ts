@@ -13,6 +13,11 @@ export default class FileReaderLogic {
       `${EnumFilePath.PAYLOAD_FOLDER}/features/${TcClass.feature}/${this.defaultFileType(file)}`
     );
   }
+  static async ReadText(file: string) {
+    return await FileU.readText(
+      `${EnumFilePath.PAYLOAD_FOLDER}/features/${TcClass.feature}/${this.defaultFileType(file)}`
+    );
+  }
   static async ApiCollection(file: string) {
     return await FileU.readJson(`${EnumFilePath.PAYLOAD_FOLDER}/api/${this.defaultFileType(file)}`);
   }
@@ -22,5 +27,8 @@ export default class FileReaderLogic {
     } catch {
       return await FileU.readText(`${EnumFilePath.PAYLOAD_FOLDER}/sql/${this.defaultFileType(file, 'sql')}`);
     }
+  }
+  static async ReadWiremockCollection(file: string) {
+    return await FileU.readJson(`${EnumFilePath.PAYLOAD_FOLDER}/wiremock/${file} `)
   }
 }
