@@ -4,13 +4,11 @@ import ScenarioClass from '../../class/scenario.class';
 import TcClass from '../../class/test_cases.class';
 import { HttpFileModel } from '../../interface/file_interface/http_file.model';
 import HttpProtocol from '../../protocol/http.protocol';
-import FileU from '../../util/file.util';
 import Obj from '../../util/object.util';
 import Validator from '../validator.logic';
 import StorageLogic from '../storage/storage.logic';
 import { ApiFileModel } from '../../interface/file_interface/api_collection.model';
 import ResClass from '../../class/response.class';
-import { EnumFilePath } from '../../enum/file_path.enum';
 import FileReaderLogic from '../file_reader.logic';
 
 class HttpLogic {
@@ -47,8 +45,8 @@ class HttpLogic {
         const resp = await HttpProtocol.REQUEST(this.initApiPath(), httpFile.method, rawReq?.headers, rawReq?.body);
         return {
           requestId,
-          body: resp?.body,
-          status: resp?.status,
+          body: resp.response.body,
+          status: resp.response.status,
         };
       });
       const responses = await Promise.all(requests);
@@ -68,7 +66,7 @@ class HttpLogic {
       if ('requestBody' in reqObj) {
         requestBody = reqObj['requestBody'];
       }
-      return HttpProtocol.REQUEST(api, method, reqObj['headers'], VFormatter.Exec(requestBody));
+      return await HttpProtocol.REQUEST(api, method, reqObj['headers'], VFormatter.Exec(requestBody));
     });
     return await Promise.all(promises);
   }

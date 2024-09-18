@@ -20,11 +20,9 @@ class HttpProtocol {
     method: string,
     headers: Record<string, any> = {},
     body?: any
-  ): Promise<Response | undefined> {
-    const url: string = StorageLogic.RepStrVar(
-      apiPath.startsWith('/') ? `${Cfg.appSetting.baseUrl}${apiPath}` : apiPath
-    );
-    // console.warn(`${method} : ${url}`);
+  ): Promise<{ request: any, response: any }> {
+    const url = this.InitUrl(apiPath)
+    console.warn(`${method} : ${url}`);
     const defaultHeader = !Obj.IsObj(Validator.Var(Cfg.appSetting.headers)) ? Cfg.appSetting.headers : {};
     headers = VFormatter.Exec(Obj.Merge(headers, defaultHeader));
     headers['content-type'] = headers['content-type'] ?? 'application/json';
@@ -36,7 +34,14 @@ class HttpProtocol {
     } catch (error) {
       console.error('http request errors:', error);
       IndianReportLogic.AddTestStep(error);
-      return undefined;
+      return {
+        request: {
+          url,
+          ...fetchOption,
+          body: Obj.Parse(body),
+        },
+        response: { body: {}, status: 999 },
+      };
     } finally {
       let responseBody = Obj.Parse(await response?.text());
       if (typeof responseBody === 'string') responseBody = Str.RemoveFirstLastChar(responseBody);
@@ -49,9 +54,24 @@ class HttpProtocol {
         },
         response: ResClass.Http,
       });
+      return {
+        request: {
+          url,
+          ...fetchOption,
+          body: Obj.Parse(body),
+        },
+        response: ResClass.Http,
+      };
     }
+  }
 
-    return response;
+  private static InitUrl(apiPath: string) {
+    let url: string = apiPath
+    if (apiPath.startsWith('/') || apiPath.startsWith('api')) {
+      const normalizedPath = apiPath.startsWith('/') ? apiPath : `/${apiPath}`;
+      url = `${Cfg.appSetting.baseUrl.replace(/\/$/, '')}${normalizedPath}`
+    };
+    return StorageLogic.RepStrVar(url)
   }
 }
 

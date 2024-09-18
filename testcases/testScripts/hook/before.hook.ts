@@ -6,6 +6,7 @@ import Cfg from '../class/config.class';
 import { AppSettingModel } from '../interface/app_setting.model';
 import FileU from '../util/file.util';
 import PgProtocol from '../protocol/pg.protocol';
+import WiremockLogic from '../logic/mock/wiremock.logic';
 let scenarioId: string = '';
 let testStepId: string = '';
 @binding()
@@ -17,8 +18,8 @@ export class BeforeHook {
     const appSettingFile = await FileU.readJson(appSettingPath);
     Cfg.appSetting = appSettingFile as AppSettingModel;
     if (Cfg.appSetting.baseUrl?.endsWith('/')) Cfg.appSetting.baseUrl = Cfg.appSetting.baseUrl.slice(0, -1);
+    WiremockLogic.InitWiremockUrl()
     PgProtocol.Connect();
-    return;
   }
   @beforeStep()
   public beforeStepHook(testStepHook: ITestStepHookParameter): void {

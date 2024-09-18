@@ -4,7 +4,6 @@ import { WiremockResponse } from "../../interface/file_interface/wiremock.model"
 import HttpProtocol from "../../protocol/http.protocol"
 import Obj from "../../util/object.util"
 import FileReaderLogic from "../file_reader.logic"
-import StorageLogic from "../storage/storage.logic"
 import Validator from "../validator.logic"
 
 export default class WiremockLogic {
@@ -15,7 +14,12 @@ export default class WiremockLogic {
     }
     private static _flagClear: boolean = true
     private static _uuids: string[] = []
-    private static _wiremockURL = Cfg.appSetting.wiremockUrl.endsWith("/") ? `${Cfg.appSetting.wiremockUrl}__admin/mappings/` : `${Cfg.appSetting.wiremockUrl}/__admin/mappings/`
+    private static _wiremockURL = ""
+
+    public static InitWiremockUrl() {
+        this._wiremockURL = Cfg.appSetting.wiremockUrl.endsWith("/") ? `${Cfg.appSetting.wiremockUrl}__admin/mappings/`
+            : `${Cfg.appSetting.wiremockUrl}/__admin/mappings/`
+    }
     static async POST(i: {
         method: string
         apiPath: string
@@ -49,9 +53,8 @@ export default class WiremockLogic {
                 }
             }
         }
-        const responseWiremock = await (await HttpProtocol.REQUEST(this._wiremockURL
-            , "POST", requestWiremock))?.json() as { uuid: string }
-        this._uuids.push(responseWiremock.uuid)
+        const httpResponse = await HttpProtocol.REQUEST(this._wiremockURL, "POST", {}, requestWiremock);
+        this._uuids.push(httpResponse.response.body.uuid);
     }
     private static createHeaders(headers: Record<string, any>) {
         if (Validator.Var(headers) && (typeof headers === "object" || Obj.CanParse(headers))) {

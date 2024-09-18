@@ -18,10 +18,10 @@ export class WiremockController {
     @given('{string} Post Xml Mapping', { timeout: Cfg.stepTimeOut })
     public async POST(file: string) {
         const wiremockFile: WiremockFile = await FileReaderLogic.JsonPayload(file);
-        const mappings: ScenarioWiremock[] = Obj.New(Obj.FindInclude(wiremockFile.scenarios, 'tcNo', TcClass.tcNo))
+        const mappings: ScenarioWiremock[] = Obj.New(wiremockFile.scenarios.filter(o => o.tcNo.includes(TcClass.tcNo)))
         const promises = mappings.map(async (mapping) => {
             const apiPath = mapping?.paramReplace ? VFormatter.PathReplace(wiremockFile.apiPath, VFormatter.Exec(mapping.paramReplace)) : VFormatter.Exec(wiremockFile.apiPath)
-            WiremockLogic.POST({
+            await WiremockLogic.POST({
                 method: wiremockFile.method,
                 apiPath,
                 request: VFormatter.Exec(mapping.request) ?? [],
