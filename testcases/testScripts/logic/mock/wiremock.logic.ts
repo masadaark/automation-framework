@@ -36,7 +36,7 @@ export default class WiremockLogic {
         let requestWiremock: Record<string, any> = {
             request: this.BuildRequest(i.method, i.apiPath, i.paramType, request, headers),
             response: {
-                jsonBody: response,
+                jsonBody: response.body ?? response,
                 transformers: ["response-template"],
                 headers,
                 status,
