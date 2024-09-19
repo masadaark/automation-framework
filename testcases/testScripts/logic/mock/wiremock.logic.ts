@@ -42,11 +42,11 @@ export default class WiremockLogic {
                 status,
             }
         }
-        if (!(headers['content-type'] === this._mappingsDefaultHeader['content-type'])) {
+        if (headers['content-type'] !== this._mappingsDefaultHeader['content-type']) {
             requestWiremock = {
                 request: this.BuildRequest(i.method, i.apiPath, "", request, headers),
                 response: {
-                    body: response,
+                    body: response.body ?? response,
                     transformers: ["response-template"],
                     headers: respHeader,
                     status: status
