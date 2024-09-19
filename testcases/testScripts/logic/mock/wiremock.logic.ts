@@ -4,6 +4,7 @@ import { WiremockResponse } from "../../interface/file_interface/wiremock.model"
 import HttpProtocol from "../../protocol/http.protocol"
 import Obj from "../../util/object.util"
 import FileReaderLogic from "../file_reader.logic"
+import IndianReportLogic from "../report.logic"
 import Validator from "../validator.logic"
 
 export default class WiremockLogic {
@@ -31,12 +32,12 @@ export default class WiremockLogic {
         const headers = this.createHeaders(i.headers)
         const request = await this.createRequestResponse(i.request)
         const response = await this.createRequestResponse(i.response)
-        const status = response.status ?? 200
-        const respHeader = response.headers
+        const status = response?.status ?? 200
+        const respHeader = i.response?.headers
         let requestWiremock: Record<string, any> = {
             request: this.BuildRequest(i.method, i.apiPath, i.paramType, request, headers),
             response: {
-                jsonBody: response.body ?? response,
+                jsonBody: response?.body ?? response,
                 transformers: ["response-template"],
                 headers,
                 status,
@@ -46,7 +47,7 @@ export default class WiremockLogic {
             requestWiremock = {
                 request: this.BuildRequest(i.method, i.apiPath, "", request, headers),
                 response: {
-                    body: response.body ?? response,
+                    body: response?.body ?? response,
                     transformers: ["response-template"],
                     headers: respHeader,
                     status: status
@@ -67,7 +68,7 @@ export default class WiremockLogic {
     }
     private static async createRequestResponse(v: any) {
         if ('equalToFile' in v) {
-            const r = FileReaderLogic.ReadText(v["equalToFile"])
+            const r = await FileReaderLogic.ReadText(v["equalToFile"])
             if (typeof r === 'string' && String(r).startsWith("<")) return VFormatter.Exec(r)
             else VFormatter.Exec(Obj.Parse(v))
         }

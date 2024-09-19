@@ -27,8 +27,12 @@ class FileU {
       return await fs.readFile(filePath, 'utf8');
     } catch {
       try {
-        const fileType = mime.lookup(filePath) ?? '';
-        return await fs.readFile(`${filePath}.${String(fileType).split('/')[1]}`, 'utf8');
+        const fileType = mime.lookup(filePath);
+        if (fileType) {
+          const typeArr = String(fileType).split('/')
+          return await fs.readFile(`${filePath}.${typeArr[typeArr.length - 1]}`, 'utf8');
+        }
+        throw new Error(this.errorMessage(filePath, 'fileType: ' + fileType));
       } catch (err) {
         throw new Error(this.errorMessage(filePath, err));
       }

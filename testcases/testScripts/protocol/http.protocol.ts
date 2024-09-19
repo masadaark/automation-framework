@@ -23,9 +23,10 @@ class HttpProtocol {
   ): Promise<{ request: any, response: any }> {
     const url = this.InitUrl(apiPath)
     console.warn(`${method} : ${url}`);
-    const defaultHeader = !Obj.IsObj(Validator.Var(Cfg.appSetting.headers)) ? Cfg.appSetting.headers : {};
+    const defaultHeader: {} = !Obj.IsObj(Validator.Var(Cfg.appSetting.headers)) ? Cfg.appSetting.headers : {}
     headers = VFormatter.Exec(Obj.Merge(headers, defaultHeader));
     headers['content-type'] = headers['content-type'] ?? 'application/json';
+    headers['userId'] = headers['userId'] ?? 1
     body = VFormatter.Exec(body) ?? {};
     const fetchOption = { method, headers, body: Obj.ToString(body) };
     let response;
