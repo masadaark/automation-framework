@@ -4,7 +4,6 @@ import { WiremockResponse } from "../../interface/file_interface/wiremock.model"
 import HttpProtocol from "../../protocol/http.protocol"
 import Obj from "../../util/object.util"
 import FileReaderLogic from "../file_reader.logic"
-import IndianReportLogic from "../report.logic"
 import Validator from "../validator.logic"
 
 export default class WiremockLogic {
