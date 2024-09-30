@@ -2,7 +2,7 @@ import ResClass from '../../class/response.class';
 import StorageClass from '../../class/storage.class';
 import TcClass from '../../class/test_cases.class';
 import { ContentTypeEnum } from '../../enum/content.enum';
-import { Collector, CollectorFile } from '../../interface/file_interface/collection.model';
+import { Collector, CollectorFile } from '../../interface/file_interface/variable_collection.model';
 import Obj from '../../util/object.util';
 import FileReaderLogic from '../file_reader.logic';
 import Validator from '../validator.logic';

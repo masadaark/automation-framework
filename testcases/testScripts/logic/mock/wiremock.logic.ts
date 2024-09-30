@@ -16,7 +16,7 @@ export default class WiremockLogic {
   private static _uuids: string[] = [];
   private static _wiremockURL = '';
 
-  public static InitWiremockUrl(cfg:AppSettingModel) {
+  public static InitWiremockUrl(cfg: AppSettingModel) {
     this._wiremockURL = cfg.wiremockUrl.endsWith('/')
       ? `${cfg.wiremockUrl}__admin/mappings/`
       : `${cfg.wiremockUrl}/__admin/mappings/`;

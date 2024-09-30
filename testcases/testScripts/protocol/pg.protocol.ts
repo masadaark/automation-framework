@@ -7,7 +7,7 @@ import { PgConfig } from '../interface/app_setting.model';
 class ProtocolPg {
   private static _pool: Pool;
 
-  static Connect(cfg:PgConfig): void {
+  static Connect(cfg: PgConfig): void {
     this._pool = new Pool({
       ...cfg,
       max: 10,
