@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import Cfg from '../class/config.class';
 import VFormatter from '../class/formatter.class';
 import ResClass from '../class/response.class';
 import IndianReportLogic from '../logic/report.logic';
@@ -7,8 +6,18 @@ import StorageLogic from '../logic/storage/storage.logic';
 import Validator from '../logic/validator.logic';
 import Obj from '../util/object.util';
 import Str from '../util/string.util';
+import { AppSettingModel } from '../interface/app_setting.model';
 
-class HttpProtocol {
+class ProtocolHttp {
+  private static _url: string;
+  private static _defaultHeaders: Record<string, any>;
+
+  static Init(cfg: AppSettingModel) {
+    this._url = cfg?.baseUrl?.endsWith('/') ? cfg?.baseUrl.slice(0, -1) : cfg?.baseUrl;
+    this._defaultHeaders = !Obj.IsObj(Validator.Var(cfg?.headers)) ? cfg?.headers : {};
+    this._defaultHeaders['userId'] = this._defaultHeaders['userId'] ?? 1;
+  }
+
   static ObjToQueries(obj: any): string {
     return Object.keys(obj)
       .map((key) => `${key}=${obj[key]}`)
@@ -20,13 +29,11 @@ class HttpProtocol {
     method: string,
     headers: Record<string, any> = {},
     body?: any
-  ): Promise<{ request: any, response: any }> {
-    const url = this.InitUrl(apiPath)
+  ): Promise<{ request: any; response: any }> {
+    const url = this.InitUrl(apiPath);
     console.warn(`${method} : ${url}`);
-    const defaultHeader: {} = !Obj.IsObj(Validator.Var(Cfg.appSetting.headers)) ? Cfg.appSetting.headers : {}
-    headers = VFormatter.Exec(Obj.Merge(headers, defaultHeader));
+    headers = VFormatter.Exec(Obj.Merge(headers, this._defaultHeaders));
     headers['content-type'] = headers['content-type'] ?? 'application/json';
-    headers['userId'] = headers['userId'] ?? 1
     body = VFormatter.Exec(body) ?? {};
     const fetchOption = { method, headers, body: Obj.ToString(body) };
     let response;
@@ -67,13 +74,13 @@ class HttpProtocol {
   }
 
   private static InitUrl(apiPath: string) {
-    let url: string = apiPath
+    let url: string = apiPath;
     if (apiPath.startsWith('/') || apiPath.startsWith('api')) {
       const normalizedPath = apiPath.startsWith('/') ? apiPath : `/${apiPath}`;
-      url = `${Cfg.appSetting.baseUrl.replace(/\/$/, '')}${normalizedPath}`
-    };
-    return StorageLogic.RepStrVar(url)
+      url = `${this._url.replace(/\/$/, '')}${normalizedPath}`;
+    }
+    return StorageLogic.RepStrVar(url);
   }
 }
 
-export default HttpProtocol;
+export default ProtocolHttp;

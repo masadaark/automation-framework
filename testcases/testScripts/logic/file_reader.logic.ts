@@ -29,6 +29,6 @@ export default class FileReaderLogic {
     }
   }
   static async ReadWiremockCollection(file: string) {
-    return await FileU.readJson(`${EnumFilePath.PAYLOAD_FOLDER}/wiremock/${file} `)
+    return await FileU.readJson(`${EnumFilePath.PAYLOAD_FOLDER}/wiremock/${file} `);
   }
 }

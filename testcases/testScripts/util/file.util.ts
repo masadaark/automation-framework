@@ -29,7 +29,7 @@ class FileU {
       try {
         const fileType = mime.lookup(filePath);
         if (fileType) {
-          const typeArr = String(fileType).split('/')
+          const typeArr = String(fileType).split('/');
           return await fs.readFile(`${filePath}.${typeArr[typeArr.length - 1]}`, 'utf8');
         }
         throw new Error(this.errorMessage(filePath, 'fileType: ' + fileType));

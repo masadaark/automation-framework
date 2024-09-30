@@ -1,7 +1,7 @@
 import { binding, given, when } from 'cucumber-tsflow';
 import Cfg from '../../class/config.class';
 import PgLogic from '../../logic/sql/pg_sql.logic';
-import PgProtocol from '../../protocol/pg.protocol';
+import ProtocolPg from '../../protocol/pg.protocol';
 import { DataTable } from '@cucumber/cucumber';
 import VFormatter from '../../class/formatter.class';
 import FileReaderLogic from '../../logic/file_reader.logic';
@@ -18,11 +18,11 @@ export class PostgresqlController {
   }
   @given('Truncate Table {string}.{string}', { timeout: Cfg.stepTimeOut })
   public async TruncateTable(schema: string, table: string): Promise<void> {
-    await PgProtocol.Query(`TRUNCATE TABLE ${schema}.${table}  RESTART IDENTITY CASCADE ;`);
+    await ProtocolPg.Query(`TRUNCATE TABLE ${schema}.${table}  RESTART IDENTITY CASCADE ;`);
   }
   @given('Truncate Tables', { timeout: Cfg.stepTimeOut })
   public async TruncateTables(bddTable: DataTable): Promise<void> {
-    await PgProtocol.Query(
+    await ProtocolPg.Query(
       VFormatter.Exec(bddTable.hashes()).reduce(
         (acc: string, row: Record<string, any>) => `${acc} 
         TRUNCATE TABLE ${row['schemaName']}.${row['tableName']} 
@@ -37,14 +37,14 @@ export class PostgresqlController {
     const sqlValues: string = VFormatter.Exec(bddTable['rawTable'].slice(1))
       .map((row: string[]) => PgLogic.FormatSqlVal(row))
       .join(',');
-    await PgProtocol.Query(`INSERT INTO ${tablePath} (${bddTable['rawTable'][0].join(',')}) VALUES ${sqlValues};
+    await ProtocolPg.Query(`INSERT INTO ${tablePath} (${bddTable['rawTable'][0].join(',')}) VALUES ${sqlValues};
         SELECT setval(pg_get_serial_sequence('${tablePath}', 'id'), coalesce(MAX(id), 1))
         from ${tablePath};`);
     PgLogic.addTableList(tablePath);
   }
   @given('Truncate inserted table', { timeout: Cfg.stepTimeOut })
   public async TruncateInsertedTable(): Promise<void> {
-    await PgProtocol.Query(
+    await ProtocolPg.Query(
       PgLogic.tableList.map((table) => `TRUNCATE TABLE ${table} RESTART IDENTITY CASCADE ;`).join('\n')
     );
     PgLogic.tableList = [];
@@ -54,6 +54,6 @@ export class PostgresqlController {
   @given('Pg Exec {string}', { timeout: Cfg.stepTimeOut })
   public async InsertFromSql(file: string): Promise<void> {
     const fileText: string = await FileReaderLogic.PgSql(file);
-    await PgProtocol.Query(fileText);
+    await ProtocolPg.Query(fileText);
   }
 }

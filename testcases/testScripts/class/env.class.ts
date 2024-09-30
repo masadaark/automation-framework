@@ -1,5 +1,4 @@
 import StorageLogic from '../logic/storage/storage.logic';
-import Obj from '../util/object.util';
 import VFormatter from './formatter.class';
 
 class EnvClass {

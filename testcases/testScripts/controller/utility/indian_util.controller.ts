@@ -6,7 +6,7 @@ import IndianReportLogic from '../../logic/report.logic';
 import ResClass from '../../class/response.class';
 import StorageClass from '../../class/storage.class';
 import _ from 'lodash';
-import HttpProtocol from '../../protocol/http.protocol';
+import ProtocolHttp from '../../protocol/http.protocol';
 
 @binding()
 export class UtilityController {
@@ -69,6 +69,6 @@ export class UtilityController {
   }
   @given('Map Object Var {string} To Query Param as {string}', { timeout: Cfg.stepTimeOut })
   public VarToQueryParam(objectVarName: string, varName: string): void {
-    StorageClass.add(varName, HttpProtocol.ObjToQueries(StorageClass.get(objectVarName)));
+    StorageClass.add(varName, ProtocolHttp.ObjToQueries(StorageClass.get(objectVarName)));
   }
 }

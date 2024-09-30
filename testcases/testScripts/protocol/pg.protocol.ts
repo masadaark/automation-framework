@@ -1,15 +1,15 @@
 import { Pool } from 'pg';
-import Cfg from '../class/config.class';
 import StorageLogic from '../logic/storage/storage.logic';
 import ResClass from '../class/response.class';
 import IndianReportLogic from '../logic/report.logic';
+import { PgConfig } from '../interface/app_setting.model';
 
-class PgProtocol {
+class ProtocolPg {
   private static _pool: Pool;
 
-  static Connect(): void {
+  static Connect(cfg:PgConfig): void {
     this._pool = new Pool({
-      ...Cfg.appSetting.pgDB,
+      ...cfg,
       max: 10,
       connectionTimeoutMillis: 1000,
       idleTimeoutMillis: 1000,
@@ -30,4 +30,4 @@ class PgProtocol {
   }
 }
 
-export default PgProtocol;
+export default ProtocolPg;

@@ -1,8 +1,9 @@
 export interface AppSettingModel {
   baseUrl: string;
-  headers: string;
+  headers: Record<string, any>;
   pgDB: PgConfig;
   wiremockUrl: string;
+  mongoDB: MongoDBConfig;
 }
 
 export interface PgConfig {
@@ -11,4 +12,8 @@ export interface PgConfig {
   database: string;
   host: string;
   port: number;
+}
+export interface MongoDBConfig {
+  url: string;
+  dbName: string;
 }

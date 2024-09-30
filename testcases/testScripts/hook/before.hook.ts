@@ -5,8 +5,10 @@ import { EnumFilePath } from '../enum/file_path.enum';
 import Cfg from '../class/config.class';
 import { AppSettingModel } from '../interface/app_setting.model';
 import FileU from '../util/file.util';
-import PgProtocol from '../protocol/pg.protocol';
+import ProtocolPg from '../protocol/pg.protocol';
 import WiremockLogic from '../logic/mock/wiremock.logic';
+import { ProtocolMongoDB } from '../protocol/mongodb.protocol';
+import ProtocolHttp from '../protocol/http.protocol';
 let scenarioId: string = '';
 let testStepId: string = '';
 @binding()
@@ -17,9 +19,10 @@ export class BeforeHook {
     console.warn(`******READ_FILE: ${appSettingPath}******`);
     const appSettingFile = await FileU.readJson(appSettingPath);
     Cfg.appSetting = appSettingFile as AppSettingModel;
-    if (Cfg.appSetting.baseUrl?.endsWith('/')) Cfg.appSetting.baseUrl = Cfg.appSetting.baseUrl.slice(0, -1);
-    WiremockLogic.InitWiremockUrl()
-    PgProtocol.Connect();
+    ProtocolHttp.Init(Cfg.appSetting);
+    WiremockLogic.InitWiremockUrl(Cfg.appSetting);
+    ProtocolMongoDB.Init(Cfg.appSetting.mongoDB);
+    ProtocolPg.Connect(Cfg.appSetting.pgDB);
   }
   @beforeStep()
   public beforeStepHook(testStepHook: ITestStepHookParameter): void {

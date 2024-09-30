@@ -2,7 +2,7 @@ import VFormatter from '../../class/formatter.class';
 import ScenarioClass from '../../class/scenario.class';
 import TcClass from '../../class/test_cases.class';
 import { PgDBFileModel } from '../../interface/file_interface/db_file.model';
-import PgProtocol from '../../protocol/pg.protocol';
+import ProtocolPg from '../../protocol/pg.protocol';
 import Obj from '../../util/object.util';
 import FileReaderLogic from '../file_reader.logic';
 import IndianReportLogic from '../report.logic';
@@ -14,12 +14,12 @@ export default class PgLogic {
     TcClass.PgDBFile = pgSqlFile;
     ScenarioClass.PgDB = ScenarioClass.NewPgDB();
     ScenarioClass.PgDB = Obj.New(Obj.FindInclude(pgSqlFile.scenarios, 'tcNo', TcClass.tcNo));
-    IndianReportLogic.AddTestStep(ScenarioClass.PgDB)
+    IndianReportLogic.AddTestStep(ScenarioClass.PgDB);
     if (!ScenarioClass.PgDB) return;
     const sql: string = ScenarioClass.PgDB.paramReplace
       ? VFormatter.PathReplace(TcClass.PgDBFile.sql, VFormatter.Exec(ScenarioClass.PgDB.paramReplace))
       : TcClass.PgDBFile.sql;
-    await PgProtocol.Query(sql);
+    await ProtocolPg.Query(sql);
   }
   static FormatSqlVal(row: string[]): string {
     return `(${row.map((val) => (val.length ? "'" + val + "'" : 'NULL')).join(',')})`;

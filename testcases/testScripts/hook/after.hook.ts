@@ -26,7 +26,7 @@ export class AfterHook {
   }
   @after()
   public afterEachHook(): void {
-    if (WiremockLogic.flagClear) WiremockLogic.ClearMappingUUIDs()
-    WiremockLogic.flagClear = true
+    if (WiremockLogic.flagClear) WiremockLogic.ClearMappingUUIDs();
+    WiremockLogic.flagClear = true;
   }
 }

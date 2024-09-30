@@ -12,7 +12,7 @@ export class TestCasesController {
       TcClass.reset();
       ScenarioClass.reset();
       StorageClass.reset();
-      WiremockLogic.ClearMappingUUIDs()
+      WiremockLogic.ClearMappingUUIDs();
     }
     TcClass.feature = feature;
     TcClass.tcNo = tcNo;

@@ -1,7 +1,7 @@
 import { binding, given, when } from 'cucumber-tsflow';
 import HttpLogic from '../../logic/้http/http.logic';
 import Cfg from '../../class/config.class';
-import HttpProtocol from '../../protocol/http.protocol';
+import ProtocolHttp from '../../protocol/http.protocol';
 import { DataTable } from '@cucumber/cucumber';
 
 @binding()
@@ -26,7 +26,7 @@ export class HttpController {
   }
   @when('{string} Http GET', { timeout: Cfg.stepTimeOut })
   public async HttpGETRequest(api: string): Promise<void> {
-    await HttpProtocol.REQUEST(api, 'GET');
+    await ProtocolHttp.REQUEST(api, 'GET');
   }
   @when(`Http POST {string}`, { timeout: Cfg.stepTimeOut })
   public async HttpPostRequest(api: string, bddTable: DataTable): Promise<void> {
