@@ -21,6 +21,11 @@ export default class WiremockLogic {
       ? `${cfg.wiremockUrl}__admin/mappings/`
       : `${cfg.wiremockUrl}/__admin/mappings/`;
   }
+
+  static get URL(): string {
+    return this._wiremockURL
+  }
+
   static async POST(i: {
     method: string;
     apiPath: string;

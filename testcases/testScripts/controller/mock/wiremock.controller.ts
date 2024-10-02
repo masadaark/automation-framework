@@ -78,6 +78,6 @@ export class WiremockController {
   @given('{string} Post ContractJSON Mapping', { timeout: Cfg.stepTimeOut })
   public async POST_CONTRACT(file: string) {
     const wiremockFile: ConsumerContractFile = await FileReaderLogic.JsonPayload(file);
-    WiremockContractLogic.POST(wiremockFile.jsonPayload)
+    await WiremockContractLogic.POST(wiremockFile.jsonPayload)
   }
 }

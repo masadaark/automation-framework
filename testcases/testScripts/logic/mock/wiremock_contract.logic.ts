@@ -1,10 +1,13 @@
+import VFormatter from "../../class/formatter.class";
 import { JsonPayload } from "../../interface/file_interface/consumer_contract.model";
 import { HttpRequest } from "../../interface/file_interface/http_file.model";
+import ProtocolHttp from "../../protocol/http.protocol";
 import Obj from "../../util/object.util";
+import WiremockLogic from "./wiremock.logic";
 
 export default class WiremockContractLogic {
     private static CreateContractBody = (req: HttpRequest) => {
-        if (!req.body || (!Obj.CanParse(req.body) && typeof req.body !== 'object')) req.body
+        if (!req?.body || (!Obj.CanParse(req?.body) && typeof req?.body !== 'object')) return req?.body
         const formatBody = (v: any): any => {
             if (typeof v === 'object' && v !== null) {
                 if (Array.isArray(v)) return v.map(formatBody);
@@ -29,8 +32,22 @@ export default class WiremockContractLogic {
         }
     }
 
-    public static POST(jsonPayload: JsonPayload) {
-        const requestBody = this.CreateContractBody(jsonPayload.request)
-        console.log("CONTRACT", requestBody)
+    public static async POST(jsonPayload: JsonPayload) {
+        const equalToJson = this.CreateContractBody(jsonPayload.request)
+        const responseBody = VFormatter.Exec(jsonPayload.response.body)
+        const urlPath = VFormatter.Exec(jsonPayload.apiPath)
+        const method = jsonPayload.method
+        const httpResponse = await ProtocolHttp.REQUEST(WiremockLogic.URL, 'POST', {}, {
+            request: {
+                method,
+                urlPath,
+                bodyPatterns: [{ equalToJson }]
+            },
+            response: {
+                status: jsonPayload.response.status ?? 200,
+                body: responseBody
+            }
+        });
+        WiremockLogic.PushUuids(httpResponse.response.body.uuid);
     }
 }
