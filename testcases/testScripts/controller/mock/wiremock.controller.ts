@@ -7,6 +7,7 @@ import TcClass from '../../class/test_cases.class';
 import WiremockLogic from '../../logic/mock/wiremock.logic';
 import VFormatter from '../../class/formatter.class';
 import { ConsumerContractFile } from '../../interface/file_interface/consumer_contract.model';
+import WiremockContractLogic from '../../logic/mock/wiremock_contract.logic';
 
 @binding()
 export class WiremockController {
@@ -77,6 +78,6 @@ export class WiremockController {
   @given('{string} Post ContractJSON Mapping', { timeout: Cfg.stepTimeOut })
   public async POST_CONTRACT(file: string) {
     const wiremockFile: ConsumerContractFile = await FileReaderLogic.JsonPayload(file);
-    wiremockFile.jsonPayload
+    WiremockContractLogic.POST(wiremockFile.jsonPayload)
   }
 }
