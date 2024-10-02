@@ -1,6 +1,15 @@
+import { HttpRequest, HttpResponse } from "./http_file.model";
+
 export interface ConsumerContractFile {
   contractName: string;
   consumerService: string;
   providerService: string;
-  payloads: Record<string, any>[];
+  jsonPayload: JsonPayload
+}
+
+export interface JsonPayload {
+  apiPath: string;
+  method: string;
+  request: HttpRequest;
+  response: HttpResponse;
 }
