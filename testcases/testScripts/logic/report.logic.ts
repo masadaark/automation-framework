@@ -4,6 +4,7 @@ import { FeatureMapModel, ScenarioMapModel } from '../interface/report_map.model
 
 class IndianReportLogic {
   public static AddTestStep(content: any) {
+    if(!IndianReportClass.testStepHook) return
     const scenarioId = IndianReportClass.testStepHook.pickle.id;
     const stepId = IndianReportClass.testStepHook.pickleStep.id;
     const uri = IndianReportClass.testStepHook.pickle.uri;

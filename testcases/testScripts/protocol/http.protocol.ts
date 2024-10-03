@@ -28,14 +28,18 @@ class ProtocolHttp {
     apiPath: string,
     method: string,
     headers: Record<string, any> = {},
-    body?: any
+    body?: any,
   ): Promise<{ request: any; response: any }> {
     const url = this.InitUrl(apiPath);
     console.warn(`${method} : ${url}`);
     headers = VFormatter.Exec(Obj.Merge(headers, this._defaultHeaders));
     headers['content-type'] = headers['content-type'] ?? 'application/json';
-    body = VFormatter.Exec(body) ?? {};
-    const fetchOption = { method, headers, body: Obj.ToString(body) };
+
+    const fetchOption: any = { method, headers };
+    if (method !== 'GET' && method !== 'HEAD') {
+      body = VFormatter.Exec(body) ?? {};
+      fetchOption.body = Obj.ToString(body);
+    }
     let response;
     try {
       response = await fetch(url, fetchOption);

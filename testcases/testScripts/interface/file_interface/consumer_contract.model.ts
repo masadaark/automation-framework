@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponse } from "./http_file.model";
 
 export interface ConsumerContractFile {
-  contractName: string;
+  environment?: string;
   consumerService: string;
   providerService: string;
   jsonPayload: JsonPayload

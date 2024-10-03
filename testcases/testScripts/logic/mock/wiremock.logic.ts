@@ -16,10 +16,19 @@ export default class WiremockLogic {
   private static _uuids: string[] = [];
   private static _wiremockURL = '';
 
-  public static InitWiremockUrl(cfg: AppSettingModel) {
-    this._wiremockURL = cfg.wiremockUrl.endsWith('/')
-      ? `${cfg.wiremockUrl}__admin/mappings/`
-      : `${cfg.wiremockUrl}/__admin/mappings/`;
+  public static async InitWiremockUrl(cfg: AppSettingModel) {
+    if (!cfg.wiremockUrl) cfg.wiremockUrl = cfg.baseUrl.replace("9", "7");
+    const adminPaths = [`__admin/mappings/`, `__admin/mappings`];
+    for (const adminPath of adminPaths) {
+      const url = cfg.wiremockUrl.endsWith('/')
+        ? `${cfg.wiremockUrl}${adminPath}`
+        : `${cfg.wiremockUrl}/${adminPath}`;
+      await ProtocolHttp.REQUEST(url, 'GET').then(response => {
+        if (response.response.status === 200) {
+          this._wiremockURL = url;
+        }
+      });
+    }
   }
 
   static get URL(): string {

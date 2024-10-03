@@ -19,8 +19,8 @@ export class BeforeHook {
     console.warn(`******READ_FILE: ${appSettingPath}******`);
     const appSettingFile = await FileU.readJson(appSettingPath);
     Cfg.appSetting = appSettingFile as AppSettingModel;
+    await WiremockLogic.InitWiremockUrl(Cfg.appSetting);
     ProtocolHttp.Init(Cfg.appSetting);
-    WiremockLogic.InitWiremockUrl(Cfg.appSetting);
     ProtocolMongoDB.Init(Cfg.appSetting.mongoDB);
     ProtocolPg.Connect(Cfg.appSetting.pgDB);
   }

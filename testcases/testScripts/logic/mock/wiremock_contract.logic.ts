@@ -37,11 +37,12 @@ export default class WiremockContractLogic {
         const responseBody = VFormatter.Exec(jsonPayload.response.body)
         const urlPath = VFormatter.Exec(jsonPayload.apiPath)
         const method = jsonPayload.method
+        const bodyPatterns = equalToJson ? [{ equalToJson }] : undefined
         const httpResponse = await ProtocolHttp.REQUEST(WiremockLogic.URL, 'POST', {}, {
             request: {
                 method,
                 urlPath,
-                bodyPatterns: [{ equalToJson }]
+                bodyPatterns
             },
             response: {
                 status: jsonPayload.response.status ?? 200,
