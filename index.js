@@ -100,7 +100,7 @@ async function main() {
         console.warn(`**Read app-setting.json***`)
         fs.copyFile(srcFolder.appsetting, targetFolder.appsetting, (err) => { if (err) throw `ไม่พบ app-setting.json`; });
         await runCommand(`npm run test:cucumber ${process.argv.slice(2).join(" ")}`);
-        console.warn(`**Generate Report ***`)
+        console.warn(`***Generate Report***`)
         fs.copyFile(srcFolder.testresultreport, targetFolder.testresultreport, (err) => { if (err) throw `เกิดข้อผิดพลาดในการออก report` });
         rmTestImage();
     } catch (error) {
