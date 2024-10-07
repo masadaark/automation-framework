@@ -1,6 +1,6 @@
 {
   "name": "msdapttls",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "bdd api testing tools",
   "main": ".index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "format": "prettier --write \"**/*.ts\""
   },
   "bin": {
-    "apttls": "./index.js"
+    "apttls": "bin/cli.js"
   },
   "license": "ISC",
   "devDependencies": {
