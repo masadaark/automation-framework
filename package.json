@@ -1,6 +1,6 @@
 {
   "name": "msdapttls",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "bdd api testing tools",
   "main": ".index.js",
   "scripts": {
@@ -15,14 +15,12 @@
     "@cucumber/cucumber": "9.6.0",
     "@types/big.js": "6.2.2",
     "@types/chai": "4.3.19",
-    "@types/cucumber": "7.0.0",
     "@types/lodash": "4.17.7",
     "@types/node": "22.5.4",
     "@types/papaparse": "5.3.14",
     "@types/pg": "8.11.10",
     "@typescript-eslint/eslint-plugin": "8.5.0",
     "@types/mime-types": "2.1.4",
-    "@types/mongodb": "4.0.7",
     "big.js": "6.2.1",
     "chai": "4.2.0",
     "cucumber-tsflow": "4.4.4",

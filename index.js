@@ -95,7 +95,7 @@ const rmTestImage = () => {
 
 async function main() {
     try {
-        await runCommand("npm i");
+        await runCommand("npm i --force");
         console.warn(`**Read payloads***`)
         copyDir(srcFolder.payloads, targetFolder.payloads);
         console.warn(`**Read testcases***`)
