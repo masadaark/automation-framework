@@ -1,6 +1,6 @@
 {
   "name": "msdapttls",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "bdd api testing tools",
   "main": ".index.js",
   "scripts": {
@@ -36,6 +36,8 @@
     "mongodb": "6.9.0",
     "prettier": "^3.3.3",
     "ts-node": "10.9.2",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "ansi-colors": "4.1.3",
+    "figlet": "1.7.0"
   }
 }
