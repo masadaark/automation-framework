@@ -1,8 +1,8 @@
 {
   "name": "msdapttls",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "bdd api testing tools",
-  "main": ".index.js",
+  "main": "index.js",
   "scripts": {
     "test:cucumber": "node runner-ci",
     "format": "prettier --write \"**/*.ts\""

@@ -16,7 +16,7 @@ function runCommand(command) {
     });
 }
 
-runCommand("npm i --force").then(() => {
+runCommand("npm i").then(() => {
     require("../index.js");
 })
 
