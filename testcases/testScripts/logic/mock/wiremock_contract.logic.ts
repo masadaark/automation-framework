@@ -34,19 +34,20 @@ export default class WiremockContractLogic {
 
     public static async POST(jsonPayload: JsonPayload) {
         const equalToJson = this.CreateContractBody(jsonPayload.request)
-        const responseBody = VFormatter.Exec(jsonPayload.response.body)
-        const urlPath = VFormatter.Exec(jsonPayload.apiPath)
+        const jsonBody = VFormatter.Exec(jsonPayload.response.body)
+        const urlPathPattern = VFormatter.Exec(jsonPayload.apiPath)
         const method = jsonPayload.method
         const bodyPatterns = equalToJson ? [{ equalToJson }] : undefined
         const httpResponse = await ProtocolHttp.REQUEST(WiremockLogic.URL, 'POST', {}, {
             request: {
                 method,
-                urlPath,
+                urlPathPattern,
                 bodyPatterns
             },
             response: {
                 status: jsonPayload.response.status ?? 200,
-                body: responseBody
+                jsonBody,
+                headers: WiremockLogic.Headers
             }
         });
         WiremockLogic.PushUuids(httpResponse.response.body.uuid);

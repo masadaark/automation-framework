@@ -1,11 +1,14 @@
 {
-  "name": "bdd-ts",
+  "name": "@msd/api-testing-tools",
   "version": "1.0.0",
   "description": "BDD ts",
-  "main": "./build/index.js",
+  "main": "./index.js",
   "scripts": {
     "test:cucumber": "node runner-ci",
     "format": "prettier --write \"**/*.ts\""
+  },
+  "bin": {
+    "turbo-test": "./index.js"
   },
   "license": "ISC",
   "devDependencies": {

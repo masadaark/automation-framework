@@ -1,7 +1,7 @@
 const { exec } = require("child_process");
 const fs = require('fs');
 const path = require('path');
-
+console.log(process.argv)
 const srcFolder = {
     payloads: path.resolve(__dirname, '../payloads'),
     testcases: path.resolve(__dirname, '../testcases'),
