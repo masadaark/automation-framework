@@ -1,18 +1,21 @@
 const { exec } = require("child_process");
 const fs = require('fs');
 const path = require('path');
-console.log(process.argv)
+
+const tag = process.argv.find(s=>s.startsWith("@"))
+console.warn(`TAG : ${tag}`)
+
 const srcFolder = {
-    payloads: path.resolve(__dirname, '../payloads'),
-    testcases: path.resolve(__dirname, '../testcases'),
-    appsetting: path.resolve(__dirname, '../app-setting.json'),
+    payloads: path.resolve(__dirname, '../../payloads'),
+    testcases: path.resolve(__dirname, '../../testcases'),
+    appsetting: path.resolve(__dirname, '../../app-setting.json'),
     testresultreport: path.resolve(__dirname, 'test_result_report.json')
 }
 const targetFolder = {
     payloads: path.resolve(__dirname, 'payloads'),
     testcases: path.resolve(__dirname, 'testcases/features'),
     appsetting: path.resolve(__dirname, 'app-setting.json'),
-    testresultreport: path.resolve(__dirname, '../test_result_report.json')
+    testresultreport: path.resolve(__dirname, '../../test_result_report.json')
 }
 function runCommand(command) {
     console.warn(`Running : ${command}`)

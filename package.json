@@ -1,14 +1,14 @@
 {
   "name": "msdapttls",
-  "version": "1.0.0",
-  "description": "BDD ts",
+  "version": "1.0.1",
+  "description": "bdd api testing tools",
   "main": ".index.js",
   "scripts": {
     "test:cucumber": "node runner-ci",
     "format": "prettier --write \"**/*.ts\""
   },
   "bin": {
-    "turbo-test": "./index.js"
+    "apttls": "./index.js"
   },
   "license": "ISC",
   "devDependencies": {
