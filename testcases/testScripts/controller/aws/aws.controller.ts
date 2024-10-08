@@ -4,7 +4,7 @@ import AwsLogic from '../../logic/aws/aws_s3.logic';
 
 @binding()
 export class AwsS3Controller {
-  @given('Vars {string} should Contains {string}', { timeout: Cfg.stepTimeOut })
+  @given('Mock AwsS3 Bucket:{string} Key:{string} File:{string}', { timeout: Cfg.stepTimeOut })
   public async UploadFileToS3(bucketName: string, s3Key: string, file: string): Promise<void> {
     await AwsLogic.UpLoadFileToS3(bucketName, s3Key, file);
   }
