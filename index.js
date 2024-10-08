@@ -108,7 +108,7 @@ async function main() {
         fs.copyFile(srcFolder.testresultreport, targetFolder.testresultreport, (err) => {
             if (err) console.error(colors.red(`เกิดข้อผิดพลาดในการออก report`))
         });
-        // rmTestImage();
+        rmTestImage();
     } catch (error) {
         console.error(colors.redBright(`running error: ${error}`));
     }
