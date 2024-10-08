@@ -1,10 +1,10 @@
-import { HttpRequest, HttpResponse } from "./http_file.model";
+import { HttpRequest, HttpResponse } from './http_file.model';
 
 export interface ConsumerContractFile {
   environment?: string;
   consumerService: string;
   providerService: string;
-  jsonPayload: JsonPayload
+  jsonPayload: JsonPayload;
 }
 
 export interface JsonPayload {

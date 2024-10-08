@@ -8,7 +8,11 @@ class FileU {
   static async readJson(filePath: string): Promise<any> {
     try {
       const data = await fs.readFile(filePath, 'utf8');
-      return JSON.parse(data);
+      try {
+        return JSON.parse(data);
+      } catch {
+        return data;
+      }
     } catch (err) {
       throw new Error(this.errorMessage(filePath, err));
     }

@@ -17,13 +17,11 @@ export default class WiremockLogic {
   private static _wiremockURL = '';
 
   public static async InitWiremockUrl(cfg: AppSettingModel) {
-    if (!cfg.wiremockUrl) cfg.wiremockUrl = cfg.baseUrl.replace("9", "7");
+    if (!cfg.wiremockUrl) cfg.wiremockUrl = cfg.baseUrl.replace('9', '7');
     const adminPaths = [`__admin/mappings/`, `__admin/mappings`];
     for (const adminPath of adminPaths) {
-      const url = cfg.wiremockUrl.endsWith('/')
-        ? `${cfg.wiremockUrl}${adminPath}`
-        : `${cfg.wiremockUrl}/${adminPath}`;
-      await ProtocolHttp.REQUEST(url, 'GET').then(response => {
+      const url = cfg.wiremockUrl.endsWith('/') ? `${cfg.wiremockUrl}${adminPath}` : `${cfg.wiremockUrl}/${adminPath}`;
+      await ProtocolHttp.REQUEST(url, 'GET').then((response) => {
         if (response.response.status === 200) {
           this._wiremockURL = url;
         }
@@ -32,7 +30,7 @@ export default class WiremockLogic {
   }
 
   static get URL(): string {
-    return this._wiremockURL
+    return this._wiremockURL;
   }
 
   static async POST(i: {

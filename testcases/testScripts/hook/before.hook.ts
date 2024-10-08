@@ -9,6 +9,7 @@ import ProtocolPg from '../protocol/pg.protocol';
 import WiremockLogic from '../logic/mock/wiremock.logic';
 import { ProtocolMongoDB } from '../protocol/mongodb.protocol';
 import ProtocolHttp from '../protocol/http.protocol';
+import AwsLogic from '../logic/aws/aws_s3.logic';
 let scenarioId: string = '';
 let testStepId: string = '';
 @binding()
@@ -20,6 +21,7 @@ export class BeforeHook {
     const appSettingFile = await FileU.readJson(appSettingPath);
     Cfg.appSetting = appSettingFile as AppSettingModel;
     await WiremockLogic.InitWiremockUrl(Cfg.appSetting);
+    AwsLogic.Init(Cfg.appSetting);
     ProtocolHttp.Init(Cfg.appSetting);
     ProtocolMongoDB.Init(Cfg.appSetting.mongoDB);
     ProtocolPg.Connect(Cfg.appSetting.pgDB);

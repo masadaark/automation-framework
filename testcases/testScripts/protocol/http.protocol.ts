@@ -28,7 +28,7 @@ class ProtocolHttp {
     apiPath: string,
     method: string,
     headers: Record<string, any> = {},
-    body?: any,
+    body?: any
   ): Promise<{ request: any; response: any }> {
     const url = this.InitUrl(apiPath);
     console.warn(`${method} : ${url}`);

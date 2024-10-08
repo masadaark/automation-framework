@@ -4,6 +4,7 @@ export interface AppSettingModel {
   pgDB: PgConfig;
   wiremockUrl: string;
   mongoDB: MongoDBConfig;
+  aws: AwsConfig;
 }
 
 export interface PgConfig {
@@ -16,4 +17,8 @@ export interface PgConfig {
 export interface MongoDBConfig {
   url: string;
   dbName: string;
+}
+
+export interface AwsConfig {
+  s3: string;
 }
