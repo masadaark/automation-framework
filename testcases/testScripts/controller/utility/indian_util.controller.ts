@@ -71,4 +71,12 @@ export class UtilityController {
   public VarToQueryParam(objectVarName: string, varName: string): void {
     StorageClass.add(varName, ProtocolHttp.ObjToQueries(StorageClass.get(objectVarName)));
   }
+
+  @given('Sort Array Var {string} By {string} {string', { timeout: Cfg.stepTimeOut })
+  public SortArrayVariable(varName: string, sortBys: string, sortTypes: string): void {
+    const array = StorageClass.get(varName)
+    if (!Array.isArray(array)) return
+    const sortingType = sortTypes.split(",").filter(t => ["asc", "desc"].includes(t))
+    StorageClass.add(varName, _.orderBy(array, sortBys.split(","), sortingType as ("asc" | "desc")[]))
+  }
 }
