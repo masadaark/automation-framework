@@ -4,7 +4,7 @@ const colors = require('ansi-colors');
 const figlet = require('figlet');
 const { exec } = require('child_process');
 
-console.log(colors.green.bold(figlet.textSync('Ghostfreak', { font: 'Ghost', horizontalLayout: 'full' })));
+console.log(colors.green.bold(figlet.textSync('START', { font: 'ANSI Shadow', horizontalLayout: 'full' })));
 
 const tagEvent = process.argv.find(s => s.startsWith("@")) ?? "@regression-test"
 console.log(colors.green.bold(`TAG : ${tagEvent}`))
