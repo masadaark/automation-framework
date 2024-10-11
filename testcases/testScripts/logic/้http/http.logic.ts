@@ -38,19 +38,17 @@ class HttpLogic {
     const filteredScenarios = httpFile.scenarios.filter((o) => o.tcNo.includes(TcClass.tcNo));
     ScenarioClass.MultiHttp = Obj.New(filteredScenarios);
     if (Validator.Var(ScenarioClass.MultiHttp)) {
-      const requests = ScenarioClass.MultiHttp.map(async (http, requestId) => {
+      const responses: any[] = []
+      for (const http of ScenarioClass.MultiHttp) {
         ScenarioClass.Http = http;
         const rawReq = http.request;
-
         const resp = await ProtocolHttp.REQUEST(this.initApiPath(), httpFile.method, rawReq?.headers, rawReq?.body);
-        return {
-          requestId,
+        responses.push({
           body: resp.response.body,
           status: resp.response.status,
-        };
-      });
-      const responses = await Promise.all(requests);
-      ResClass.MultiHttp = responses.sort((a, b) => a.requestId - b.requestId);
+        })
+      }
+      ResClass.MultiHttp = responses
     }
   }
 

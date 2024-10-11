@@ -29,17 +29,8 @@ class FileU {
   static async readText(filePath: string): Promise<string> {
     try {
       return await fs.readFile(filePath, 'utf8');
-    } catch {
-      try {
-        const fileType = mime.lookup(filePath);
-        if (fileType) {
-          const typeArr = String(fileType).split('/');
-          return await fs.readFile(`${filePath}.${typeArr[typeArr.length - 1]}`, 'utf8');
-        }
-        throw new Error(this.errorMessage(filePath, 'fileType: ' + fileType));
-      } catch (err) {
-        throw new Error(this.errorMessage(filePath, err));
-      }
+    } catch (err) {
+      throw new Error(this.errorMessage(filePath, err));
     }
   }
 

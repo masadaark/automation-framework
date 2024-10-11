@@ -2,7 +2,6 @@ import VFormatter from '../../class/formatter.class';
 import StorageClass from '../../class/storage.class';
 import TcClass from '../../class/test_cases.class';
 import { SetVarFile } from '../../interface/file_interface/sotrage.model';
-import FileU from '../../util/file.util';
 import Obj from '../../util/object.util';
 import FileReaderLogic from '../file_reader.logic';
 import IndianReportLogic from '../report.logic';
@@ -21,7 +20,7 @@ export default class SetVarLogic {
     }
   }
   static async DataSetter(key: string, variable: any) {
-    if (typeof variable === 'string' && variable.startsWith('equalToFile')) this.FileSetter(key, variable);
+    if (typeof variable === 'string' && variable.startsWith('equalToFile')) await this.FileSetter(key, variable);
     else StorageClass.add(key, VFormatter.Exec(Obj.Parse(variable)));
   }
 
@@ -30,7 +29,7 @@ export default class SetVarLogic {
     const match = /equalToFile\((.*?)\)/i.exec(filePathFormat);
     if (match !== null) {
       const filePath = match[1];
-      const fileContent = FileU.readText(filePath);
+      const fileContent = await FileReaderLogic.ReadText(filePath)
       if (typeof fileContent === 'string') {
         const match = /.to\((.*?)\)/i.exec(filePathFormat);
         if (match === null) StorageClass.add(key, fileContent);

@@ -14,9 +14,13 @@ export default class FileReaderLogic {
     );
   }
   static async ReadText(file: string) {
-    return await FileU.readText(
-      `${EnumFilePath.PAYLOAD_FOLDER}/features/${TcClass.feature}/${this.defaultFileType(file)}`
-    );
+
+    const fileDir = `${EnumFilePath.PAYLOAD_FOLDER}/features/${TcClass.feature}/`
+    try {
+      return await FileU.readText(`${fileDir}/${this.defaultFileType(file)}`);
+    } catch {
+      return await FileU.readText(`${fileDir}/${this.defaultFileType(file, "txt")}`);
+    }
   }
   static async ApiCollection(file: string) {
     return await FileU.readJson(`${EnumFilePath.PAYLOAD_FOLDER}/api/${this.defaultFileType(file)}`);
