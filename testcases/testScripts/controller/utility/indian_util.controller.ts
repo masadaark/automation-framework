@@ -72,7 +72,7 @@ export class UtilityController {
     StorageClass.add(varName, ProtocolHttp.ObjToQueries(StorageClass.get(objectVarName)));
   }
 
-  @given('Sort Array Var {string} By {string} {string', { timeout: Cfg.stepTimeOut })
+  @given('Sort Array Var {string} By {string} {string}', { timeout: Cfg.stepTimeOut })
   public SortArrayVariable(varName: string, sortBys: string, sortTypes: string): void {
     const array = StorageClass.get(varName)
     if (!Array.isArray(array)) return

@@ -27,7 +27,7 @@ export class HttpController {
   public async HttpMultipleRequestByJsonFile(file: string): Promise<void> {
     await HttpLogic.MultiRequestJsonFile(file);
   }
-  @when('{string} Http GET', { timeout: Cfg.stepTimeOut })
+  @when('Http GET {string}', { timeout: Cfg.stepTimeOut })
   public async HttpGETRequest(api: string): Promise<void> {
     await ProtocolHttp.REQUEST(api, 'GET');
   }
