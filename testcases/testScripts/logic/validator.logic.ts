@@ -1,5 +1,5 @@
 import Obj from '../util/object.util';
-import Str from '../util/string.util';
+import StrU from '../util/string.util';
 
 class Validator {
   private static LogicOperatorList = ['and', 'or', 'not'];
@@ -8,7 +8,7 @@ class Validator {
     return val !== undefined && val !== null && val !== '' && !Obj.IsBlank(val);
   }
   static StrNum(val: string): number {
-    if (Str.IsStrNum(val)) return Number(val);
+    if (StrU.IsStrNum(val)) return Number(val);
     throw new Error(`${val} ควรเป็น Number`);
   }
 

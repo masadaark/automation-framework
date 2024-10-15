@@ -1,5 +1,5 @@
 import dayjs, { Dayjs, OpUnitType } from 'dayjs';
-import Str from './string.util';
+import StrU from './string.util';
 
 class DateU {
   private static dateUnits: OpUnitType[] = ['year', 'month', 'day', 'hour', 'minute', 'second', 'millisecond'];
@@ -9,7 +9,7 @@ class DateU {
   }
   static IsDateTimeStr(val: string): boolean {
     if (typeof val !== 'string') return false;
-    return Str.IsStrNum(`${val[0]}`) && dayjs(val).isValid();
+    return StrU.IsStrNum(`${val[0]}`) && dayjs(val).isValid();
   }
   static ToDate(val: string | Dayjs): string {
     return dayjs(val).format('YYYY-MM-DD');

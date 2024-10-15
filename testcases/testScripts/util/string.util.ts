@@ -7,7 +7,7 @@ const charDict: Record<string, string> = {
   all: allChars,
 };
 
-class Str {
+class StrU {
   static readonly MakeStr = (length: number, type: string = 'all'): string => {
     const characters = charDict[type.toLowerCase()] || allChars;
     const charactersLength = characters.length;
@@ -58,6 +58,10 @@ class Str {
     }
     return s.substring(1, s.length - 1);
   }
+
+  static CleanString(s: string) {
+    return s.replace(/[\r\n\s]+/g, '');
+  }
 }
 
-export default Str;
+export default StrU;

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import Str from './string.util';
+import StrU from './string.util';
 import Papa from 'papaparse';
 
 class Obj {
@@ -11,11 +11,8 @@ class Obj {
     return typeof val === 'object' && val !== null;
   }
   static ToString(val: any): string {
-    try {
-      return String(JSON.stringify(val));
-    } catch (error) {
-      return String(val);
-    }
+    if (typeof val === 'object' && val !== null) return StrU.CleanString(String(JSON.stringify(val)));
+    return String(val)
   }
   static Merge(raw: Record<string, any>, added: Record<string, any>) {
     for (const key in added) {
@@ -30,7 +27,7 @@ class Obj {
     return _.find(array, (member: Record<string, any>) => _.includes(member[key], searchValue));
   }
   static Parse(val: any): any {
-    if (Str.IsStrNum(val)) {
+    if (StrU.IsStrNum(val)) {
       return val;
     }
     try {
@@ -86,7 +83,7 @@ class Obj {
     return v;
   }
   static CSVtoJSON(csv: string) {
-    if (Str.IsStrNum(csv)) return csv;
+    if (StrU.IsStrNum(csv)) return csv;
     try {
       return Papa.parse(csv, {
         header: true,
@@ -99,5 +96,6 @@ class Obj {
       return csv;
     }
   }
+
 }
 export default Obj;

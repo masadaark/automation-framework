@@ -4,7 +4,8 @@ import { EnumFilePath } from '../../enum/file_path.enum';
 import IndianReportLogic from '../report.logic';
 import FileU from '../../util/file.util';
 import axios from 'axios'
-import fs from 'fs';
+import Obj from '../../util/object.util';
+
 class AwsLogic {
   private static s3EndPoint: string;
 
@@ -36,11 +37,26 @@ class AwsLogic {
     const url = new URL(`${s3EndPoint}${bucketName}/${s3Key}?x-id=GetObject`);
 
     try {
-      IndianReportLogic.AddTestStep((await axios.get(String(url))).data);
+      const resp = (await axios.get(String(url))).data
+      IndianReportLogic.AddTestStep(resp);
+      return resp
     } catch (error) {
       console.error('HTTP request error:', error);
+      return {}
     }
   }
+  static ConvFileType(content:any,type:string){
+    switch (type) {
+        case "csv":
+            return Obj.CSVtoJSON(Obj.Parse(content))
+        case "json":
+            return Obj.Parse(content)
+        case "txt":
+            return Obj.ToString(content)
+        default:
+            return content
+    }
+}
 }
 
 export default AwsLogic;

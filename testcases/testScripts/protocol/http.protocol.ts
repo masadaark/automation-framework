@@ -5,7 +5,7 @@ import IndianReportLogic from '../logic/report.logic';
 import StorageLogic from '../logic/storage/storage.logic';
 import Validator from '../logic/validator.logic';
 import Obj from '../util/object.util';
-import Str from '../util/string.util';
+import StrU from '../util/string.util';
 import { AppSettingModel } from '../interface/app_setting.model';
 
 class ProtocolHttp {
@@ -56,7 +56,7 @@ class ProtocolHttp {
       };
     } finally {
       let responseBody = Obj.Parse(await response?.text());
-      if (typeof responseBody === 'string') responseBody = Str.RemoveFirstLastChar(responseBody);
+      if (typeof responseBody === 'string') responseBody = StrU.RemoveFirstLastChar(responseBody);
       ResClass.Http = { body: responseBody, status: response?.status };
       IndianReportLogic.AddTestStep({
         request: {

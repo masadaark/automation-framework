@@ -1,6 +1,6 @@
 import dayjs, { Dayjs, ManipulateType, UnitType } from 'dayjs';
 import Validator from './validator.logic';
-import Str from '../util/string.util';
+import StrU from '../util/string.util';
 import VFormatter from '../class/formatter.class';
 import Big from 'big.js';
 import { MathNotation } from '../enum/type.enum';
@@ -15,13 +15,13 @@ class FormatterLogic {
     const num: number = Validator.StrNum(matches[2] || '0');
     switch (true) {
       case /int/i.test(key):
-        return Str.MakeStrInt(num);
+        return StrU.MakeStrInt(num);
       case /idcard/i.test(key):
-        return Str.MakeIdCard();
+        return StrU.MakeIdCard();
       case /string/i.test(key) || /char/i.test(key):
-        return Str.MakeStr(num);
+        return StrU.MakeStr(num);
       case /phone/i.test(key) || /char/i.test(key):
-        return '0' + Str.MakeStr(9);
+        return '0' + StrU.MakeStr(9);
       default:
         return '';
     }
