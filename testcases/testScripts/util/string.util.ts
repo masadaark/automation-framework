@@ -60,7 +60,7 @@ class StrU {
   }
 
   static CleanString(s: string) {
-    return s.replace(/[\r\n\s]+/g, '');
+    return s.replace(/[\n]+/g, '')
   }
 }
 
