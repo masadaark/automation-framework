@@ -58,15 +58,14 @@ class HttpLogic {
       String(o['tcNo']).split(',').includes(String(TcClass.tcNo))
     );
     if (!reqObjs.length) return;
-    const promises = reqObjs.map(async (reqObj) => {
+    for (const reqObj of reqObjs) {
       delete reqObj['tcNo'];
       let requestBody: any = reqObj;
       if ('requestBody' in reqObj) {
         requestBody = reqObj['requestBody'];
       }
-      return await ProtocolHttp.REQUEST(api, method, reqObj['headers'], VFormatter.Exec(requestBody));
-    });
-    return await Promise.all(promises);
+      await ProtocolHttp.REQUEST(api, method, reqObj['headers'], VFormatter.Exec(requestBody));
+    }
   }
   static async ApiFolder(file: string): Promise<any> {
     const apiFile: ApiFileModel = VFormatter.Exec(await FileReaderLogic.ApiCollection(file));
