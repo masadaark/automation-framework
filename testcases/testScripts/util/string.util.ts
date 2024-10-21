@@ -62,6 +62,11 @@ class StrU {
   static CleanString(s: string) {
     return s.replace(/[\n]+/g, '')
   }
+  static RemoveQuotes(s: string) {
+    if ((s.startsWith("\"") && s.endsWith("\""))
+      || (s.startsWith("\'") && s.endsWith("\'"))) return this.RemoveFirstLastChar(s)
+      return s
+  }
 }
 
 export default StrU;

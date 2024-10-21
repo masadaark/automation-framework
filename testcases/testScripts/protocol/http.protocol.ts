@@ -56,7 +56,7 @@ class ProtocolHttp {
       };
     } finally {
       let responseBody = Obj.Parse(await response?.text());
-      if (typeof responseBody === 'string') responseBody = StrU.RemoveFirstLastChar(responseBody);
+      if (typeof responseBody === 'string') responseBody = StrU.RemoveQuotes(responseBody);
       ResClass.Http = { body: responseBody, status: response?.status };
       IndianReportLogic.AddTestStep({
         request: {
