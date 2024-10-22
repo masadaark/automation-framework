@@ -9,22 +9,26 @@ console.log(colors.green.bold(figlet.textSync('START', { font: 'ANSI Shadow', ho
 const tagEvent = process.argv.find(s => s.startsWith("@")) ?? "@regression-test"
 console.log(colors.green.bold(`TAG : ${tagEvent}`))
 process.env.CUCUMBER_TAG = tagEvent;
+const parallel = process.argv.find(s => s.startsWith("parallel:"))
+
 const srcFolder = {
     payloads: path.resolve(__dirname, '../../payloads'),
     testcases: path.resolve(__dirname, '../../testcases'),
     appsetting: path.resolve(__dirname, '../../app-setting.json'),
-    testresultreport: path.resolve(__dirname, 'test_result_report.json')
+    testresultreport: path.resolve(__dirname, 'reports')
 }
 const targetFolder = {
     payloads: path.resolve(__dirname, 'payloads'),
     testcases: path.resolve(__dirname, 'testcases/features'),
     appsetting: path.resolve(__dirname, 'app-setting.json'),
-    testresultreport: path.resolve(__dirname, '../../test_result_report.json')
+    testresultreport: path.resolve(__dirname, '../../reports')
 }
 
 const testRunner = () => {
+    let command = `npm run test:cucumber ${tagEvent} `
+    if (parallel) command += parallel
     return new Promise((resolve, reject) => {
-        exec(`npm run test:cucumber ${tagEvent}`, { cwd: __dirname, shell: true, stdio: 'pipe' }, (error, stdout, stderr) => {
+        exec(command, { cwd: __dirname, shell: true, stdio: 'pipe' }, (error, stdout, stderr) => {
             if (error) {
                 reject(`Error: ${error.message}`);
             }
@@ -35,50 +39,19 @@ const testRunner = () => {
     });
 };
 
-const copyDir = (src, dest) => {
-    const copy = (copySrc, copyDest) => {
-        fs.readdir(copySrc, (err, list) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            list.forEach((item) => {
-                const srcPath = path.resolve(copySrc, item);
-                const destPath = path.resolve(copyDest, item);
-                fs.stat(srcPath, (err, stat) => {
-                    if (err) {
-                        console.log(err);
-                        return;
-                    }
-                    if (stat.isFile()) {
-                        fs.createReadStream(srcPath).pipe(fs.createWriteStream(destPath));
-                    } else if (stat.isDirectory()) {
-                        fs.mkdir(destPath, { recursive: true }, (err) => {
-                            if (err) {
-                                console.log(err);
-                                return;
-                            }
-                            copy(srcPath, destPath);
-                        });
-                    }
-                });
-            });
-        });
-    };
+// const ensureDirectoryExists = (dir) => {
+//     fs.mkdir(dir, { recursive: true }, (err) => {
+//         if (!err) {
+//             console.log(colors.red(`dir not found: ${dir}`));
+//         }
+//     });
+// };
 
-    fs.access(dest, (err) => {
-        if (err) {
-            fs.mkdir(dest, { recursive: true }, (err) => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                copy(src, dest);
-            });
-        } else {
-            copy(src, dest);
-        }
-    });
+const copyDir = (src, dest) => {
+    if (fs.existsSync(dest)) {
+        fs.rmSync(dest, { recursive: true, force: true })
+    }
+    fs.cpSync(src, dest, { recursive: true, force: true });
 };
 
 const rmTestImage = () => {
@@ -105,12 +78,13 @@ async function main() {
         console.log(colors.green(`running...`));
         await testRunner()
         console.log(colors.blueBright(`** Generate Report ***`));
-        fs.copyFile(srcFolder.testresultreport, targetFolder.testresultreport, (err) => {
+        copyDir(srcFolder.testresultreport, targetFolder.testresultreport, (err) => {
             if (err) console.error(colors.red(`เกิดข้อผิดพลาดในการออก report`))
         });
-        rmTestImage();
     } catch (error) {
         console.error(colors.redBright(`running error: ${error}`));
+    } finally {
+        rmTestImage();
     }
 }
 

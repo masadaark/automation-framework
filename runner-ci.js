@@ -1,8 +1,13 @@
 const { spawn } = require('child_process');
 
 let tagCommands = process.argv.find(v => v.startsWith("@")) ?? "@regression-test"
-
-const cucumberProcess = spawn('cucumber-js', ['-p', 'default', '--tags', tagCommands], {
+let parallelArr = process.argv.find(v => v.startsWith("parallel:"))?.split(":")
+const paramProcess = ['-p', 'default', '--tags', tagCommands]
+if(paramProcess?.length > 1){
+    paramProcess.push("--parallel")
+    paramProcess.push(Number(parallelArr[1]) ?? 1)
+}
+const cucumberProcess = spawn('cucumber-js', paramProcess, {
     stdio: 'inherit', 
     shell: true
 });

@@ -31,7 +31,6 @@ class ProtocolHttp {
     body?: any
   ): Promise<{ request: any; response: any }> {
     const url = this.InitUrl(apiPath);
-    console.warn(`${method} : ${url}`);
     headers = VFormatter.Exec(Obj.Merge(headers, this._defaultHeaders));
     headers['content-type'] = headers['content-type'] ?? 'application/json';
 

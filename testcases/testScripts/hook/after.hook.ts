@@ -6,6 +6,7 @@ import FileU from '../util/file.util';
 import { EnumFilePath } from '../enum/file_path.enum';
 import Big from 'big.js';
 import WiremockLogic from '../logic/mock/wiremock.logic';
+import dayjs from 'dayjs';
 
 @binding()
 export class AfterHook {
@@ -19,10 +20,16 @@ export class AfterHook {
     IndianReportLogic.AddTestStepResult(timStamp, testStatus);
   }
   @afterAll()
-  public afterAllHook(): void {
+  public async afterAllHook(): Promise<void> {
     console.warn('\n');
     console.warn('******Writing Report******');
-    FileU.writeJson(EnumFilePath.REPORT_PATH, IndianReportClass.toReport());
+    const reportData = IndianReportClass.toReport()
+    if (reportData?.overview?.ran) {
+      const reportName = `${EnumFilePath.REPORT_PATH}/test-result-report-${dayjs().valueOf()}.json`
+      console.warn("reportName", reportName)
+      await FileU.writeJson(reportName, reportData);
+    }
+
   }
   @after()
   public afterEachHook(): void {
