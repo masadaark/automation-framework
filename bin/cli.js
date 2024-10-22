@@ -1,16 +1,13 @@
 #!/usr/bin/env node
-
 const { exec } = require("child_process");
 
-function runCommand(command) {
-    console.warn(`Running : ${command}`)
-    return new Promise((resolve, reject) => {
-        exec(command, { cwd: __dirname, shell: true, stdio: 'pipe' }, (error, stdout, stderr) => {
+async function runCommand(command) {
+    console.warn(`Running : ${command}`);
+    return await new Promise((resolve, reject) => {
+        exec(command, { cwd: __dirname, shell: true, stdio: 'inherit' }, (error) => {
             if (error) {
                 reject(`Error: ${error.message}`);
             }
-            if (stderr) console.log(stderr);
-            console.log(stdout);
             resolve();
         });
     });
@@ -19,4 +16,3 @@ function runCommand(command) {
 runCommand("npm i").then(() => {
     require("../index.js");
 })
-

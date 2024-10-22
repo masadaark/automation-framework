@@ -78,6 +78,7 @@ const gerenateCucumberHtmlReport = () => {
             scenarioTimestamp: true,
             saveCollectedJSON: true,
             displayReportTime: true,
+
             customData: {
                 title: 'Run info',
                 data: [{ reportedTime: new Date(), tagEvent }]
