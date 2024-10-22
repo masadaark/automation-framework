@@ -8,7 +8,7 @@ console.log(colors.green.bold(figlet.textSync('START', { font: 'ANSI Shadow', ho
 
 const tagEvent = process.argv.find(s => s.startsWith("@")) ?? "@regression-test"
 console.log(colors.green.bold(`TAG : ${tagEvent}`))
-
+process.env.CUCUMBER_TAG = tagEvent;
 const srcFolder = {
     payloads: path.resolve(__dirname, '../../payloads'),
     testcases: path.resolve(__dirname, '../../testcases'),

@@ -4,6 +4,7 @@ import { FeatureMapModel } from '../interface/report_map.model';
 import * as _ from 'lodash';
 import Big from 'big.js';
 class IndianReportClass {
+
   private static _testStepHook: ITestStepHookParameter;
 
   private static _reportContentMap: Record<string, FeatureMapModel> = {};
@@ -32,6 +33,7 @@ class IndianReportClass {
     const features = _.sortBy(Object.values(this._reportContentMap), 'id').map(this.featureMaptoFeatureReport);
     const overview = IndianReportClass.reportOverview(features);
     return {
+      tagEvent: process.env.CUCUMBER_TAG,
       features,
       overview,
       scnarioOverview: IndianReportClass.sumOverview(features.map((o) => o.overview as ReportOverview)),
