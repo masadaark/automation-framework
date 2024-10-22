@@ -12,7 +12,7 @@ class Obj {
   }
   static ToString(val: any): string {
     if (typeof val === 'object' && val !== null) return StrU.CleanString(String(JSON.stringify(val)));
-    return String(val)
+    return String(val);
   }
   static Merge(raw: Record<string, any>, added: Record<string, any>) {
     for (const key in added) {
@@ -96,6 +96,5 @@ class Obj {
       return csv;
     }
   }
-
 }
 export default Obj;

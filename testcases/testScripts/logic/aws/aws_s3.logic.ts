@@ -3,7 +3,7 @@ import { AppSettingModel } from '../../interface/app_setting.model';
 import { EnumFilePath } from '../../enum/file_path.enum';
 import IndianReportLogic from '../report.logic';
 import FileU from '../../util/file.util';
-import axios from 'axios'
+import axios from 'axios';
 import Obj from '../../util/object.util';
 
 class AwsLogic {
@@ -15,21 +15,21 @@ class AwsLogic {
 
   static async UpLoadFileToS3(bucketName: string, s3Key: string, file: string) {
     if (!this.s3EndPoint) throw Error('ไม่พบ s3 enpoint app-setting.json{aws.s3:??}');
-    s3Key = encodeURIComponent(s3Key)
+    s3Key = encodeURIComponent(s3Key);
     const filPath = `${EnumFilePath.PAYLOAD_FOLDER}/aws/s3/${file}`;
-    const fileContent = await FileU.readText(filPath)
-    IndianReportLogic.AddTestStep(fileContent)
-    let resp: any
+    const fileContent = await FileU.readText(filPath);
+    IndianReportLogic.AddTestStep(fileContent);
+    let resp: any;
     try {
       resp = await axios.put(`${this.s3EndPoint}/${bucketName}/${s3Key}?x-id=PutObject`, fileContent, {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+          'Content-Type': 'multipart/form-data',
+        },
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-    expect(resp.status, `s3_key:${s3Key} put status`).eq(200)
+    expect(resp.status, `s3_key:${s3Key} put status`).eq(200);
   }
 
   static async GetObjectFromS3(bucketName: string, s3Key: string) {
@@ -37,26 +37,26 @@ class AwsLogic {
     const url = new URL(`${s3EndPoint}${bucketName}/${s3Key}?x-id=GetObject`);
 
     try {
-      const resp = (await axios.get(String(url))).data
+      const resp = (await axios.get(String(url))).data;
       IndianReportLogic.AddTestStep(resp);
-      return resp
+      return resp;
     } catch (error) {
       console.error('HTTP request error:', error);
-      return {}
+      return {};
     }
   }
-  static ConvFileType(content:any,type:string){
+  static ConvFileType(content: any, type: string) {
     switch (type) {
-        case "csv":
-            return Obj.CSVtoJSON(Obj.Parse(content))
-        case "json":
-            return Obj.Parse(content)
-        case "txt":
-            return Obj.ToString(content)
-        default:
-            return content
+      case 'csv':
+        return Obj.CSVtoJSON(Obj.Parse(content));
+      case 'json':
+        return Obj.Parse(content);
+      case 'txt':
+        return Obj.ToString(content);
+      default:
+        return content;
     }
-}
+  }
 }
 
 export default AwsLogic;

@@ -29,7 +29,7 @@ export default class SetVarLogic {
     const match = /equalToFile\((.*?)\)/i.exec(filePathFormat);
     if (match !== null) {
       const filePath = match[1];
-      const fileContent = await FileReaderLogic.ReadText(filePath)
+      const fileContent = await FileReaderLogic.ReadText(filePath);
       if (typeof fileContent === 'string') {
         const match = /.to\((.*?)\)/i.exec(filePathFormat);
         if (match === null) StorageClass.add(key, fileContent);

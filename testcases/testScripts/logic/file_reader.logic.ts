@@ -14,12 +14,11 @@ export default class FileReaderLogic {
     );
   }
   static async ReadText(file: string) {
-
-    const fileDir = `${EnumFilePath.PAYLOAD_FOLDER}/features/${TcClass.feature}/`
+    const fileDir = `${EnumFilePath.PAYLOAD_FOLDER}/features/${TcClass.feature}/`;
     try {
       return await FileU.readText(`${fileDir}/${this.defaultFileType(file)}`);
     } catch {
-      return await FileU.readText(`${fileDir}/${this.defaultFileType(file, "txt")}`);
+      return await FileU.readText(`${fileDir}/${this.defaultFileType(file, 'txt')}`);
     }
   }
   static async ApiCollection(file: string) {

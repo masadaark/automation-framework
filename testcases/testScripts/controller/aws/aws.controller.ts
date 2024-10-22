@@ -15,15 +15,15 @@ export class AwsS3Controller {
   @when('Get AwsS3 Bucket:{string} Key:{string} === File:{string}', { timeout: Cfg.stepTimeOut })
   public async GetObjectFormS3(bucketName: string, s3Key: string, file: string): Promise<void> {
     const response = await AwsLogic.GetObjectFromS3(bucketName, s3Key);
-    const fileType = file.split(".")[file.split(".").length - 1]
-    ResClass.Http = { body: response ? AwsLogic.ConvFileType(response, fileType) : undefined }
-    const expContent = await FileReaderLogic.ReadText(file)
+    const fileType = file.split('.')[file.split('.').length - 1];
+    ResClass.Http = { body: response ? AwsLogic.ConvFileType(response, fileType) : undefined };
+    const expContent = await FileReaderLogic.ReadText(file);
     ScenarioClass.Http = {
       tcNo: [],
       request: {},
       response: {
-        body: VFormatter.Exec(AwsLogic.ConvFileType(expContent, fileType))
-      }
-    }
+        body: VFormatter.Exec(AwsLogic.ConvFileType(expContent, fileType)),
+      },
+    };
   }
 }

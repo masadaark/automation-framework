@@ -47,16 +47,16 @@ export class HttpController {
   public async SortHttpResponseArray(path: string, sortBys: string, sortTypes: string): Promise<void> {
     const array = StorageLogic.ObjPathVal(ResClass.Http.body, path);
     if (!Array.isArray(array)) return;
-    const sortingType = sortTypes.split(",").filter(t => ["asc", "desc"].includes(t))
-    const newData = _.orderBy(array, sortBys.split(","), sortingType as ("asc" | "desc")[]);
+    const sortingType = sortTypes.split(',').filter((t) => ['asc', 'desc'].includes(t));
+    const newData = _.orderBy(array, sortBys.split(','), sortingType as ('asc' | 'desc')[]);
     const paths = StorageLogic.PathToArr(path);
     let pointer = ResClass.Http.body;
     for (let i = 0; i < paths.length - 1; i++) {
       if (!pointer[paths[i]]) return;
       pointer = pointer[paths[i]];
     }
-    const lastKey = paths[paths.length - 1]
-    if (!lastKey) ResClass.Http.body = newData
-    else pointer[lastKey] = newData
+    const lastKey = paths[paths.length - 1];
+    if (!lastKey) ResClass.Http.body = newData;
+    else pointer[lastKey] = newData;
   }
 }

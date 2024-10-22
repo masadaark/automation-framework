@@ -3,7 +3,7 @@ const path = require("path");
 const colors = require('ansi-colors');
 const figlet = require('figlet');
 const { exec } = require('child_process');
-
+const report = require("multiple-cucumber-html-reporter");
 console.log(colors.green.bold(figlet.textSync('START', { font: 'ANSI Shadow', horizontalLayout: 'full' })));
 
 const tagEvent = process.argv.find(s => s.startsWith("@")) ?? "@regression-test"
@@ -65,6 +65,32 @@ const rmTestImage = () => {
     }
 }
 
+const gerenateCucumberHtmlReport = () => {
+    console.error(colors.blueBright(` Generate HTML Report `));
+    const jsonPath = path.join(__dirname, 'reports/cucumber-report');
+
+    try {
+        report.generate({
+            jsonDir: jsonPath,
+            reportPath: path.join(__dirname, 'reports', 'cucumber-htmlreport'),
+            displayDuration: true,
+            reportSuiteAsScenarios: true,
+            scenarioTimestamp: true,
+            saveCollectedJSON: true,
+            displayReportTime: true,
+            customData: {
+                title: 'Run info',
+                data: [{ reportedTime: new Date(), tagEvent }]
+            }
+        })
+
+    } catch (err) {
+        console.error(colors.redBright(`เกิดข้อผิดพลาดในการออก report-html`));
+        console.error(err)
+    }
+
+}
+
 async function main() {
     try {
         console.log(colors.blueBright(`**Read payloads***`))
@@ -77,10 +103,13 @@ async function main() {
         });
         console.log(colors.green(`running...`));
         await testRunner()
+
+        gerenateCucumberHtmlReport();
         console.log(colors.blueBright(`** Generate Report ***`));
         copyDir(srcFolder.testresultreport, targetFolder.testresultreport, (err) => {
             if (err) console.error(colors.red(`เกิดข้อผิดพลาดในการออก report`))
         });
+       
     } catch (error) {
         console.error(colors.redBright(`running error: ${error}`));
     } finally {

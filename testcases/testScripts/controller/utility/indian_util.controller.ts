@@ -74,9 +74,9 @@ export class UtilityController {
 
   @given('Sort Array Var {string} By {string} {string}', { timeout: Cfg.stepTimeOut })
   public SortArrayVariable(varName: string, sortBys: string, sortTypes: string): void {
-    const array = StorageClass.get(varName)
-    if (!Array.isArray(array)) return
-    const sortingType = sortTypes.split(",").filter(t => ["asc", "desc"].includes(t))
-    StorageClass.add(varName, _.orderBy(array, sortBys.split(","), sortingType as ("asc" | "desc")[]))
+    const array = StorageClass.get(varName);
+    if (!Array.isArray(array)) return;
+    const sortingType = sortTypes.split(',').filter((t) => ['asc', 'desc'].includes(t));
+    StorageClass.add(varName, _.orderBy(array, sortBys.split(','), sortingType as ('asc' | 'desc')[]));
   }
 }

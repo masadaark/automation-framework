@@ -4,7 +4,7 @@ let common = [
     '--require ./testcases/testScripts/**/*.ts',
     // '--format progress-bar',
     // `--format-options '{"snippetInterface": "synchronous"}'`,
-    `--format json:reports/cucumber-temp-report.json`,
+    `--format json:reports/cucumber-report/auto-report.json`,
   ].join(' ');
 
 module.exports = {

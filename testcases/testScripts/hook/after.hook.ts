@@ -23,13 +23,12 @@ export class AfterHook {
   public async afterAllHook(): Promise<void> {
     console.warn('\n');
     console.warn('******Writing Report******');
-    const reportData = IndianReportClass.toReport()
+    const reportData = IndianReportClass.toReport();
     if (reportData?.overview?.ran) {
-      const reportName = `${EnumFilePath.REPORT_PATH}/test-result-report-${dayjs().valueOf()}.json`
-      console.warn("reportName", reportName)
+      const reportName = `${EnumFilePath.REPORT_PATH}/test-result-report-${dayjs().valueOf()}.json`;
+      console.warn('reportName', reportName);
       await FileU.writeJson(reportName, reportData);
     }
-
   }
   @after()
   public afterEachHook(): void {

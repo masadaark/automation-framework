@@ -4,7 +4,6 @@ import { FeatureMapModel } from '../interface/report_map.model';
 import * as _ from 'lodash';
 import Big from 'big.js';
 class IndianReportClass {
-
   private static _testStepHook: ITestStepHookParameter;
 
   private static _reportContentMap: Record<string, FeatureMapModel> = {};

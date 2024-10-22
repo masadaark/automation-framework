@@ -38,7 +38,7 @@ class HttpLogic {
     const filteredScenarios = httpFile.scenarios.filter((o) => o.tcNo.includes(TcClass.tcNo));
     ScenarioClass.MultiHttp = Obj.New(filteredScenarios);
     if (Validator.Var(ScenarioClass.MultiHttp)) {
-      const responses: any[] = []
+      const responses: any[] = [];
       for (const http of ScenarioClass.MultiHttp) {
         ScenarioClass.Http = http;
         const rawReq = http.request;
@@ -46,9 +46,9 @@ class HttpLogic {
         responses.push({
           body: resp.response.body,
           status: resp.response.status,
-        })
+        });
       }
-      ResClass.MultiHttp = responses
+      ResClass.MultiHttp = responses;
     }
   }
 
