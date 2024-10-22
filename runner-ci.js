@@ -3,7 +3,8 @@ const { spawn } = require('child_process');
 let tagCommands = process.argv.find(v => v.startsWith("@")) ?? "@regression-test"
 let parallelArr = process.argv.find(v => v.startsWith("parallel:"))?.split(":")
 const paramProcess = ['-p', 'default', '--tags', tagCommands]
-if(paramProcess?.length > 1){
+
+if(parallelArr?.length > 1){
     paramProcess.push("--parallel")
     paramProcess.push(Number(parallelArr[1]) ?? 1)
 }
