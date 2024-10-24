@@ -14,7 +14,7 @@ export class AfterHook {
   public afterStepHook(afterStepHook: ITestStepHookParameter): void {
     const testStatus = afterStepHook.result.status;
     const timStamp = Big(afterStepHook.result.duration.nanos).div(1000000).toNumber();
-    console.warn(`---STATUS: ${testStatus} TIMESTAMP(milisec): ${timStamp}`);
+    // console.warn(`---STATUS: ${testStatus} TIMESTAMP(milisec): ${timStamp}`);
     const errorMessage = afterStepHook.result.exception?.message;
     if (errorMessage) IndianReportLogic.AddTestStep(errorMessage);
     IndianReportLogic.AddTestStepResult(timStamp, testStatus);

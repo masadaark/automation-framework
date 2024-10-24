@@ -11,7 +11,7 @@ import { ProtocolMongoDB } from '../protocol/mongodb.protocol';
 import ProtocolHttp from '../protocol/http.protocol';
 import AwsLogic from '../logic/aws/aws_s3.logic';
 let scenarioId: string = '';
-let testStepId: string = '';
+// let testStepId: string = '';
 @binding()
 export class BeforeHook {
   @beforeAll()
@@ -33,10 +33,10 @@ export class BeforeHook {
       scenarioId = testStepHook.pickle.id;
       console.warn(`-SCENARIO: ${testStepHook.pickle.name}`);
     }
-    if (testStepId !== testStepHook.pickleStep.id) {
-      testStepId = testStepHook.pickleStep.id;
-      console.warn(`--TEST STEP: ${testStepHook.pickleStep.text}`);
-    }
+    // if (testStepId !== testStepHook.pickleStep.id) {
+    //   testStepId = testStepHook.pickleStep.id;
+    //   console.warn(`--TEST STEP: ${testStepHook.pickleStep.text}`);
+    // }
     IndianReportClass.testStepHook = testStepHook;
   }
 }
