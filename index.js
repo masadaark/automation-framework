@@ -2,41 +2,60 @@ const fs = require('fs');
 const path = require("path");
 const colors = require('ansi-colors');
 const figlet = require('figlet');
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 const report = require("multiple-cucumber-html-reporter");
 console.log(colors.green.bold(figlet.textSync('START', { font: 'ANSI Shadow', horizontalLayout: 'full' })));
 
 const tagEvent = process.argv.find(s => s.startsWith("@")) ?? "@regression-test"
 console.log(colors.green.bold(`TAG : ${tagEvent}`))
 process.env.CUCUMBER_TAG = tagEvent;
-const parallel = process.argv.find(s => s.startsWith("parallel:"))
+let parallelArr = process.argv.find(v => v.startsWith("parallel:"))?.split(":")
 
 const srcFolder = {
-    payloads: path.resolve(__dirname, '../../payloads'),
-    testcases: path.resolve(__dirname, '../../testcases'),
-    appsetting: path.resolve(__dirname, '../../app-setting.json'),
-    testresultreport: path.resolve(__dirname, 'reports')
+    payloads: path.join(process.cwd(), '/payloads'),
+    testcases: path.join(process.cwd(), '/testcases'),
+    appsetting: path.join(process.cwd(), '/app-setting.json'),
+    testresultreport: path.resolve(__dirname, 'reports'),
 }
 const targetFolder = {
     payloads: path.resolve(__dirname, 'payloads'),
     testcases: path.resolve(__dirname, 'testcases/features'),
     appsetting: path.resolve(__dirname, 'app-setting.json'),
-    testresultreport: path.resolve(__dirname, '../../reports')
+    testresultreport: path.join(process.cwd(), './reports')
 }
-
 const testRunner = () => {
-    let command = `npm run test:cucumber ${tagEvent} `
-    if (parallel) command += parallel
+    const paramProcess = ['-p', 'default', '--tags', tagEvent]
+
+    if (parallelArr?.length > 1) {
+        paramProcess.push("--parallel")
+        paramProcess.push(Number(parallelArr[1]) ?? 1)
+    }
     return new Promise((resolve, reject) => {
-        exec(command, { cwd: __dirname, shell: true, stdio: 'pipe' }, (error, stdout, stderr) => {
-            if (error) {
-                reject(`Error: ${error.message}`);
+        const child = spawn('npx cucumber-js', paramProcess, {
+            stdio: 'inherit',cwd: __dirname, 
+            shell: true
+        });
+        child.on('error', (error) => {
+            console.error(`error: ${error.message}`);
+        });
+
+        child.on('exit', (code) => {
+            if (code === 0) {
+                resolve();
+            } if (code !== 0) {
+                reject(`exited code: ${code}`);
             }
-            if (stderr) console.log(colors.green(stderr));
-            console.log(colors.green(stdout));
-            resolve();
+        });
+
+        child.on('close', (code) => {
+            if (code === 0) {
+                resolve();
+            } else {
+                reject(`exited code: ${code}`);
+            }
         });
     });
+
 };
 
 // const ensureDirectoryExists = (dir) => {
@@ -110,7 +129,7 @@ async function main() {
         copyDir(srcFolder.testresultreport, targetFolder.testresultreport, (err) => {
             if (err) console.error(colors.red(`เกิดข้อผิดพลาดในการออก report`))
         });
-       
+
     } catch (error) {
         console.error(colors.redBright(`running error: ${error}`));
     } finally {
