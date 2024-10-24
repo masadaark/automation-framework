@@ -30,7 +30,7 @@ const testRunner = () => {
         paramProcess.push("--parallel")
         paramProcess.push(Number(parallelArr[1]) ?? 1)
     }
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve,reject) => {
         const child = spawn('npx cucumber-js', paramProcess, {
             stdio: 'inherit',cwd: __dirname, 
             shell: true
@@ -122,7 +122,9 @@ async function main() {
             if (err) console.error(colors.red(`app-setting.json`))
         });
         console.log(colors.green(`running...`));
-        await testRunner()
+        await testRunner().catch((err)=>{
+            console.error(err)
+        })
 
         gerenateCucumberHtmlReport();
         console.log(colors.blueBright(`** Generate Report ***`));
