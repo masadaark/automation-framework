@@ -7,9 +7,14 @@ const report = require("multiple-cucumber-html-reporter");
 console.log(colors.green.bold(figlet.textSync('START', { font: 'ANSI Shadow', horizontalLayout: 'full' })));
 
 const tagEvent = process.argv.find(s => s.startsWith("@")) ?? "@regression-test"
-console.log(colors.green.bold(`TAG : ${tagEvent}`))
 process.env.CUCUMBER_TAG = tagEvent;
-let parallelArr = process.argv.find(v => v.startsWith("parallel:"))?.split(":")
+console.log(colors.green.bold(`TAG : ${process.env.CUCUMBER_TAG}`))
+
+const parallelArr = process.argv.find(v => v.startsWith("parallel:"))?.split(":")
+
+const envName = process.argv.find(s => s.startsWith("envName:"))?.split(":")[1] ?? "local"
+process.env.ENV_NAME = envName;
+console.log(colors.yellowBright.bold(`Enviroment : ${process.env.ENV_NAME}`))
 
 const srcFolder = {
     payloads: path.join(process.cwd(), '/payloads'),
@@ -24,15 +29,16 @@ const targetFolder = {
     testresultreport: path.join(process.cwd(), './reports')
 }
 const testRunner = () => {
-    const paramProcess = ['-p', 'default', '--tags', tagEvent]
+    const paramProcess = ['-p', 'default', '--tags', `"${tagEvent}"`]
 
     if (parallelArr?.length > 1) {
         paramProcess.push("--parallel")
-        paramProcess.push(Number(parallelArr[1]) ?? 1)
+        paramProcess.push(Number(parallelArr[1] ?? 1))
     }
-    return new Promise((resolve,reject) => {
+    console.log(colors.green.bold(`Command: ${paramProcess.join(' ')}`));
+    return new Promise((resolve, reject) => {
         const child = spawn('npx cucumber-js', paramProcess, {
-            stdio: 'inherit',cwd: __dirname, 
+            stdio: 'inherit', cwd: __dirname,
             shell: true
         });
         child.on('error', (error) => {
@@ -42,7 +48,7 @@ const testRunner = () => {
         child.on('exit', (code) => {
             if (code === 0) {
                 resolve();
-            } if (code !== 0) {
+            } else {
                 reject(`exited code: ${code}`);
             }
         });
@@ -58,36 +64,20 @@ const testRunner = () => {
 
 };
 
-// const ensureDirectoryExists = (dir) => {
-//     fs.mkdir(dir, { recursive: true }, (err) => {
-//         if (!err) {
-//             console.log(colors.red(`dir not found: ${dir}`));
-//         }
-//     });
-// };
-
-const copyDir = (src, dest) => {
-    if (fs.existsSync(dest)) {
-        fs.rmSync(dest, { recursive: true, force: true })
-    }
-    fs.cpSync(src, dest, { recursive: true, force: true });
-};
-
-const rmTestImage = () => {
+const copyDir = (src, dest, errMessage = "") => {
     try {
-        fs.rmSync(targetFolder.appsetting, { recursive: true, force: true })
-        fs.rmSync(targetFolder.payloads, { recursive: true, force: true })
-        fs.rmSync(targetFolder.testcases, { recursive: true, force: true })
-        fs.rmSync(srcFolder.testresultreport, { recursive: true, force: true })
+        if (fs.existsSync(dest)) {
+            fs.rmSync(dest, { recursive: true, force: true });
+        }
+        fs.cpSync(src, dest, { recursive: true, force: true });
     } catch {
-        rmTestImage()
+        if (err) console.error(colors.redBright(errMessage));
     }
-}
+};
 
 const gerenateCucumberHtmlReport = () => {
     console.error(colors.blueBright(` Generate HTML Report `));
     const jsonPath = path.join(__dirname, 'reports/cucumber-report');
-
     try {
         report.generate({
             jsonDir: jsonPath,
@@ -111,24 +101,41 @@ const gerenateCucumberHtmlReport = () => {
 
 }
 
+const rmTestImage = () => {
+    try {
+        fs.rmSync(targetFolder.appsetting, { recursive: true, force: true })
+        fs.rmSync(targetFolder.payloads, { recursive: true, force: true })
+        fs.rmSync(targetFolder.testcases, { recursive: true, force: true })
+        fs.rmSync(srcFolder.testresultreport, { recursive: true, force: true })
+    } catch {
+        rmTestImage()
+    }
+}
+
 async function main() {
+    let featureFailed = 1
+    let featureCount = 0
     try {
         console.log(colors.blueBright(`**Read payloads***`))
-        copyDir(srcFolder.payloads, targetFolder.payloads);
+        copyDir(srcFolder.payloads, targetFolder.payloads, "อ่าน payloads ไม่สำเร็จ");
         console.log(colors.blueBright(`**Read testcases***`))
-        copyDir(srcFolder.testcases, targetFolder.testcases);
+        copyDir(srcFolder.testcases, targetFolder.testcases, "อ่าน testcases ไม่สำเร็จ");
         console.log(colors.blueBright(`**Read app-setting.json***`))
         fs.copyFile(srcFolder.appsetting, targetFolder.appsetting, (err) => {
             if (err) console.error(colors.red(`app-setting.json`))
         });
-        console.log(colors.green(`running...`));
-        await testRunner().catch((err)=>{
+        console.log(colors.green(`running...`))
+        await testRunner().catch((err) => {
             console.error(err)
         })
-
         gerenateCucumberHtmlReport();
+        const enrichedReportPath = path.join(__dirname, 'reports/cucumber-htmlreport/enriched-output.json')
+        const reportData = JSON.parse(await fs.promises.readFile(enrichedReportPath, 'utf8'));
+        featureFailed = reportData.featureCount.failed
+        featureCount = reportData.featureCount.total
+
         console.log(colors.blueBright(`** Generate Report ***`));
-        copyDir(srcFolder.testresultreport, targetFolder.testresultreport, (err) => {
+        if (featureCount > 0) copyDir(srcFolder.testresultreport, targetFolder.testresultreport, (err) => {
             if (err) console.error(colors.red(`เกิดข้อผิดพลาดในการออก report`))
         });
 
@@ -136,6 +143,10 @@ async function main() {
         console.error(colors.redBright(`running error: ${error}`));
     } finally {
         rmTestImage();
+        if (featureFailed > 0) {
+            console.error(colors.redBright(`Gherkin Tag:${tagEvent} envName:${envName} Feature Failed:${featureFailed}.`))
+            throw new Error('Test Failed.');
+        }
     }
 }
 
